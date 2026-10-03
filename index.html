@@ -130,7 +130,7 @@ input,select,textarea{font-family:inherit;font-size:15px;}
   content:"";position:absolute;top:0;bottom:0;left:-50vw;right:-50vw;z-index:-1;
   background:
     linear-gradient(90deg,rgba(8,27,46,.92) 0%,rgba(8,27,46,.82) 38%,rgba(8,27,46,.45) 72%,rgba(8,27,46,.55) 100%),
-    url("RBM web BG.jpg") 60% 45%/cover no-repeat,
+    url("hero-port.jpeg") 60% 45%/cover no-repeat,
     var(--navy-900);
 }
 .hero h1{
@@ -297,7 +297,7 @@ input,select,textarea{font-family:inherit;font-size:15px;}
 
 .group-card{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:22px 24px;margin-top:20px;}
 .group-head{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
-.group-icon{width:34px;height:34px;border-radius:9px;background:var(--teal-light);color:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.group-icon{width:34px;height:34px;border-radius:99px;background:var(--teal-light);color:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .group-icon svg{width:18px;height:18px;}
 .group-title{font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--navy-900);}
 
@@ -494,7 +494,6 @@ input,select,textarea{font-family:inherit;font-size:15px;}
       <button data-nav="home" class="active">Home</button>
       <button data-nav="home" data-scroll="about-section">About</button>
       <button data-nav="services">Services</button>
-      <button data-nav="home" data-scroll="cargo-section">Cargo We Handle</button>
       <button data-nav="track">Track Shipment</button>
       <button data-nav="quote">Get a Quote</button>
       <button data-nav="home" data-scroll="contact">Contact</button>
@@ -517,7 +516,6 @@ input,select,textarea{font-family:inherit;font-size:15px;}
     <button class="nav-item active" data-nav="home">Home</button>
     <button class="nav-item" data-nav="home" data-scroll="about-section">About</button>
     <button class="nav-item" data-nav="services">Services</button>
-    <button class="nav-item" data-nav="home" data-scroll="cargo-section">Cargo We Handle</button>
     <button class="nav-item" data-nav="track">Track Shipment</button>
     <button class="nav-item" data-nav="quote">Get a Quote</button>
     <button class="nav-item" data-nav="home" data-scroll="contact">Contact</button>
@@ -594,7 +592,7 @@ input,select,textarea{font-family:inherit;font-size:15px;}
       <aside class="home-quote" id="homeQuote">
         <div class="quote-panel">
           <h3>Request a Freight Quote</h3>
-          <form class="quote-form-js compact-form" novalidate="">
+          <form class="quote-form-js compact-form" action="https://formspree.io/f/xnpnendy" method="POST" novalidate="">
             <div class="form-grid">
               <div class="field full">
                 <label>Origin <span class="req">*</span></label>
@@ -677,10 +675,8 @@ input,select,textarea{font-family:inherit;font-size:15px;}
           <div class="quote-success">
             <div class="tick"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
             <h3>Request received</h3>
-            <p>Thanks — our team will review your route and get back to you within one business day. Want to send it by email too?</p>
-            <a class="btn btn-outline btn-sm mailto-link" style="margin-top:16px;" target="_blank" rel="noopener">Email us these details</a>
-            <br>
-            <button type="button" class="btn btn-ghost btn-sm new-quote-btn" style="margin-top:12px;">Submit another request</button>
+            <p>Thanks — our team will review your route and get back to you within one business day.</p>
+            <button type="button" class="btn btn-ghost btn-sm new-quote-btn" style="margin-top:16px;">Submit another request</button>
           </div>
         </div>
       </aside>
@@ -846,7 +842,7 @@ input,select,textarea{font-family:inherit;font-size:15px;}
     <div class="wrap quote-layout">
 
       <div class="quote-card">
-        <form id="quoteForm" class="quote-form-js" novalidate="">
+        <form id="quoteForm" class="quote-form-js" action="https://formspree.io/f/xnpnendy" method="POST" novalidate="">
           <div class="form-grid">
             <div class="field" id="originField">
               <label>Origin <span class="req">*</span></label>
@@ -948,10 +944,8 @@ input,select,textarea{font-family:inherit;font-size:15px;}
         <div class="quote-success">
           <div class="tick"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
           <h3>Request received</h3>
-          <p>Thanks — our team will review your route and get back to you within one business day. Want to send it by email too?</p>
-          <a class="btn btn-outline btn-sm mailto-link" style="margin-top:16px;" target="_blank" rel="noopener">Email us these details</a>
-          <br>
-          <button type="button" class="btn btn-ghost btn-sm new-quote-btn" style="margin-top:12px;">Submit another request</button>
+          <p>Thanks — our team will review your route and get back to you within one business day.</p>
+          <button type="button" class="btn btn-ghost btn-sm new-quote-btn" style="margin-top:16px;">Submit another request</button>
         </div>
       </div>
 
@@ -1020,7 +1014,6 @@ input,select,textarea{font-family:inherit;font-size:15px;}
         <li><a data-nav="home" href="#">Home</a></li>
         <li><a data-nav="home" data-scroll="about-section" href="#">About Us</a></li>
         <li><a data-nav="services" href="#">Services</a></li>
-        <li><a data-nav="home" data-scroll="cargo-section" href="#">Cargo We Handle</a></li>
         <li><a data-nav="track" href="#">Track Shipment</a></li>
         <li><a data-nav="quote" href="#">Get a Quote</a></li>
         <li><a data-nav="home" data-scroll="contact" href="#">Contact Us</a></li>
@@ -1167,7 +1160,6 @@ function goTo(pageId, scrollTarget, clickedBtn){
   if (clickedBtn && clickedBtn.closest('.main-nav, .mobile-panel')) {
     clickedBtn.classList.add('active');
   } else {
-    // Match appropriate nav button
     const matchingBtn = document.querySelector(`.main-nav button[data-nav="${pageId}"]:not([data-scroll]), .main-nav button[data-scroll="${scrollTarget}"]`);
     if (matchingBtn) matchingBtn.classList.add('active');
   }
@@ -1275,11 +1267,13 @@ document.querySelectorAll('.quote-form-js input[name="origin"], .quote-form-js i
 });
 
 /* ============================================================
-   GET A QUOTE FORM HANDLING
+   FORMSPREE QUOTE FORM HANDLING
    ============================================================ */
 function setupQuoteForm(form){
   const success = form.parentElement.querySelector('.quote-success');
-  form.addEventListener('submit', function(e){
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  form.addEventListener('submit', async function(e){
     e.preventDefault();
     let ok = true;
     form.querySelectorAll('[required]').forEach(el=>{
@@ -1287,32 +1281,34 @@ function setupQuoteForm(form){
     });
     if(!ok){ return; }
 
-    const val = n => form.elements[n].value.trim() || '—';
-    const bodyLines = [
-      `Origin: ${val('origin')}`,
-      `Destination: ${val('destination')}`,
-      `Shipment Type: ${val('shipmentType')}`,
-      `FCL/LCL: ${val('fclLcl')}`,
-      `Commodity: ${val('commodity')}`,
-      `Packages: ${val('packages')}`,
-      `Gross Weight (kg): ${val('grossWeight')}`,
-      `Volume (CBM): ${val('volume')}`,
-      `Incoterm: ${val('incoterm')}`,
-      `Ready Date: ${val('readyDate')}`,
-      `Special Requirements: ${val('specialReq')}`,
-      ``,
-      `Name: ${val('fullName')}`,
-      `Company: ${val('company')}`,
-      `Email: ${val('email')}`,
-      `WhatsApp/Phone: ${val('phone')}`
-    ].join('\n');
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
 
-    const mailto = `mailto:info@rbm-logistics.com,sales@rbm-logistics.com?subject=${encodeURIComponent('Freight Quote Request — '+val('origin')+' to '+val('destination'))}&body=${encodeURIComponent(bodyLines)}`;
-    success.querySelector('.mailto-link').href = mailto;
+    try {
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
 
-    form.style.display = 'none';
-    success.classList.add('show');
+      if (response.ok) {
+        form.style.display = 'none';
+        success.classList.add('show');
+      } else {
+        alert('Oops! There was a problem submitting your form. Please try again or email us directly.');
+      }
+    } catch (error) {
+      alert('Oops! There was a network problem submitting your form. Please check your internet connection.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnText;
+    }
   });
+
   success.querySelector('.new-quote-btn').addEventListener('click', ()=>{
     form.reset();
     form.style.display = 'block';
