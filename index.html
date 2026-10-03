@@ -1,0 +1,1614 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RBM Logistics — PT Ridho Bangun Mandiri | Freight Forwarding &amp; Logistics</title>
+<meta name="description" content="RBM Logistics (PT Ridho Bangun Mandiri) — reliable sea, air, and land freight forwarding for import, export and domestic cargo in Indonesia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --navy-950:#081b2e;
+  --navy-900:#0b2a45;
+  --navy-800:#123a5e;
+  --navy-700:#1a4c78;
+  --orange:#f5811f;
+  --orange-dark:#d96a10;
+  --teal:#12879a;
+  --teal-light:#e4f4f6;
+  --bg:#f5f7fa;
+  --paper:#ffffff;
+  --ink:#0f2233;
+  --muted:#5b6b7a;
+  --line:#e1e7ec;
+  --line-strong:#c9d3db;
+  --success:#1c8a4c;
+  --radius:14px;
+  --radius-sm:8px;
+  --shadow-sm:0 1px 2px rgba(11,42,69,.06), 0 1px 1px rgba(11,42,69,.04);
+  --shadow-md:0 8px 24px rgba(11,42,69,.10);
+  --shadow-lg:0 20px 48px rgba(11,42,69,.16);
+  --maxw:1220px;
+  --font-display:"Archivo",system-ui,sans-serif;
+  --font-body:"Inter",system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",monospace;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.55;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+h1,h2,h3,h4{font-family:var(--font-display);margin:0;line-height:1.1;letter-spacing:-0.01em;}
+p{margin:0;}
+ul{margin:0;padding:0;list-style:none;}
+button{font-family:inherit;cursor:pointer;}
+input,select,textarea{font-family:inherit;font-size:15px;}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px;border-radius:4px;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-mono);font-size:12.5px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--orange-dark);
+}
+.eyebrow::before{content:"";width:18px;height:2px;background:var(--orange);border-radius:2px;}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;scroll-behavior:auto !important;}
+}
+
+/* ============ HEADER ============ */
+.site-header{
+  position:sticky;top:0;z-index:200;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-row{display:flex;align-items:center;justify-content:space-between;height:80px;gap:24px;}
+.brand{display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.brand img{height:44px;width:auto;}
+.brand-text{display:flex;flex-direction:column;line-height:1.15;}
+.brand-text .name{font-family:var(--font-display);font-weight:800;font-size:19px;color:var(--navy-900);letter-spacing:-.01em;}
+.brand-text .name span{color:var(--orange);}
+.brand-text .sub{font-size:10.5px;font-weight:600;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;}
+.main-nav{display:flex;align-items:center;gap:4px;}
+.main-nav button{
+  background:none;border:none;padding:10px 13px;
+  font-weight:700;font-size:13px;letter-spacing:.02em;text-transform:uppercase;color:var(--navy-900);
+  position:relative;transition:color .15s;display:inline-flex;align-items:center;gap:5px;
+}
+.main-nav button:hover{color:var(--orange-dark);}
+.main-nav > button.active::after{content:"";position:absolute;left:13px;right:13px;bottom:-14px;height:2px;background:var(--orange);border-radius:2px;}
+.main-nav button.active{color:var(--orange-dark);}
+.nav-drop{position:relative;}
+.nav-drop-menu{
+  position:absolute;top:100%;left:0;min-width:240px;background:#fff;border:1px solid var(--line);
+  border-radius:10px;box-shadow:var(--shadow-md);padding:8px;display:none;flex-direction:column;
+}
+.nav-drop:hover .nav-drop-menu,.nav-drop:focus-within .nav-drop-menu{display:flex;}
+.nav-drop-menu button{text-transform:none;font-weight:600;font-size:14px;padding:10px 12px;border-radius:7px;text-align:left;}
+.nav-drop-menu button:hover{background:var(--teal-light);color:var(--teal);}
+.nav-cta{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 22px;border-radius:999px;font-weight:700;font-size:14.5px;
+  border:1.5px solid transparent;transition:transform .15s, box-shadow .15s, background .15s, border-color .15s;
+  white-space:nowrap;
+}
+.btn:active{transform:translateY(1px);}
+.btn-primary{background:var(--orange);color:#fff;box-shadow:0 6px 18px rgba(245,129,31,.35);}
+.btn-primary:hover{background:var(--orange-dark);box-shadow:0 8px 22px rgba(245,129,31,.45);}
+.btn-outline{background:transparent;border-color:var(--navy-800);color:var(--navy-900);}
+.btn-outline:hover{background:var(--navy-900);color:#fff;}
+.btn-ghost{background:var(--teal-light);color:var(--teal);}
+.btn-ghost:hover{background:var(--teal);color:#fff;}
+.btn-wa{width:44px;height:44px;padding:0;border-radius:9px;background:#fff;border:1.5px solid var(--line-strong);color:var(--teal);}
+.btn-wa:hover{background:var(--teal);color:#fff;border-color:var(--teal);}
+.btn-sm{padding:9px 16px;font-size:13.5px;}
+.btn-square{border-radius:6px;text-transform:uppercase;letter-spacing:.03em;}
+.btn-block{width:100%;}
+.btn-navy{background:var(--navy-900);color:#fff;}
+.btn-navy:hover{background:var(--navy-950);}
+.btn-ghost-light{background:transparent;border-color:rgba(255,255,255,.75);color:#fff;}
+.btn-ghost-light:hover{background:#fff;color:var(--navy-900);}
+.btn[disabled]{opacity:.55;cursor:not-allowed;}
+.menu-toggle{display:none;background:none;border:1.5px solid var(--line-strong);border-radius:10px;width:44px;height:44px;align-items:center;justify-content:center;}
+
+/* ============ HOME LAYOUT ============ */
+.wrap-wide{max-width:1480px;margin:0 auto;padding:0 32px;}
+.home-shell{position:relative;isolation:isolate;overflow:hidden;background:#fff;}
+.home-grid{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:26px;align-items:start;}
+#homeQuote,#about-section,#cargo-section,#contact{scroll-margin-top:100px;}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;color:#fff;padding:48px 0 34px;min-height:380px;
+  display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:28px;align-items:center;
+}
+.hero::before{
+  content:"";position:absolute;top:0;bottom:0;left:-50vw;right:-50vw;z-index:-1;
+  background:
+    linear-gradient(90deg,rgba(8,27,46,.94) 0%,rgba(8,27,46,.78) 38%,rgba(8,27,46,.3) 72%,rgba(8,27,46,.45) 100%),
+    url("images/hero-port.jpg") 60% 45%/cover no-repeat,
+    var(--navy-900);
+}
+.hero h1{
+  font-size:clamp(36px,4.3vw,64px);font-weight:900;line-height:1;
+  text-transform:uppercase;letter-spacing:-.01em;
+}
+.hero h1 .accent{color:var(--orange);display:block;}
+.hero p.lead{margin-top:18px;font-size:18px;color:#e3ecf3;max-width:440px;}
+.hero-modes{display:flex;flex-wrap:wrap;gap:14px 28px;margin-top:26px;}
+.hero-modes li{display:flex;align-items:center;gap:9px;}
+.hero-modes svg{width:28px;height:28px;color:#fff;flex-shrink:0;}
+.hero-modes span{font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;max-width:96px;line-height:1.2;}
+.hero-actions{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;}
+.hero-track{
+  background:#fff;color:var(--ink);border-radius:10px;padding:22px 20px;box-shadow:var(--shadow-lg);
+  display:flex;flex-direction:column;gap:10px;
+}
+.hero-track h3{font-size:16px;font-weight:800;text-transform:uppercase;color:var(--navy-800);}
+.hero-track label{font-size:12px;color:var(--muted);}
+.hero-track input{
+  padding:11px 12px;border-radius:6px;border:1.5px solid var(--line-strong);font-size:13.5px;
+  font-family:var(--font-mono);width:100%;
+}
+.hero-track input::placeholder{font-family:var(--font-body);}
+.hero-track input:focus{border-color:var(--orange);}
+.hero-track .btn{justify-content:space-between;margin-top:4px;}
+.hero-track p{font-size:12px;color:var(--muted);}
+
+/* ============ HOME SERVICES ============ */
+.home-services{padding:24px 0 26px;}
+.home-section-head{text-align:center;}
+.home-section-head .kicker{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--orange-dark);}
+.home-section-head h2{font-size:clamp(22px,2.2vw,28px);font-weight:700;color:var(--navy-900);margin-top:6px;}
+.svc-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:20px;}
+.svc-tile{
+  background:#fff;border:1px solid var(--line);border-radius:8px;padding:18px 12px 16px;
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;
+  transition:transform .18s, box-shadow .18s;
+}
+.svc-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+.svc-icon{color:var(--navy-800);}
+.svc-icon svg{width:34px;height:34px;}
+.svc-tile h3{font-size:13.5px;font-weight:800;text-transform:uppercase;color:var(--navy-800);margin-top:4px;}
+.svc-tile p{font-size:12.5px;color:var(--muted);}
+.svc-tile .link-more{margin-top:auto;padding-top:4px;font-weight:700;font-size:12.5px;color:var(--orange-dark);display:inline-flex;align-items:center;gap:5px;}
+.svc-tile .link-more svg{width:13px;height:13px;transition:transform .15s;}
+.svc-tile:hover .link-more svg{transform:translateX(3px);}
+
+/* ============ INFO BAND ============ */
+.info-band{position:relative;display:grid;grid-template-columns:1.05fr 1fr 1.4fr;padding:22px 0 28px;}
+.info-band::before{content:"";position:absolute;top:0;bottom:0;left:-50vw;right:-50vw;z-index:-1;background:#edf3f8;}
+.info-col{padding:0 22px;border-right:1px solid #d3dee7;}
+.info-col:first-child{padding-left:0;}
+.info-col:last-child{border-right:none;padding-right:0;}
+.info-col h4{font-size:13.5px;font-weight:800;text-transform:uppercase;color:var(--navy-800);margin-bottom:12px;}
+.cargo-list{display:grid;grid-template-columns:1fr 1fr;gap:9px 16px;}
+.cargo-list li{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink);}
+.cargo-list svg{width:18px;height:18px;color:var(--navy-700);flex-shrink:0;}
+.why-list{display:flex;flex-direction:column;gap:7px;}
+.why-list li{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ink);}
+.why-list svg{width:16px;height:16px;color:var(--navy-800);flex-shrink:0;}
+.band-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid #d3dee7;}
+.band-stats b{display:block;font-family:var(--font-display);font-size:26px;font-weight:800;color:var(--navy-900);}
+.band-stats span{font-size:12px;color:var(--ink);line-height:1.3;display:block;max-width:90px;}
+.industry-icons{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
+.industry-icon{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;font-size:11.5px;color:var(--ink);line-height:1.25;}
+.industry-icon svg{width:24px;height:24px;color:var(--navy-700);}
+
+/* ============ HOME QUOTE PANEL ============ */
+.home-quote{position:relative;z-index:2;margin-top:44px;margin-bottom:30px;}
+.quote-panel{background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow-lg);padding:24px 20px;}
+.quote-panel > h3{font-size:17px;font-weight:800;text-transform:uppercase;color:var(--navy-800);padding-bottom:12px;margin-bottom:18px;position:relative;}
+.quote-panel > h3::after{content:"";position:absolute;left:0;bottom:0;width:58px;height:2px;background:var(--orange);}
+.compact-form .form-grid{gap:12px;}
+.compact-form .field{gap:5px;}
+.compact-form .field label{font-size:12px;}
+.compact-form .field input,.compact-form .field select,.compact-form .field textarea{padding:9px 10px;font-size:13px;border-radius:6px;border-width:1px;}
+.compact-form .field textarea{min-height:64px;}
+.compact-form .field-row3{gap:8px;}
+.compact-form .btn-block{margin-top:18px;justify-content:center;}
+.lock-note{display:flex;align-items:center;gap:7px;margin-top:12px;font-size:11.5px;color:var(--muted);}
+.lock-note svg{flex-shrink:0;}
+
+/* ============ SECTION SHELL ============ */
+.section{padding:80px 0;}
+.section-tight{padding:56px 0;}
+.section-head{max-width:640px;margin-bottom:44px;}
+.section-head h2{font-size:clamp(26px,3vw,36px);font-weight:800;margin-top:14px;color:var(--navy-900);}
+.section-head p{margin-top:14px;color:var(--muted);font-size:16.5px;}
+.section-alt{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.center{text-align:center;margin-left:auto;margin-right:auto;}
+
+/* ============ ICON TILE (services page) ============ */
+.icon-tile{
+  width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  background:var(--teal-light);color:var(--teal);flex-shrink:0;
+}
+.icon-tile svg{width:26px;height:26px;}
+
+/* ============ CTA BANNER ============ */
+.cta-banner{
+  background:linear-gradient(120deg,var(--orange) 0%,var(--orange-dark) 100%);
+  border-radius:20px;padding:46px 44px;display:flex;align-items:center;justify-content:space-between;
+  gap:24px;color:#fff;flex-wrap:wrap;
+}
+.cta-banner h3{font-size:26px;font-weight:800;}
+.cta-banner p{margin-top:8px;color:rgba(255,255,255,.92);font-size:15px;}
+.cta-banner .btn-primary{background:#fff;color:var(--orange-dark);box-shadow:none;}
+.cta-banner .btn-primary:hover{background:var(--navy-950);color:#fff;}
+
+/* ============ PAGE HEADER (inner pages) ============ */
+.page-hero{
+  background:linear-gradient(120deg,var(--navy-900),var(--navy-950));
+  color:#fff;padding:64px 0 52px;
+}
+.page-hero h1{font-size:clamp(30px,4vw,44px);font-weight:900;margin-top:14px;}
+.page-hero p{margin-top:14px;color:#c9d8e6;max-width:560px;font-size:16.5px;}
+.breadcrumb{font-size:13px;color:#8ea4b8;font-weight:600;}
+.breadcrumb b{color:#fff;}
+
+/* ============ SERVICES PAGE ============ */
+.svc-grid-full{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.svc-full-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;
+  display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden;
+}
+.svc-full-card .num{position:absolute;top:18px;right:22px;font-family:var(--font-mono);font-size:12px;color:var(--line-strong);font-weight:700;}
+.svc-full-card h3{font-size:19.5px;color:var(--navy-900);}
+.svc-full-card .pitch{font-family:var(--font-display);font-weight:700;font-size:13.5px;color:var(--orange-dark);}
+.svc-full-card p.desc{color:var(--muted);font-size:14.5px;}
+.svc-full-card .feat{display:flex;flex-direction:column;gap:8px;margin-top:4px;}
+.svc-full-card .feat li{display:flex;gap:8px;font-size:13.5px;color:var(--ink);}
+.svc-full-card .feat svg{width:15px;height:15px;color:var(--teal);flex-shrink:0;margin-top:2px;}
+.cargo-tags{display:flex;flex-wrap:wrap;gap:10px;}
+.cargo-tag{padding:9px 16px;border-radius:10px;background:#fff;border:1px solid var(--line);font-size:13.5px;font-weight:600;}
+
+/* ============ TRACKING PAGE ============ */
+.track-panel{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:32px;
+  box-shadow:var(--shadow-sm);margin-top:-64px;position:relative;z-index:5;
+}
+.track-form{display:flex;gap:12px;flex-wrap:wrap;}
+.track-form input{
+  flex:1;min-width:240px;padding:15px 18px;border-radius:10px;border:1.5px solid var(--line-strong);
+  font-size:16px;font-family:var(--font-mono);letter-spacing:.03em;
+}
+.track-form input:focus{border-color:var(--orange);}
+.track-hint{margin-top:10px;font-size:13px;color:var(--muted);}
+.track-hint code{background:var(--bg);padding:2px 7px;border-radius:5px;font-family:var(--font-mono);}
+.track-status-msg{margin-top:18px;padding:14px 16px;border-radius:10px;font-size:14.5px;display:none;}
+.track-status-msg.show{display:block;}
+.track-status-msg.error{background:#fdecec;color:#a8271f;}
+.track-status-msg.loading{background:var(--teal-light);color:var(--teal);}
+
+.result-card{margin-top:26px;display:none;}
+.result-card.show{display:block;animation:fadein .3s ease;}
+@keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.result-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;padding-bottom:22px;border-bottom:1px solid var(--line);}
+.result-head .ref{font-family:var(--font-mono);font-size:13px;color:var(--muted);}
+.result-head h3{font-size:22px;color:var(--navy-900);margin-top:6px;}
+.status-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;font-weight:700;font-size:13px;background:var(--teal-light);color:var(--teal);}
+.status-badge.done{background:#e7f6ec;color:var(--success);}
+.status-badge.transit{background:#fff2e4;color:var(--orange-dark);}
+
+.stepper{display:flex;justify-content:space-between;margin:34px 0 30px;position:relative;}
+.stepper::before{content:"";position:absolute;top:19px;left:0;right:0;height:3px;background:var(--line);z-index:0;border-radius:3px;}
+.stepper .fill{position:absolute;top:19px;left:0;height:3px;background:var(--orange);z-index:1;border-radius:3px;transition:width .5s ease;}
+.step{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;flex:1;}
+.step .dot{width:40px;height:40px;border-radius:50%;background:#fff;border:3px solid var(--line-strong);display:flex;align-items:center;justify-content:center;color:var(--line-strong);transition:all .25s;}
+.step .dot svg{width:18px;height:18px;}
+.step span{font-size:11.5px;font-weight:700;color:var(--muted);text-align:center;max-width:90px;}
+.step.done .dot{background:var(--orange);border-color:var(--orange);color:#fff;}
+.step.done span{color:var(--navy-900);}
+.step.current .dot{border-color:var(--orange);color:var(--orange-dark);box-shadow:0 0 0 5px #ffe7cf;}
+.step.current span{color:var(--orange-dark);}
+
+.detail-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:8px;}
+.detail-cell{background:#fff;padding:16px 18px;}
+.detail-cell .k{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+.detail-cell .v{margin-top:6px;font-size:15px;font-weight:600;color:var(--navy-900);}
+.priv-note{margin-top:20px;font-size:12.5px;color:var(--muted);background:var(--bg);padding:12px 14px;border-radius:8px;display:flex;gap:8px;}
+.priv-note svg{width:16px;height:16px;flex-shrink:0;color:var(--teal);}
+
+/* ---- grouped result cards ---- */
+.group-card{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:22px 24px;margin-top:20px;}
+.group-head{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+.group-icon{width:34px;height:34px;border-radius:9px;background:var(--teal-light);color:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.group-icon svg{width:18px;height:18px;}
+.group-title{font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--navy-900);}
+
+.route-visual{display:flex;align-items:center;gap:14px;margin-bottom:20px;}
+.route-point{flex:0 0 auto;text-align:center;}
+.route-point .dot{width:14px;height:14px;border-radius:50%;background:var(--orange);margin:0 auto 8px;border:3px solid #fff;box-shadow:0 0 0 2px var(--orange);}
+.route-point.dest .dot{background:var(--teal);box-shadow:0 0 0 2px var(--teal);}
+.route-point .lbl{font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);}
+.route-point .val{font-size:14.5px;font-weight:700;color:var(--navy-900);margin-top:2px;max-width:140px;}
+.route-line{flex:1;height:2px;background:repeating-linear-gradient(90deg,var(--line-strong) 0 8px,transparent 8px 14px);position:relative;top:-14px;}
+
+.vessel-row{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:16px;
+}
+.vessel-info{display:flex;align-items:center;gap:12px;}
+.vessel-info .icon{width:38px;height:38px;border-radius:9px;background:var(--navy-900);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.vessel-info .icon svg{width:19px;height:19px;}
+.vessel-info .k{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);}
+.vessel-info .v{font-size:14.5px;font-weight:700;color:var(--navy-900);}
+
+.eta-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.eta-tile{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;}
+.eta-tile .k{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);}
+.eta-tile .v{font-size:16px;font-weight:700;color:var(--navy-900);margin-top:4px;font-family:var(--font-mono);}
+
+.stat-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.stat-tile{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 15px;}
+.stat-tile .k{font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);}
+.stat-tile .v{font-size:15px;font-weight:700;color:var(--navy-900);margin-top:5px;}
+.dg-yes{color:#c0392b !important;}
+
+.note-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;gap:12px;}
+.note-card + .note-card{margin-top:10px;}
+.note-card svg{width:17px;height:17px;color:var(--teal);flex-shrink:0;margin-top:1px;}
+.note-card.warn svg{color:var(--orange-dark);}
+.note-card .txt{font-size:14px;color:var(--ink);}
+.note-card .txt b{display:block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+
+@media (max-width:720px){
+  .stat-tiles{grid-template-columns:repeat(2,1fr);}
+  .eta-row{grid-template-columns:1fr;}
+  .route-point .val{max-width:90px;font-size:13px;}
+}
+
+/* ============ QUOTE PAGE ============ */
+.quote-layout{display:grid;grid-template-columns:1.4fr .9fr;gap:34px;align-items:start;}
+.quote-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow-sm);}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.field{display:flex;flex-direction:column;gap:7px;position:relative;}
+.field.full{grid-column:1/-1;}
+.field label{font-size:13px;font-weight:700;color:var(--navy-800);}
+.field label .req{color:var(--orange-dark);}
+.field input,.field select,.field textarea{
+  padding:12px 14px;border-radius:9px;border:1.5px solid var(--line-strong);font-size:14.5px;
+  background:#fff;color:var(--ink);width:100%;
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--orange);}
+.field textarea{resize:vertical;min-height:84px;}
+.field-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;grid-column:1/-1;}
+.autocomplete-list{
+  position:absolute;top:calc(100% + 4px);left:0;right:0;background:#fff;border:1px solid var(--line-strong);
+  border-radius:10px;box-shadow:var(--shadow-md);max-height:230px;overflow-y:auto;z-index:40;display:none;
+}
+.autocomplete-list.show{display:block;}
+.autocomplete-list button{
+  display:flex;width:100%;text-align:left;padding:10px 14px;background:none;border:none;font-size:14px;
+  justify-content:space-between;gap:10px;
+}
+.autocomplete-list button:hover,.autocomplete-list button.hi{background:var(--teal-light);}
+.autocomplete-list button .code{font-family:var(--font-mono);font-size:11.5px;color:var(--muted);}
+.autocomplete-list .empty{padding:12px 14px;font-size:13px;color:var(--muted);}
+.form-foot{margin-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.form-foot .lock{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;}
+.form-foot .lock svg{width:14px;height:14px;}
+.quote-success{display:none;text-align:center;padding:40px 20px;}
+.quote-success.show{display:block;}
+.quote-success .tick{width:64px;height:64px;border-radius:50%;background:#e7f6ec;color:var(--success);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
+.quote-success .tick svg{width:32px;height:32px;}
+.quote-success h3{font-size:22px;color:var(--navy-900);}
+.quote-success p{margin-top:10px;color:var(--muted);font-size:14.5px;max-width:400px;margin-left:auto;margin-right:auto;}
+.side-card{background:var(--navy-900);color:#fff;border-radius:var(--radius);padding:28px;margin-bottom:18px;}
+.side-card h4{font-size:16px;font-weight:700;}
+.side-card ul{margin-top:16px;display:flex;flex-direction:column;gap:14px;}
+.side-card li{display:flex;gap:12px;font-size:13.5px;color:#c9d8e6;}
+.side-card li b{color:#fff;display:block;font-size:14px;}
+.side-card .badge-num{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-weight:700;font-size:13px;flex-shrink:0;color:var(--orange);}
+.side-card-contact{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;}
+.side-card-contact h4{font-size:16px;color:var(--navy-900);}
+.contact-row{display:flex;gap:12px;margin-top:16px;align-items:flex-start;}
+.contact-row svg{width:18px;height:18px;color:var(--orange-dark);flex-shrink:0;margin-top:2px;}
+.contact-row .l{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);}
+.contact-row .v{font-size:14px;font-weight:600;color:var(--navy-900);margin-top:2px;}
+
+/* ============ FOOTER ============ */
+.site-footer{background:var(--navy-950);color:#c9d8e6;padding:44px 0 0;}
+.footer-grid{display:grid;grid-template-columns:1.3fr .8fr 1fr 1.35fr 1.2fr;gap:32px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.1);}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.footer-brand img{height:38px;}
+.footer-brand > span{font-family:var(--font-display);font-weight:800;font-size:20px;color:#fff;line-height:1.1;}
+.footer-brand em{font-style:normal;color:var(--orange);}
+.footer-brand small{display:block;font-family:var(--font-body);font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#c9d8e6;margin-top:3px;}
+.footer-col h5{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;margin-bottom:16px;}
+.footer-col ul{display:flex;flex-direction:column;gap:11px;}
+.footer-col a{font-size:14px;color:#9db3c7;}
+.footer-col a:hover{color:var(--orange);}
+.footer-desc{font-size:13.5px;color:#8ea4b8;max-width:280px;margin-bottom:16px;}
+.footer-social{display:flex;gap:10px;}
+.footer-social a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;}
+.footer-social a:hover{background:var(--orange);}
+.footer-social svg{width:16px;height:16px;}
+.footer-contact-item{display:flex;gap:10px;font-size:13.5px;color:#9db3c7;margin-bottom:12px;}
+.footer-contact-item a:hover{color:var(--orange);}
+.footer-contact-item svg{width:16px;height:16px;flex-shrink:0;margin-top:2px;color:var(--orange);}
+.footer-bottom{padding:20px 0;text-align:center;font-size:12.5px;color:#6f8598;}
+
+/* ============ PAGES SHOW/HIDE ============ */
+.page{display:none;}
+.page.active{display:block;}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1240px){
+  .main-nav button{padding:10px 9px;font-size:12px;}
+  .main-nav > button.active::after{left:9px;right:9px;}
+  .home-grid{grid-template-columns:1fr;}
+  .home-quote{margin-top:32px;max-width:760px;width:100%;justify-self:center;}
+  .svc-row{grid-template-columns:repeat(3,1fr);}
+  .footer-grid{grid-template-columns:repeat(3,1fr);}
+}
+@media (max-width:1100px){
+  .main-nav{display:none;}
+  .menu-toggle{display:flex;}
+}
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr;}
+  .hero-track{max-width:440px;}
+  .info-band{grid-template-columns:1fr 1fr;row-gap:24px;}
+  .info-col:nth-child(2){border-right:none;padding-right:0;}
+  .info-col-wide{grid-column:1/-1;padding-left:0;}
+  .svc-grid-full{grid-template-columns:repeat(2,1fr);}
+  .quote-layout{grid-template-columns:1fr;}
+  .form-grid{grid-template-columns:1fr;}
+  .field-row3{grid-template-columns:1fr;}
+  .detail-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:720px){
+  .wrap-wide{padding:0 20px;}
+  .nav-cta .btn-primary{display:none;}
+  .svc-row{grid-template-columns:repeat(2,1fr);}
+  .info-band{grid-template-columns:1fr;}
+  .info-col{padding:0;border-right:none;}
+  .band-stats{grid-template-columns:repeat(2,1fr);}
+  .industry-icons{grid-template-columns:repeat(3,1fr);row-gap:14px;}
+  .svc-grid-full{grid-template-columns:1fr;}
+  .stepper{flex-wrap:wrap;row-gap:20px;}
+  .stepper::before,.stepper .fill{display:none;}
+  .step{flex:0 0 30%;}
+  .footer-grid{grid-template-columns:1fr;}
+  .cta-banner{flex-direction:column;align-items:flex-start;}
+  .hero{padding-top:40px;}
+  .track-panel{margin-top:-40px;padding:22px;}
+}
+.mobile-menu{
+  display:none;position:fixed;inset:0;z-index:300;background:rgba(8,27,46,.55);
+}
+.mobile-menu.open{display:block;}
+.mobile-panel{
+  position:absolute;top:0;right:0;bottom:0;width:78%;max-width:320px;background:#fff;padding:26px 22px;
+  display:flex;flex-direction:column;gap:6px;box-shadow:-10px 0 30px rgba(0,0,0,.2);
+}
+.mobile-panel button.nav-item{
+  text-align:left;padding:14px 12px;font-size:16px;font-weight:700;color:var(--navy-900);border:none;background:none;border-radius:10px;
+}
+.mobile-panel button.nav-item.active{background:#fff2e4;color:var(--orange-dark);}
+.mobile-close{align-self:flex-end;width:38px;height:38px;border-radius:50%;background:var(--bg);border:none;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="wrap-wide nav-row">
+    <a href="#" class="brand" data-nav="home">
+      <img src="data:image/png;base64,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" alt="RBM Logistics logo">
+      <div class="brand-text">
+        <span class="name">RBM <span>LOGISTICS</span></span>
+        <span class="sub">PT Ridho Bangun Mandiri</span>
+      </div>
+    </a>
+    <nav class="main-nav" aria-label="Primary">
+      <button data-nav="home" class="active">Home</button>
+      <button data-nav="home" data-scroll="about-section">About</button>
+      <div class="nav-drop">
+        <button data-nav="services">Services <svg viewBox="0 0 24 24" fill="none" width="12" height="12"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+        <div class="nav-drop-menu" id="navServices"><button data-nav="services">Sea Freight</button><button data-nav="services">Air Freight</button><button data-nav="services">Customs Clearance</button><button data-nav="services">Trucking</button><button data-nav="services">Special Cargo</button><button data-nav="services">Multimodal Transportation</button></div>
+      </div>
+      <button data-nav="home" data-scroll="cargo-section">Cargo We Handle</button>
+      <button data-nav="track">Track Shipment</button>
+      <button data-nav="home" data-scroll="contact">Contact</button>
+    </nav>
+    <div class="nav-cta">
+      <button class="btn btn-primary btn-square" data-nav="quote">Request a Quote <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <a class="btn btn-wa" href="https://wa.me/6287889627228" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24" fill="none" width="20" height="20"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z" stroke="currentColor" stroke-width="1.6"></path><path d="M8.5 8.4c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .6.4.2.5.7 1.6.7 1.8.1.1.1.3 0 .4-.1.2-.1.3-.3.4-.1.2-.3.3-.4.5-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.2.4-.2.6-.1.2.1 1.5.7 1.8.9.3.1.5.2.5.3.1.5.1 1-.1 1.6-.3.6-1.4 1.2-2 1.2-.6.1-1.2.2-3.9-.8-3.3-1.3-5.4-4.6-5.5-4.8-.2-.2-1.3-1.7-1.3-3.2 0-1.6.8-2.3 1.1-2.6Z" fill="currentColor"></path></svg>
+      </a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="#0b2a45" stroke-width="2" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-panel">
+    <button class="mobile-close" id="mobileClose">✕</button>
+    <button class="nav-item" data-nav="home">Home</button>
+    <button class="nav-item" data-nav="home" data-scroll="about-section">About</button>
+    <button class="nav-item" data-nav="services">Services</button>
+    <button class="nav-item" data-nav="home" data-scroll="cargo-section">Cargo We Handle</button>
+    <button class="nav-item" data-nav="track">Track Shipment</button>
+    <button class="nav-item" data-nav="home" data-scroll="contact">Contact</button>
+    <button class="nav-item" data-nav="quote">Get a Quote</button>
+  </div>
+</div>
+
+<!-- ============ HOME PAGE ============ -->
+<main>
+<section class="page active" id="page-home">
+  <div class="home-shell">
+    <div class="wrap-wide home-grid">
+
+      <div class="home-main">
+        <!-- Hero -->
+        <div class="hero">
+          <div class="hero-copy">
+            <h1>Your cargo.<span class="accent">Our responsibility.</span></h1>
+            <p class="lead">Reliable freight forwarding and logistics solutions for import, export and domestic cargo.</p>
+            <ul class="hero-modes" id="heroModes"><li><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M12 5V3" stroke="currentColor" stroke-width="1.8"></path></svg><span>Sea Freight</span></li><li><svg viewBox="0 0 24 24" fill="none"><path d="M2 13l9-2 5-9 2 1-3 8 5-1 3 3-6 2-3 6-2-1 2-5-5 2-2-2 4-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span>Air Freight</span></li><li><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="7" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.8"></rect><path d="M9 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.8"></path></svg><span>Customs Clearance</span></li><li><svg viewBox="0 0 24 24" fill="none"><path d="M3 16V7a1 1 0 0 1 1-1h9v10" stroke="currentColor" stroke-width="1.8"></path><path d="M13 10h4l4 4v2h-3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><circle cx="7" cy="18" r="2" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17" cy="18" r="2" stroke="currentColor" stroke-width="1.8"></circle></svg><span>Trucking</span></li><li><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M9 4v16" stroke="currentColor" stroke-width="1.8"></path></svg><span>Special Cargo</span></li></ul>
+            <div class="hero-actions">
+              <button class="btn btn-primary btn-square" data-nav="home" data-scroll="homeQuote">Request a Quote <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+              <button class="btn btn-ghost-light btn-square" data-nav="track"><svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="m4 7.5 8 4.5 8-4.5M12 12v9" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path></svg>Track Shipment</button>
+            </div>
+          </div>
+
+          <div class="hero-track">
+            <h3>Track Your Shipment</h3>
+            <label for="homeTrackInput">Enter your AWB / HBL / Shipment Reference</label>
+            <input id="homeTrackInput" type="text" placeholder="AWB / HBL / Reference Number" enterkeyhint="go">
+            <button class="btn btn-navy btn-square" id="homeTrackBtn">Track Now <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+            <p>We'll keep you updated every step of the way.</p>
+          </div>
+        </div>
+
+        <!-- Services overview -->
+        <section class="home-services" id="services-preview">
+          <div class="home-section-head">
+            <span class="kicker">Our Services</span>
+            <h2>End-to-End Logistics Solutions</h2>
+          </div>
+          <div class="svc-row" id="homeServiceGrid">
+  <div class="svc-tile">
+    <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M12 5V3" stroke="currentColor" stroke-width="1.8"></path></svg></span>
+    <h3>Sea Freight</h3>
+    <p>FCL &amp; LCL shipping solutions with competitive rates and reliable carriers.</p>
+    <a class="link-more" href="#" data-nav="services">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+  </div>
+  <div class="svc-tile">
+    <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M2 13l9-2 5-9 2 1-3 8 5-1 3 3-6 2-3 6-2-1 2-5-5 2-2-2 4-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></span>
+    <h3>Air Freight</h3>
+    <p>Fast and flexible air freight solutions for your time-sensitive shipments.</p>
+    <a class="link-more" href="#" data-nav="services">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+  </div>
+  <div class="svc-tile">
+    <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="7" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.8"></rect><path d="M9 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.8"></path></svg></span>
+    <h3>Customs Clearance</h3>
+    <p>Import &amp; export customs clearance and documentation handled by experts.</p>
+    <a class="link-more" href="#" data-nav="services">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+  </div>
+  <div class="svc-tile">
+    <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 16V7a1 1 0 0 1 1-1h9v10" stroke="currentColor" stroke-width="1.8"></path><path d="M13 10h4l4 4v2h-3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><circle cx="7" cy="18" r="2" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17" cy="18" r="2" stroke="currentColor" stroke-width="1.8"></circle></svg></span>
+    <h3>Trucking</h3>
+    <p>Port, warehouse and door-to-door trucking services with modern and reliable fleet.</p>
+    <a class="link-more" href="#" data-nav="services">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+  </div>
+  <div class="svc-tile">
+    <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M9 4v16" stroke="currentColor" stroke-width="1.8"></path></svg></span>
+    <h3>Special Cargo</h3>
+    <p>Machinery, project cargo, DG, oversized and other special handling requirements.</p>
+    <a class="link-more" href="#" data-nav="services">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+  </div>
+  <div class="svc-tile">
+    <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"></circle><path d="M3 12h18M12 3c2.5 2.7 4 6.3 4 9s-1.5 6.3-4 9c-2.5-2.7-4-6.3-4-9s1.5-6.3 4-9Z" stroke="currentColor" stroke-width="1.8"></path></svg></span>
+    <h3>Multimodal Transportation</h3>
+    <p>Integrated sea, air and land solutions from origin to destination.</p>
+    <a class="link-more" href="#" data-nav="services">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+  </div></div>
+        </section>
+
+        <!-- Cargo / Why / Stats + Industries -->
+        <section class="info-band" id="about-section">
+          <div class="info-col" id="cargo-section">
+            <h4>Cargo We Handle</h4>
+            <ul class="cargo-list" id="homeCargoList"><li><svg viewBox="0 0 24 24" fill="none"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><path d="m4 7.5 8 4.5 8-4.5M12 12v9" stroke="currentColor" stroke-width="1.6"></path></svg>General Cargo</li><li><svg viewBox="0 0 24 24" fill="none"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3" stroke="currentColor" stroke-width="1.6"></path></svg>Non-DG Chemical</li><li><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 22 12 12 22 2 12 12 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><path d="M12 8v5M12 16v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>Dangerous Goods (DG)</li><li><svg viewBox="0 0 24 24" fill="none"><path d="M12 2v20M4 6l16 12M20 6 4 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>Perishable Cargo</li><li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>Machinery</li><li><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="12" rx="1.5" stroke="currentColor" stroke-width="1.6"></rect><path d="M7 7v12M11 7v12M15 7v12M3 4h18" stroke="currentColor" stroke-width="1.6"></path></svg>Oversized Cargo</li><li><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V10l7-6 7 6v11" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><path d="M9 21v-5h6v5" stroke="currentColor" stroke-width="1.6"></path></svg>Project Cargo</li></ul>
+          </div>
+          <div class="info-col">
+            <h4>Why Choose RBM Logistics?</h4>
+            <ul class="why-list">
+              <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="currentColor"></circle><path d="m7.5 12.5 3 3 6-6.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Competitive and flexible solutions</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="currentColor"></circle><path d="m7.5 12.5 3 3 6-6.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Personalized service and fast response</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="currentColor"></circle><path d="m7.5 12.5 3 3 6-6.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Experienced team and strong network</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="currentColor"></circle><path d="m7.5 12.5 3 3 6-6.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>End-to-end shipment management</li>
+              <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="currentColor"></circle><path d="m7.5 12.5 3 3 6-6.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Transparent communication &amp; updates</li>
+            </ul>
+          </div>
+          <div class="info-col info-col-wide">
+            <div class="band-stats">
+              <div><b data-count="500">273+</b><span>Shipments Handled</span></div>
+              <div><b data-count="20">20+</b><span>Countries Served</span></div>
+              <div><b data-count="15">15+</b><span>Years of Experience</span></div>
+              <div><b>100%</b><span>Customer Commitment</span></div>
+            </div>
+            <h4>Industries We Serve</h4>
+            <div class="industry-icons" id="industryRow"><span class="industry-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="9" stroke="currentColor" stroke-width="1.6"></rect><path d="M4 10 8 6l4 4 4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span>Manufacturing</span></span><span class="industry-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" stroke-width="1.6"></path></svg><span>Trading &amp; Distribution</span></span><span class="industry-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 16V7a1 1 0 0 1 1-1h9v10" stroke="currentColor" stroke-width="1.6"></path><circle cx="7" cy="18" r="2" stroke="currentColor" stroke-width="1.6"></circle><circle cx="17" cy="18" r="2" stroke="currentColor" stroke-width="1.6"></circle></svg><span>Automotive</span></span><span class="industry-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.6"></rect><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"></circle></svg><span>Electronics</span></span><span class="industry-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3" stroke="currentColor" stroke-width="1.6"></path></svg><span>Chemical</span></span><span class="industry-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M6 21V9l6-4 6 4v12M10 21v-6h4v6" stroke="currentColor" stroke-width="1.6"></path></svg><span>Construction &amp; Project</span></span></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Quote form -->
+      <aside class="home-quote" id="homeQuote">
+        <div class="quote-panel">
+          <h3>Request a Freight Quote</h3>
+          <form class="quote-form-js compact-form" novalidate="">
+            <div class="form-grid">
+              <div class="field full">
+                <label>Origin <span class="req">*</span></label>
+                <input type="text" name="origin" placeholder="City or Port" autocomplete="off" required="">
+                <div class="autocomplete-list"></div>
+              </div>
+              <div class="field full">
+                <label>Destination <span class="req">*</span></label>
+                <input type="text" name="destination" placeholder="City or Port" autocomplete="off" required="">
+                <div class="autocomplete-list"></div>
+              </div>
+              <div class="field">
+                <label>Shipment Type <span class="req">*</span></label>
+                <select name="shipmentType" required="">
+                  <option value="">Select Type</option>
+                  <option>Sea Freight</option>
+                  <option>Air Freight</option>
+                  <option>Trucking</option>
+                  <option>Customs Clearance</option>
+                  <option>Special Cargo</option>
+                  <option>Multimodal Transportation</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>FCL / LCL <span class="req">*</span></label>
+                <select name="fclLcl" required="">
+                  <option value="">Select</option>
+                  <option>FCL 20'</option>
+                  <option>FCL 40'</option>
+                  <option>FCL 40' HC</option>
+                  <option>LCL</option>
+                  <option>N/A — Air / Trucking</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label>Commodity <span class="req">*</span></label>
+                <input type="text" name="commodity" placeholder="Type of commodity" required="">
+              </div>
+              <div class="field-row3">
+                <div class="field"><label>Packages</label><input type="number" min="0" name="packages" placeholder="e.g. 10"></div>
+                <div class="field"><label>Gross Weight (kg)</label><input type="number" min="0" name="grossWeight" placeholder="e.g. 1000"></div>
+                <div class="field"><label>Volume (CBM)</label><input type="number" min="0" name="volume" placeholder="e.g. 5"></div>
+              </div>
+              <div class="field">
+                <label>Incoterm</label>
+                <select name="incoterm">
+                  <option value="">Select</option>
+                  <option>EXW</option><option>FOB</option><option>FCA</option>
+                  <option>CFR</option><option>CIF</option><option>DAP</option><option>DDP</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Ready Date</label>
+                <input type="date" name="readyDate">
+              </div>
+              <div class="field full">
+                <label>Special Requirements</label>
+                <textarea name="specialReq" placeholder="Tell us more about your shipment"></textarea>
+              </div>
+              <div class="field">
+                <label>Your Name <span class="req">*</span></label>
+                <input type="text" name="fullName" placeholder="Full Name" required="">
+              </div>
+              <div class="field">
+                <label>Company</label>
+                <input type="text" name="company" placeholder="Company Name">
+              </div>
+              <div class="field">
+                <label>Email <span class="req">*</span></label>
+                <input type="email" name="email" placeholder="you@company.com" required="">
+              </div>
+              <div class="field">
+                <label>WhatsApp / Phone <span class="req">*</span></label>
+                <input type="tel" name="phone" placeholder="+62 812 3456 7890" required="">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-square btn-block">Submit Request <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+            <p class="lock-note"><svg viewBox="0 0 24 24" fill="none" width="14" height="14"><rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.8"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.8"></path></svg>Your information is safe with us. We will contact you shortly.</p>
+          </form>
+          <div class="quote-success">
+            <div class="tick"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+            <h3>Request received</h3>
+            <p>Thanks — our team will review your route and get back to you within one business day. Want to send it by email too?</p>
+            <a class="btn btn-outline btn-sm mailto-link" style="margin-top:16px;" target="_blank" rel="noopener">Email us these details</a>
+            <br>
+            <button type="button" class="btn btn-ghost btn-sm new-quote-btn" style="margin-top:12px;">Submit another request</button>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES PAGE ============ -->
+<section class="page" id="page-services">
+  <div class="page-hero">
+    <div class="wrap">
+      <span class="breadcrumb">RBM Logistics / <b>Services</b></span>
+      <h1>Freight solutions built around your cargo</h1>
+      <p>Pick a mode, or let us design a multimodal route — every service below is backed by our customs, trucking and documentation team.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="svc-grid-full" id="servicesFullGrid">
+  <div class="svc-full-card">
+    <span class="num">01</span>
+    <div class="icon-tile"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M12 5V3" stroke="currentColor" stroke-width="1.8"></path></svg></div>
+    <div class="pitch">FCL &amp; LCL, always tracked</div>
+    <h3>Sea Freight</h3>
+    <p class="desc">Full and less-than-container shipping with competitive rates and reliable carriers across major trade lanes.</p>
+    <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Weekly sailings on core lanes</li><li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>FCL 20'/40'/40'HC &amp; LCL consolidation</li><li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Live carrier tracking updates</li></ul>
+  </div>
+  <div class="svc-full-card">
+    <span class="num">02</span>
+    <div class="icon-tile"><svg viewBox="0 0 24 24" fill="none"><path d="M2 13l9-2 5-9 2 1-3 8 5-1 3 3-6 2-3 6-2-1 2-5-5 2-2-2 4-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg></div>
+    <div class="pitch">When speed is the priority</div>
+    <h3>Air Freight</h3>
+    <p class="desc">Fast, flexible air freight solutions for time-sensitive shipments, from same-day to consolidated cargo.</p>
+    <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Priority &amp; standard air options</li><li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Charter capacity for oversized loads</li><li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Real-time AWB status</li></ul>
+  </div>
+  <div class="svc-full-card">
+    <span class="num">03</span>
+    <div class="icon-tile"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="7" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.8"></rect><path d="M9 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.8"></path></svg></div>
+    <div class="pitch">Zero-surprise paperwork</div>
+    <h3>Customs Clearance</h3>
+    <p class="desc">Import &amp; export customs clearance and documentation handled by licensed, experienced brokers.</p>
+    <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>PIB / PEB filing &amp; duty calculation</li><li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>HS code classification support</li><li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Bonded warehouse coordination</li></ul>
+  </div>
+  <div class="svc-full-card">
+    <span class="num">04</span>
+    <div class="icon-tile"><svg viewBox="0 0 24 24" fill="none"><path d="M3 16V7a1 1 0 0 1 1-1h9v10" stroke="currentColor" stroke-width="1.8"></path><path d="M13 10h4l4 4v2h-3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><circle cx="7" cy="18" r="2" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17" cy="18" r="2" stroke="currentColor" stroke-width="1.8"></circle></svg></div>
+    <div class="pitch">Port to door, on time</div>
+    <h3>Trucking</h3>
+    <p class="desc">Port, warehouse and door-to-door trucking services with a modern, reliable fleet.</p>
+    <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Container &amp; LTL trucking fleet</li><li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Cross-Jawa &amp; inter-island routes</li><li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Real-time driver dispatch</li></ul>
+  </div>
+  <div class="svc-full-card">
+    <span class="num">05</span>
+    <div class="icon-tile"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M9 4v16" stroke="currentColor" stroke-width="1.8"></path></svg></div>
+    <div class="pitch">Oversized? Dangerous? Handled.</div>
+    <h3>Special Cargo</h3>
+    <p class="desc">Machinery, project cargo, dangerous goods, oversized and other special handling requirements.</p>
+    <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>DG-certified handling &amp; documentation</li><li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Heavy-lift &amp; project cargo planning</li><li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Custom crating and lashing</li></ul>
+  </div>
+  <div class="svc-full-card">
+    <span class="num">06</span>
+    <div class="icon-tile"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"></circle><path d="M3 12h18M12 3c2.5 2.7 4 6.3 4 9s-1.5 6.3-4 9c-2.5-2.7-4-6.3-4-9s1.5-6.3 4-9Z" stroke="currentColor" stroke-width="1.8"></path></svg></div>
+    <div class="pitch">One route, every mode</div>
+    <h3>Multimodal Transportation</h3>
+    <p class="desc">Integrated sea, air and land solutions planned end to end from origin to final destination.</p>
+    <ul class="feat"><li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Single point of contact, one invoice</li><li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Route optimisation for cost or speed</li><li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Consolidated tracking across modes</li></ul>
+  </div></div>
+    </div>
+  </section>
+
+  <section class="section-tight section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Cargo We Handle</span>
+        <h2 style="font-size:24px;">Whatever the load, we've moved it before</h2>
+      </div>
+      <div class="cargo-tags" id="cargoTags"><span class="cargo-tag">General Cargo</span><span class="cargo-tag">Dangerous Goods (DG)</span><span class="cargo-tag">Machinery</span><span class="cargo-tag">Project Cargo</span><span class="cargo-tag">Non-DG Chemical</span><span class="cargo-tag">Perishable Cargo</span><span class="cargo-tag">Oversized Cargo</span><span class="cargo-tag">E-commerce Parcels</span><span class="cargo-tag">Textile &amp; Garments</span><span class="cargo-tag">Automotive Parts</span></div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="cta-banner">
+        <div>
+          <h3>Not sure which service fits?</h3>
+          <p>Tell us your cargo and route — we'll recommend the right mode and Incoterm.</p>
+        </div>
+        <button class="btn btn-primary" data-nav="quote">Get a Quote →</button>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- ============ TRACKING PAGE ============ -->
+<section class="page" id="page-track">
+  <div class="page-hero">
+    <div class="wrap">
+      <span class="breadcrumb">RBM Logistics / <b>Track Shipment</b></span>
+      <h1>Track your shipment</h1>
+      <p>Enter your AWB, HBL, or project number below to see the latest status of your cargo.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="track-panel" id="trackPanel">
+      <div class="track-form">
+        <input type="text" id="trackInput" placeholder="e.g. RBM1083 or a project / AWB number">
+        <button class="btn btn-primary" id="trackBtn">Track Shipment →</button>
+      </div>
+      <p class="track-hint">Try a sample reference like <code>RBM1083</code> or <code>RBM1080</code>.</p>
+
+      <div class="track-status-msg" id="trackMsg"></div>
+
+      <div class="result-card" id="resultCard">
+        <div class="result-head">
+          <div>
+            <div class="ref" id="resultRef">REF —</div>
+            <h3 id="resultTitle">—</h3>
+          </div>
+          <span class="status-badge" id="resultBadge">—</span>
+        </div>
+
+        <!-- Shipment Info: Freight / Role / Term -->
+        <div class="group-card">
+          <div class="group-head">
+            <span class="group-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"></circle></svg></span>
+            <span class="group-title">Shipment Info</span>
+          </div>
+          <div class="stat-tiles" id="grpInfo" style="grid-template-columns:repeat(3,1fr);"></div>
+        </div>
+
+        <!-- Route: POL -> POD -->
+        <div class="group-card">
+          <div class="group-head">
+            <span class="group-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-6-7-11a7 7 0 1 1 14 0c0 5-7 11-7 11Z" stroke="currentColor" stroke-width="1.8"></path><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"></circle></svg></span>
+            <span class="group-title">Route</span>
+          </div>
+          <div class="route-visual" id="grpRoute"></div>
+        </div>
+
+        <!-- Cargo Details -->
+        <div class="group-card">
+          <div class="group-head">
+            <span class="group-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M9 4v16" stroke="currentColor" stroke-width="1.8"></path></svg></span>
+            <span class="group-title">Cargo Details</span>
+          </div>
+          <div class="stat-tiles" id="grpCargo"></div>
+        </div>
+
+        <!-- Schedule: ETD / ETA -->
+        <div class="group-card">
+          <div class="group-head">
+            <span class="group-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"></rect><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg></span>
+            <span class="group-title">Schedule</span>
+          </div>
+          <div class="eta-row" id="grpSchedule"></div>
+        </div>
+
+        <!-- Carrier & Tracking: Vessel/Flight + Track Cargo button, AWB/HBL -->
+        <div class="group-card">
+          <div class="group-head">
+            <span class="group-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg></span>
+            <span class="group-title">Carrier &amp; Tracking</span>
+          </div>
+          <div id="grpCarrier"></div>
+        </div>
+
+        <!-- Notes: Comment / Delay (only shown if present) -->
+        <div class="group-card" id="grpNotesCard" style="display:none;">
+          <div class="group-head">
+            <span class="group-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10Z" stroke="currentColor" stroke-width="1.8"></path></svg></span>
+            <span class="group-title">Notes</span>
+          </div>
+          <div id="grpNotes"></div>
+        </div>
+
+        <div class="priv-note">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4Z" stroke="currentColor" stroke-width="1.6"></path></svg>
+          For security, we only display shipment status and routing here. For invoices, documents or POD, contact your account handler directly.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="cta-banner">
+        <div>
+          <h3>Can't find your shipment?</h3>
+          <p>Reach our operations team on WhatsApp and we'll look it up for you.</p>
+        </div>
+        <a class="btn btn-primary" href="https://wa.me/6287889627228" target="_blank" rel="noopener">Chat on WhatsApp →</a>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- ============ QUOTE PAGE ============ -->
+<section class="page" id="page-quote">
+  <div class="page-hero">
+    <div class="wrap">
+      <span class="breadcrumb">RBM Logistics / <b>Get a Quote</b></span>
+      <h1>Request a freight quote</h1>
+      <p>Tell us where your cargo is coming from and going to — we'll get back to you within one business day.</p>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top:56px;">
+    <div class="wrap quote-layout">
+
+      <div class="quote-card">
+        <form id="quoteForm" class="quote-form-js" novalidate="">
+          <div class="form-grid">
+            <div class="field" id="originField">
+              <label>Origin <span class="req">*</span></label>
+              <input type="text" id="originInput" name="origin" placeholder="City or Port" autocomplete="off" required="">
+              <div class="autocomplete-list" id="originList"></div>
+            </div>
+            <div class="field" id="destField">
+              <label>Destination <span class="req">*</span></label>
+              <input type="text" id="destInput" name="destination" placeholder="City or Port" autocomplete="off" required="">
+              <div class="autocomplete-list" id="destList"></div>
+            </div>
+
+            <div class="field">
+              <label>Shipment Type <span class="req">*</span></label>
+              <select id="shipmentType" name="shipmentType" required="">
+                <option value="">Select Type</option>
+                <option>Sea Freight</option>
+                <option>Air Freight</option>
+                <option>Trucking</option>
+                <option>Customs Clearance</option>
+                <option>Special Cargo</option>
+                <option>Multimodal Transportation</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>FCL / LCL</label>
+              <select id="fclLcl" name="fclLcl">
+                <option value="">Select</option>
+                <option>FCL 20'</option>
+                <option>FCL 40'</option>
+                <option>FCL 40' HC</option>
+                <option>LCL</option>
+                <option>N/A — Air / Trucking</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label>Commodity <span class="req">*</span></label>
+              <input type="text" id="commodity" name="commodity" placeholder="Type of commodity" required="">
+            </div>
+
+            <div class="field-row3">
+              <div class="field">
+                <label>Packages</label>
+                <input type="number" min="0" id="packages" name="packages" placeholder="e.g. 10">
+              </div>
+              <div class="field">
+                <label>Gross Weight (kg)</label>
+                <input type="number" min="0" id="grossWeight" name="grossWeight" placeholder="e.g. 1000">
+              </div>
+              <div class="field">
+                <label>Volume (CBM)</label>
+                <input type="number" min="0" id="volume" name="volume" placeholder="e.g. 5">
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Incoterm</label>
+              <select id="incoterm" name="incoterm">
+                <option value="">Select</option>
+                <option>EXW</option><option>FOB</option><option>FCA</option>
+                <option>CFR</option><option>CIF</option><option>DAP</option><option>DDP</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Ready Date</label>
+              <input type="date" id="readyDate" name="readyDate">
+            </div>
+
+            <div class="field full">
+              <label>Special Requirements</label>
+              <textarea id="specialReq" name="specialReq" placeholder="Tell us more about your shipment"></textarea>
+            </div>
+
+            <div class="field">
+              <label>Your Name <span class="req">*</span></label>
+              <input type="text" id="fullName" name="fullName" placeholder="Full Name" required="">
+            </div>
+            <div class="field">
+              <label>Company</label>
+              <input type="text" id="company" name="company" placeholder="Company Name">
+            </div>
+            <div class="field">
+              <label>Email <span class="req">*</span></label>
+              <input type="email" id="email" name="email" placeholder="you@company.com" required="">
+            </div>
+            <div class="field">
+              <label>WhatsApp / Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="+62 812 3456 7890">
+            </div>
+          </div>
+
+          <div class="form-foot">
+            <span class="lock"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4Z" stroke="currentColor" stroke-width="1.6"></path></svg>Your information is safe with us. We'll only use it to contact you.</span>
+            <button type="submit" class="btn btn-primary">Submit Request →</button>
+          </div>
+        </form>
+
+        <div class="quote-success">
+          <div class="tick"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+          <h3>Request received</h3>
+          <p>Thanks — our team will review your route and get back to you within one business day. Want to send it by email too?</p>
+          <a class="btn btn-outline btn-sm mailto-link" style="margin-top:16px;" target="_blank" rel="noopener">Email us these details</a>
+          <br>
+          <button type="button" class="btn btn-ghost btn-sm new-quote-btn" style="margin-top:12px;">Submit another request</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="side-card">
+          <h4>How a quote comes together</h4>
+          <ul>
+            <li><span class="badge-num">1</span><div><b>You tell us the route</b>Origin, destination, cargo and dates.</div></li>
+            <li><span class="badge-num">2</span><div><b>We check carrier rates</b>Sea, air and trucking options compared.</div></li>
+            <li><span class="badge-num">3</span><div><b>You get a clear quote</b>All-in pricing, transit time, and next steps.</div></li>
+          </ul>
+        </div>
+        <div class="side-card-contact">
+          <h4>Prefer to talk first?</h4>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-6-7-11a7 7 0 1 1 14 0c0 5-7 11-7 11Z" stroke="currentColor" stroke-width="1.6"></path><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.6"></circle></svg>
+            <div><div class="l">Address</div><div class="v">Jl. Tarumanegara, Gg. Jengkol A1 No.1, Bekasi, Jawa Barat, Indonesia</div></div>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z" stroke="currentColor" stroke-width="1.6"></path></svg>
+            <div><div class="l">Phone</div><div class="v">+62 21 2210 6554</div></div>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="m3 7 9 6 9-6" stroke="currentColor" stroke-width="1.6"></path></svg>
+            <div><div class="l">Email</div><div class="v">info@rbm-logistics.com</div></div>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z" stroke="currentColor" stroke-width="1.6"></path></svg>
+            <div><div class="l">WhatsApp</div><div class="v">+62 878 8962 7228</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap-wide footer-grid">
+    <div>
+      <div class="footer-brand">
+        <img src="data:image/png;base64,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" alt="RBM Logistics">
+        <span>RBM <em>LOGISTICS</em><small>PT Ridho Bangun Mandiri</small></span>
+      </div>
+      <p class="footer-desc">Reliable freight forwarding and logistics solutions for your business.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none"><path d="M6.5 9.5v9M6.5 6.5v.01M11 18.5v-5.2c0-1.8 1.2-3.3 3-3.3 1.7 0 2.5 1.2 2.5 3.3v5.2M11 9.5v9" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path></svg></a>
+        <a href="https://wa.me/6287889627228" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z" stroke="#fff" stroke-width="1.6"></path></svg></a>
+        <a href="mailto:info@rbm-logistics.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#fff" stroke-width="1.6"></rect><path d="m3 7 9 6 9-6" stroke="#fff" stroke-width="1.6"></path></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a data-nav="home" href="#">Home</a></li>
+        <li><a data-nav="home" data-scroll="about-section" href="#">About Us</a></li>
+        <li><a data-nav="services" href="#">Services</a></li>
+        <li><a data-nav="home" data-scroll="cargo-section" href="#">Cargo We Handle</a></li>
+        <li><a data-nav="track" href="#">Track Shipment</a></li>
+        <li><a data-nav="home" data-scroll="contact" href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul id="footerServices"><li><a href="#" data-nav="services">Sea Freight</a></li><li><a href="#" data-nav="services">Air Freight</a></li><li><a href="#" data-nav="services">Customs Clearance</a></li><li><a href="#" data-nav="services">Trucking</a></li><li><a href="#" data-nav="services">Special Cargo</a></li><li><a href="#" data-nav="services">Multimodal Transportation</a></li></ul>
+    </div>
+    <div class="footer-col" id="contact">
+      <h5>Contact Us</h5>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-6-7-11a7 7 0 1 1 14 0c0 5-7 11-7 11Z" stroke="currentColor" stroke-width="1.6"></path></svg>
+        <span>Jl. Tarumanegara, Gg. Jengkol A1 No. 1<br>Bekasi, Jawa Barat, Indonesia</span>
+      </div>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z" stroke="currentColor" stroke-width="1.6"></path></svg>
+        <span>+62 21 2210 6554</span>
+      </div>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="m3 7 9 6 9-6" stroke="currentColor" stroke-width="1.6"></path></svg>
+        <a href="mailto:info@rbm-logistics.com">info@rbm-logistics.com</a>
+      </div>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z" stroke="currentColor" stroke-width="1.6"></path></svg>
+        <a href="https://wa.me/6287889627228" target="_blank" rel="noopener">WhatsApp: +62 878 8962 7228</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <p class="footer-desc">RBM Logistics is the trading brand of PT RIDHO BANGUN MANDIRI, an Indonesian logistics company committed to delivering reliable and efficient logistics solutions.</p>
+    </div>
+  </div>
+  <div class="footer-bottom">© <span id="year">2026</span> RBM Logistics — PT Ridho Bangun Mandiri. All Rights Reserved.</div>
+</footer>
+
+<script>
+/* ============================================================
+   DATA — services, industries, cargo tags
+   ============================================================ */
+const SERVICES = [
+  {
+    key:"sea", short:"FCL & LCL shipping solutions with competitive rates and reliable carriers.", title:"Sea Freight", pitch:"FCL & LCL, always tracked",
+    desc:"Full and less-than-container shipping with competitive rates and reliable carriers across major trade lanes.",
+    icon:'<path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 5V3" stroke="currentColor" stroke-width="1.8"/>',
+    features:["Weekly sailings on core lanes","FCL 20'/40'/40'HC & LCL consolidation","Live carrier tracking updates"]
+  },
+  {
+    key:"air", short:"Fast and flexible air freight solutions for your time-sensitive shipments.", title:"Air Freight", pitch:"When speed is the priority",
+    desc:"Fast, flexible air freight solutions for time-sensitive shipments, from same-day to consolidated cargo.",
+    icon:'<path d="M2 13l9-2 5-9 2 1-3 8 5-1 3 3-6 2-3 6-2-1 2-5-5 2-2-2 4-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>',
+    features:["Priority & standard air options","Charter capacity for oversized loads","Real-time AWB status"]
+  },
+  {
+    key:"customs", short:"Import & export customs clearance and documentation handled by experts.", title:"Customs Clearance", pitch:"Zero-surprise paperwork",
+    desc:"Import & export customs clearance and documentation handled by licensed, experienced brokers.",
+    icon:'<rect x="4" y="7" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.8"/>',
+    features:["PIB / PEB filing & duty calculation","HS code classification support","Bonded warehouse coordination"]
+  },
+  {
+    key:"trucking", short:"Port, warehouse and door-to-door trucking services with modern and reliable fleet.", title:"Trucking", pitch:"Port to door, on time",
+    desc:"Port, warehouse and door-to-door trucking services with a modern, reliable fleet.",
+    icon:'<path d="M3 16V7a1 1 0 0 1 1-1h9v10" stroke="currentColor" stroke-width="1.8"/><path d="M13 10h4l4 4v2h-3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="18" r="2" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="18" r="2" stroke="currentColor" stroke-width="1.8"/>',
+    features:["Container & LTL trucking fleet","Cross-Jawa & inter-island routes","Real-time driver dispatch"]
+  },
+  {
+    key:"special", short:"Machinery, project cargo, DG, oversized and other special handling requirements.", title:"Special Cargo", pitch:"Oversized? Dangerous? Handled.",
+    desc:"Machinery, project cargo, dangerous goods, oversized and other special handling requirements.",
+    icon:'<rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 9h16M9 4v16" stroke="currentColor" stroke-width="1.8"/>',
+    features:["DG-certified handling & documentation","Heavy-lift & project cargo planning","Custom crating and lashing"]
+  },
+  {
+    key:"multimodal", short:"Integrated sea, air and land solutions from origin to destination.", title:"Multimodal Transportation", pitch:"One route, every mode",
+    desc:"Integrated sea, air and land solutions planned end to end from origin to final destination.",
+    icon:'<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.7 4 6.3 4 9s-1.5 6.3-4 9c-2.5-2.7-4-6.3-4-9s1.5-6.3 4-9Z" stroke="currentColor" stroke-width="1.8"/>',
+    features:["Single point of contact, one invoice","Route optimisation for cost or speed","Consolidated tracking across modes"]
+  }
+];
+
+const CARGO_TAGS = ["General Cargo","Dangerous Goods (DG)","Machinery","Project Cargo","Non-DG Chemical","Perishable Cargo","Oversized Cargo","E-commerce Parcels","Textile & Garments","Automotive Parts"];
+
+const HOME_CARGO = [
+  {n:"General Cargo", i:'<path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9" stroke="currentColor" stroke-width="1.6"/>'},
+  {n:"Non-DG Chemical", i:'<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3" stroke="currentColor" stroke-width="1.6"/>'},
+  {n:"Dangerous Goods (DG)", i:'<path d="M12 2 22 12 12 22 2 12 12 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 8v5M12 16v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>'},
+  {n:"Perishable Cargo", i:'<path d="M12 2v20M4 6l16 12M20 6 4 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'},
+  {n:"Machinery", i:'<circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'},
+  {n:"Oversized Cargo", i:'<rect x="3" y="7" width="18" height="12" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M7 7v12M11 7v12M15 7v12M3 4h18" stroke="currentColor" stroke-width="1.6"/>'},
+  {n:"Project Cargo", i:'<path d="M3 21h18M5 21V10l7-6 7 6v11" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 21v-5h6v5" stroke="currentColor" stroke-width="1.6"/>'}
+];
+
+const INDUSTRIES = [
+  {n:"Manufacturing", i:'<rect x="4" y="10" width="16" height="9" stroke="currentColor" stroke-width="1.6"/><path d="M4 10 8 6l4 4 4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>'},
+  {n:"Trading & Distribution", i:'<path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" stroke-width="1.6"/>'},
+  {n:"Automotive", i:'<path d="M3 16V7a1 1 0 0 1 1-1h9v10" stroke="currentColor" stroke-width="1.6"/><circle cx="7" cy="18" r="2" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="18" r="2" stroke="currentColor" stroke-width="1.6"/>'},
+  {n:"Electronics", i:'<rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/>'},
+  {n:"Chemical", i:'<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3" stroke="currentColor" stroke-width="1.6"/>'},
+  {n:"Construction & Project", i:'<path d="M3 21h18M6 21V9l6-4 6 4v12M10 21v-6h4v6" stroke="currentColor" stroke-width="1.6"/>'}
+];
+
+/* ============================================================
+   RENDER STATIC CONTENT
+   ============================================================ */
+function iconSvg(inner){ return `<svg viewBox="0 0 24 24" fill="none">${inner}</svg>`; }
+
+document.getElementById('homeServiceGrid').innerHTML = SERVICES.map(s=>`
+  <div class="svc-tile">
+    <span class="svc-icon">${iconSvg(s.icon)}</span>
+    <h3>${s.title}</h3>
+    <p>${s.short}</p>
+    <a class="link-more" href="#" data-nav="services">Learn more ${iconSvg('<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>')}</a>
+  </div>`).join('');
+
+document.getElementById('heroModes').innerHTML = SERVICES.filter(s=>s.key!=='multimodal').map(s=>`<li>${iconSvg(s.icon)}<span>${s.title}</span></li>`).join('');
+document.getElementById('navServices').innerHTML = SERVICES.map(s=>`<button data-nav="services">${s.title}</button>`).join('');
+document.getElementById('homeCargoList').innerHTML = HOME_CARGO.map(c=>`<li>${iconSvg(c.i)}${c.n}</li>`).join('');
+
+document.getElementById('servicesFullGrid').innerHTML = SERVICES.map((s,i)=>`
+  <div class="svc-full-card">
+    <span class="num">0${i+1}</span>
+    <div class="icon-tile">${iconSvg(s.icon)}</div>
+    <div class="pitch">${s.pitch}</div>
+    <h3>${s.title}</h3>
+    <p class="desc">${s.desc}</p>
+    <ul class="feat">${s.features.map(f=>`<li>${iconSvg('<path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>')}${f}</li>`).join('')}</ul>
+  </div>`).join('');
+
+document.getElementById('cargoTags').innerHTML = CARGO_TAGS.map(t=>`<span class="cargo-tag">${t}</span>`).join('');
+document.getElementById('industryRow').innerHTML = INDUSTRIES.map(x=>`<span class="industry-icon">${iconSvg(x.i)}<span>${x.n}</span></span>`).join('');
+document.getElementById('footerServices').innerHTML = SERVICES.map(s=>`<li><a href="#" data-nav="services">${s.title}</a></li>`).join('');
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+function goTo(pageId, scrollTarget){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+pageId).classList.add('active');
+  document.querySelectorAll('.main-nav button, .mobile-panel button').forEach(b=>{
+    b.classList.toggle('active', b.dataset.nav === pageId && !b.dataset.scroll);
+  });
+  closeMobileMenu();
+  if(scrollTarget){
+    requestAnimationFrame(()=> document.getElementById(scrollTarget)?.scrollIntoView({behavior:'smooth'}));
+  } else {
+    window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+  }
+}
+document.querySelectorAll('[data-nav]').forEach(el=>{
+  el.addEventListener('click', (e)=>{
+    e.preventDefault();
+    goTo(el.dataset.nav, el.dataset.scroll);
+  });
+});
+
+const mobileMenu = document.getElementById('mobileMenu');
+document.getElementById('menuToggle').addEventListener('click', ()=> mobileMenu.classList.add('open'));
+document.getElementById('mobileClose').addEventListener('click', closeMobileMenu);
+mobileMenu.addEventListener('click', (e)=>{ if(e.target === mobileMenu) closeMobileMenu(); });
+function closeMobileMenu(){ mobileMenu.classList.remove('open'); }
+
+/* ============================================================
+   STAT COUNTERS (animate on view)
+   ============================================================ */
+const counters = document.querySelectorAll('[data-count]');
+const countObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      const el = en.target, target = +el.dataset.count;
+      let cur = 0; const step = Math.max(1, Math.round(target/40));
+      const t = setInterval(()=>{
+        cur += step;
+        if(cur >= target){ cur = target; clearInterval(t); }
+        el.textContent = cur + '+';
+      }, 25);
+      countObserver.unobserve(el);
+    }
+  });
+},{threshold:.4});
+counters.forEach(c=>countObserver.observe(c));
+
+/* ============================================================
+   CITY / PORT AUTOCOMPLETE  (Get a Quote page)
+   ============================================================ */
+const CITIES = [
+  ["Jakarta, Indonesia","IDJKT"],["Surabaya, Indonesia","IDSUB"],["Bekasi, Indonesia","IDBKS"],
+  ["Semarang, Indonesia","IDSRG"],["Medan (Belawan), Indonesia","IDBLW"],["Makassar, Indonesia","IDMAK"],
+  ["Balikpapan, Indonesia","IDBPN"],["Batam, Indonesia","IDBTH"],["Bandung, Indonesia","IDBDO"],
+  ["Cikarang, Indonesia","IDCBN"],["Denpasar (Bali), Indonesia","IDDPS"],
+  ["Singapore","SGSIN"],["Shanghai, China","CNSHA"],["Shenzhen, China","CNSZX"],["Guangzhou, China","CNCAN"],
+  ["Ningbo, China","CNNGB"],["Qingdao, China","CNTAO"],["Tianjin, China","CNTXG"],["Nansha, China","CNNSA"],
+  ["Shekou, China","CNSHK"],["Xiamen, China","CNXMN"],["Hong Kong","HKHKG"],
+  ["Busan, South Korea","KRPUS"],["Tokyo, Japan","JPTYO"],["Yokohama, Japan","JPYOK"],["Nagoya, Japan","JPNGO"],
+  ["Kaohsiung, Taiwan","TWKHH"],["Bangkok, Thailand","THBKK"],["Laem Chabang, Thailand","THLCH"],
+  ["Ho Chi Minh City, Vietnam","VNSGN"],["Hai Phong, Vietnam","VNHPH"],["Manila, Philippines","PHMNL"],
+  ["Mumbai (Nhava Sheva), India","INNSA"],["Chennai, India","INMAA"],["Colombo, Sri Lanka","LKCMB"],
+  ["Dubai, UAE","AEDXB"],["Jebel Ali, UAE","AEJEA"],
+  ["Rotterdam, Netherlands","NLRTM"],["Hamburg, Germany","DEHAM"],["Antwerp, Belgium","BEANR"],
+  ["Felixstowe, United Kingdom","GBFXT"],["Le Havre, France","FRLEH"],["Barcelona, Spain","ESBCN"],
+  ["Valencia, Spain","ESVLC"],["Genoa, Italy","ITGOA"],["Piraeus, Greece","GRPIR"],
+  ["Los Angeles, USA","USLAX"],["Long Beach, USA","USLGB"],["New York, USA","USNYC"],
+  ["Oakland, USA","USOAK"],["Houston, USA","USHOU"],
+  ["Melbourne, Australia","AUMEL"],["Sydney, Australia","AUSYD"],["Brisbane, Australia","AUBNE"],
+  ["Auckland, New Zealand","NZAKL"]
+];
+
+function setupAutocomplete(inputEl, listEl){
+  let hi = -1, matches = [];
+  function render(){
+    listEl.innerHTML = matches.length
+      ? matches.map((m,idx)=>`<button type="button" data-idx="${idx}" class="${idx===hi?'hi':''}">${m[0]}<span class="code">${m[1]}</span></button>`).join('')
+      : `<div class="empty">No matching city — you can still type it freely.</div>`;
+    listEl.classList.add('show');
+  }
+  inputEl.addEventListener('input', ()=>{
+    const q = inputEl.value.trim().toLowerCase();
+    hi = -1;
+    matches = q.length ? CITIES.filter(c=>c[0].toLowerCase().includes(q)).slice(0,8) : [];
+    if(q.length===0){ listEl.classList.remove('show'); return; }
+    render();
+  });
+  inputEl.addEventListener('keydown', (e)=>{
+    if(!listEl.classList.contains('show') || !matches.length) return;
+    if(e.key==='ArrowDown'){ e.preventDefault(); hi = Math.min(hi+1, matches.length-1); render(); }
+    if(e.key==='ArrowUp'){ e.preventDefault(); hi = Math.max(hi-1, 0); render(); }
+    if(e.key==='Enter' && hi>=0){ e.preventDefault(); inputEl.value = matches[hi][0]; listEl.classList.remove('show'); }
+    if(e.key==='Escape'){ listEl.classList.remove('show'); }
+  });
+  listEl.addEventListener('click', (e)=>{
+    const btn = e.target.closest('button[data-idx]');
+    if(!btn) return;
+    inputEl.value = matches[+btn.dataset.idx][0];
+    listEl.classList.remove('show');
+  });
+  document.addEventListener('click', (e)=>{
+    if(!inputEl.contains(e.target) && !listEl.contains(e.target)) listEl.classList.remove('show');
+  });
+}
+document.querySelectorAll('.quote-form-js input[name="origin"], .quote-form-js input[name="destination"]').forEach(inp=>{
+  setupAutocomplete(inp, inp.parentElement.querySelector('.autocomplete-list'));
+});
+
+/* ============================================================
+   GET A QUOTE — submit handling (no backend: builds a mailto)
+   Shared by the home-page quote panel and the Get a Quote page.
+   ============================================================ */
+function setupQuoteForm(form){
+  const success = form.parentElement.querySelector('.quote-success');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    let ok = true;
+    form.querySelectorAll('[required]').forEach(el=>{
+      if(!el.value.trim()){ ok=false; el.style.borderColor = '#c0392b'; } else { el.style.borderColor=''; }
+    });
+    if(!ok){ return; }
+
+    const val = n => form.elements[n].value.trim() || '—';
+    const bodyLines = [
+      `Origin: ${val('origin')}`,
+      `Destination: ${val('destination')}`,
+      `Shipment Type: ${val('shipmentType')}`,
+      `FCL/LCL: ${val('fclLcl')}`,
+      `Commodity: ${val('commodity')}`,
+      `Packages: ${val('packages')}`,
+      `Gross Weight (kg): ${val('grossWeight')}`,
+      `Volume (CBM): ${val('volume')}`,
+      `Incoterm: ${val('incoterm')}`,
+      `Ready Date: ${val('readyDate')}`,
+      `Special Requirements: ${val('specialReq')}`,
+      ``,
+      `Name: ${val('fullName')}`,
+      `Company: ${val('company')}`,
+      `Email: ${val('email')}`,
+      `WhatsApp/Phone: ${val('phone')}`
+    ].join('\n');
+
+    const mailto = `mailto:info@rbm-logistics.com?subject=${encodeURIComponent('Freight Quote Request — '+val('origin')+' to '+val('destination'))}&body=${encodeURIComponent(bodyLines)}`;
+    success.querySelector('.mailto-link').href = mailto;
+
+    form.style.display = 'none';
+    success.classList.add('show');
+  });
+  success.querySelector('.new-quote-btn').addEventListener('click', ()=>{
+    form.reset();
+    form.style.display = 'block';
+    success.classList.remove('show');
+  });
+}
+document.querySelectorAll('.quote-form-js').forEach(setupQuoteForm);
+
+/* ============================================================
+   LIVE SHIPMENT TRACKING — reads directly from the RBM Google
+   Sheet via the public gviz JSON feed (CORS-enabled for sheets
+   shared as "Anyone with the link"). Only the columns the ops
+   team approved for public display are ever rendered — pricing,
+   invoicing and consignee-contact columns are never fetched
+   into this view.
+   ============================================================ */
+const SHEET_ID  = "1TypMtS_OqVQ4xhwRgcNGpSqC-Zisec5Z897ByW5eDK8";
+const SHEET_GID = "0";
+const GVIZ_URL  = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}`;
+
+// 0-based column indices (A=0, B=1 … Z=25, AA=26 …)
+const COL = {
+  project:1, status:2, freight:3, role:4, term:5, pol:6, pod:7,
+  comment:12, delay:13, commodity:14, dg:15, packaging:16, cw:17, vol:18,
+  etd:23, eta:24, vessel:25, awbhbl:26
+};
+
+let sheetRowsCache = null;
+async function loadSheet(){
+  if(sheetRowsCache) return sheetRowsCache;
+  let res;
+  try{
+    res = await fetch(GVIZ_URL);
+  }catch(networkErr){
+    // Most common cause: the file is being opened directly from disk
+    // (file://...) instead of served over http/https — browsers block
+    // cross-origin fetches from a file:// page for security reasons.
+    throw new Error(location.protocol === 'file:'
+      ? 'This page is open as a local file, so the browser is blocking the live request. Host it on a real web server (even a simple one) and the tracker will work.'
+      : 'Network request to Google Sheets failed: ' + networkErr.message);
+  }
+  if(!res.ok){
+    throw new Error('Google Sheets responded with status ' + res.status + '. Check that the sheet is shared as "Anyone with the link — Viewer".');
+  }
+  const text = await res.text();
+  const jsonStart = text.indexOf('{');
+  const jsonEnd = text.lastIndexOf('}');
+  if(jsonStart === -1 || jsonEnd === -1){
+    throw new Error('Unexpected response from Google Sheets (sheet may not be publicly viewable).');
+  }
+  let json;
+  try{
+    json = JSON.parse(text.substring(jsonStart, jsonEnd + 1));
+  }catch(parseErr){
+    throw new Error('Could not parse the sheet response: ' + parseErr.message);
+  }
+  sheetRowsCache = json.table.rows.map(r => (r.c || []).map(c => c ? (c.f ?? c.v) : null));
+  return sheetRowsCache;
+}
+
+function cleanVal(v){
+  if(v === null || v === undefined) return '';
+  const s = v.toString().trim();
+  return (s === '​' || s === '-' || s.toLowerCase() === 'null') ? '' : s;
+}
+
+const STATUS_STYLE = {
+  'SCHEDULE': {label:'Booking Confirmed', cls:''},
+  'DEPARTURE': {label:'Departed Origin', cls:'transit'},
+  'G O A L': {label:'Delivered', cls:'done'}
+};
+function statusInfo(raw){
+  const key = (raw||'').toString().trim().toUpperCase();
+  return STATUS_STYLE[key] || {label: raw || 'In Progress', cls:'transit'};
+}
+
+function showTrackMsg(kind, text){
+  const el = document.getElementById('trackMsg');
+  el.className = 'track-status-msg show ' + kind;
+  el.textContent = text;
+}
+function hideTrackMsg(){
+  document.getElementById('trackMsg').className = 'track-status-msg';
+}
+
+async function runTrack(query){
+  const q = (query || '').trim();
+  document.getElementById('resultCard').classList.remove('show');
+  if(!q){ showTrackMsg('error','Please enter a tracking reference.'); return; }
+
+  showTrackMsg('loading','Searching our shipment records…');
+  try{
+    const rows = await loadSheet();
+    const needle = q.toLowerCase();
+    const exact = r => [r[0], r[COL.project], r[COL.awbhbl]].some(v => v && v.toString().toLowerCase().trim() === needle);
+    const partial = r => [r[0], r[COL.project], r[COL.awbhbl]].some(v => v && v.toString().toLowerCase().includes(needle));
+    const row = rows.find(exact) || rows.find(partial);
+
+    if(!row){
+      showTrackMsg('error', `No shipment found for "${q}". Double-check the reference or contact us on WhatsApp.`);
+      return;
+    }
+    hideTrackMsg();
+    renderResult(row, q);
+  }catch(err){
+    console.error('Tracking fetch failed:', err);
+    showTrackMsg('error', (err && err.message) ? err.message : 'We could not reach the tracking system right now. Please try again shortly or contact us directly.');
+  }
+}
+
+function tile(k, v){
+  return `<div class="stat-tile"><div class="k">${k}</div><div class="v">${v || '—'}</div></div>`;
+}
+
+function renderResult(row, query){
+  const get = i => cleanVal(row[i]);
+  const st = statusInfo(get(COL.status));
+
+  document.getElementById('resultRef').textContent = 'REF ' + (get(COL.project) || get(0) || query);
+  document.getElementById('resultTitle').textContent = (get(COL.commodity) || 'Shipment') + ' — ' + (get(COL.pol) || '—') + ' → ' + (get(COL.pod) || '—');
+  const badge = document.getElementById('resultBadge');
+  badge.textContent = st.label;
+  badge.className = 'status-badge ' + st.cls;
+
+  // Group 1 — Shipment Info
+  document.getElementById('grpInfo').innerHTML = [
+    tile('Mode', get(COL.freight)),
+    tile('Direction', get(COL.role)),
+    tile('Incoterm', get(COL.term))
+  ].join('');
+
+  // Group 2 — Route
+  document.getElementById('grpRoute').innerHTML = `
+    <div class="route-point"><div class="dot"></div><div class="lbl">Origin</div><div class="val">${get(COL.pol) || '—'}</div></div>
+    <div class="route-line"></div>
+    <div class="route-point dest"><div class="dot"></div><div class="lbl">Destination</div><div class="val">${get(COL.pod) || '—'}</div></div>
+  `;
+
+  // Group 3 — Cargo Details
+  const dgVal = get(COL.dg);
+  document.getElementById('grpCargo').innerHTML = [
+    tile('Commodity', get(COL.commodity)),
+    `<div class="stat-tile"><div class="k">Dangerous Goods</div><div class="v ${dgVal.toLowerCase()==='yes' ? 'dg-yes':''}">${dgVal || '—'}</div></div>`,
+    tile('Total Packages', get(COL.packaging)),
+    tile('Chargeable Weight', get(COL.cw) ? get(COL.cw) + ' kg' : '—'),
+    tile('Volume', get(COL.vol) ? get(COL.vol) + ' CBM' : '—')
+  ].join('');
+
+  // Group 4 — Schedule
+  document.getElementById('grpSchedule').innerHTML = `
+    <div class="eta-tile"><div class="k">ETD</div><div class="v">${get(COL.etd) || '—'}</div></div>
+    <div class="eta-tile"><div class="k">ETA</div><div class="v">${get(COL.eta) || '—'}</div></div>
+  `;
+
+  // Group 5 — Carrier & Tracking (Track Cargo button opens a live search for the vessel/flight reference)
+  const vessel = get(COL.vessel);
+  const awb = get(COL.awbhbl);
+  const trackUrl = 'https://www.google.com/search?q=' + encodeURIComponent('track ' + (vessel || awb || get(COL.project)));
+  document.getElementById('grpCarrier').innerHTML = `
+    <div class="vessel-row">
+      <div class="vessel-info">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" width="19" height="19"><path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+        <div><div class="k">Vessel / Flight</div><div class="v">${vessel || '—'}</div></div>
+      </div>
+      <a class="btn btn-primary btn-sm" href="${trackUrl}" target="_blank" rel="noopener">Track Cargo ↗</a>
+    </div>
+    ${tile('AWB / HBL', awb)}
+  `;
+
+  // Group 6 — Notes (Comment / Delay), only shown when there's something to say
+  const comment = get(COL.comment);
+  const delay = get(COL.delay);
+  const notesCard = document.getElementById('grpNotesCard');
+  if(comment || delay){
+    let html = '';
+    if(comment) html += `<div class="note-card"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10Z" stroke="currentColor" stroke-width="1.8"/></svg><div class="txt"><b>Operational Note</b>${comment}</div></div>`;
+    if(delay) html += `<div class="note-card warn"><svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.8"/></svg><div class="txt"><b>Delay Flag</b>${delay}</div></div>`;
+    document.getElementById('grpNotes').innerHTML = html;
+    notesCard.style.display = 'block';
+  } else {
+    notesCard.style.display = 'none';
+  }
+
+  document.getElementById('resultCard').classList.add('show');
+  document.getElementById('resultCard').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+document.getElementById('trackBtn').addEventListener('click', ()=> runTrack(document.getElementById('trackInput').value));
+document.getElementById('trackInput').addEventListener('keydown', e=>{ if(e.key==='Enter') runTrack(e.target.value); });
+
+document.getElementById('homeTrackBtn').addEventListener('click', ()=>{
+  const val = document.getElementById('homeTrackInput').value;
+  goTo('track');
+  document.getElementById('trackInput').value = val;
+  setTimeout(()=> runTrack(val), 150);
+});
+document.getElementById('homeTrackInput').addEventListener('keydown', e=>{
+  if(e.key==='Enter'){
+    const val = e.target.value;
+    goTo('track');
+    document.getElementById('trackInput').value = val;
+    setTimeout(()=> runTrack(val), 150);
+  }
+});
+</script>
+<script async="" src="js/ar.js" data-netlify-deploy-id="6ac0bb5e6d5c689d92a2c5be" data-netlify-site-id="e544e646-de2d-445f-ab68-682cdf8200bc" data-agent-runner-id="6ac0b8ea7c384c3410dc2f7f"></script>
+
+
+</body></html>
