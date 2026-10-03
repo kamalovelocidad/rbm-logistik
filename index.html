@@ -1322,7 +1322,7 @@ const GVIZ_URL  = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tq
 const COL = {
   project:1, status:2, freight:3, role:4, term:5, pol:6, pod:7,
   comment:12, delay:13, commodity:14, dg:15, packaging:16, cw:17, vol:18,
-  etd:23, eta:24, vessel:25, awbhbl:26
+  etd:23, eta:24, vessel:25, awbhbl:26, trackurl:27
 };
 
 let sheetRowsCache = null;
@@ -1442,14 +1442,26 @@ function renderResult(row, query){
 
   const vessel = get(COL.vessel);
   const awb = get(COL.awbhbl);
-  const trackUrl = 'https://www.google.com/search?q=' + encodeURIComponent('track ' + (vessel || awb || get(COL.project)));
+  const rawUrl = get(COL.trackurl);
+
+  let targetUrl = '#';
+  if (rawUrl && (rawUrl.startsWith('http://') || rawUrl.startsWith('https://'))) {
+    targetUrl = rawUrl;
+  } else if (vessel && (vessel.startsWith('http://') || vessel.startsWith('https://'))) {
+    targetUrl = vessel;
+  } else if (rawUrl) {
+    targetUrl = 'https://' + rawUrl;
+  } else {
+    targetUrl = 'https://' + encodeURIComponent(vessel || awb || get(COL.project));
+  }
+
   document.getElementById('grpCarrier').innerHTML = `
     <div class="vessel-row">
       <div class="vessel-info">
         <span class="icon"><svg viewBox="0 0 24 24" fill="none" width="19" height="19"><path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
         <div><div class="k">Vessel / Flight</div><div class="v">${vessel || '—'}</div></div>
       </div>
-      <a class="btn btn-primary btn-sm" href="${trackUrl}" target="_blank" rel="noopener">Track Cargo ↗</a>
+      <a class="btn btn-primary btn-sm" href="${targetUrl}" target="_blank" rel="noopener">Track Cargo ↗</a>
     </div>
     ${tile('AWB / HBL', awb)}
   `;
