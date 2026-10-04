@@ -793,7 +793,7 @@ input,select,textarea{font-family:inherit;font-size:15px;}
         <div class="group-card">
           <div class="group-head">
             <span class="group-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg></span>
-            <span class="group-title">Carrier &amp; Live Tracking Map</span>
+            <span class="group-title">Carrier &amp; Vessel Information</span>
           </div>
           <div id="grpCarrier"></div>
         </div>
@@ -1319,7 +1319,9 @@ const SHEET_ID  = "1TypMtS_OqVQ4xhwRgcNGpSqC-Zisec5Z897ByW5eDK8";
 const SHEET_GID = "0";
 const GVIZ_URL  = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}`;
 
-// Column mappings (0-indexed) — Column AK ("Route Mapping") is index 36
+// Column mappings (0-indexed)
+// Column Z = Vessel/Voyage (index 25)
+// Column AK = Route Mapping (index 36)
 const COL = {
   project:1, status:2, freight:3, role:4, term:5, pol:6, pod:7,
   comment:12, delay:13, commodity:14, dg:15, packaging:16, cw:17, vol:18,
@@ -1450,60 +1452,58 @@ function renderResult(row, query){
     <div class="eta-tile"><div class="k">ETA</div><div class="v">${get(COL.eta) || '—'}</div></div>
   `;
 
-  const vessel = get(COL.vessel);
+  const rawVessel = get(COL.vessel);
   const awb = get(COL.awbhbl);
   let rawUrl = get(COL.trackurl);
 
-  // Ensure full URL protocol
+  // OPTION B: Clean Vessel Name Parsing from Column Z (Vessel/Voyage)
+  let cleanVesselName = rawVessel;
+  let voyageCode = '';
+
+  if (rawVessel.includes('/')) {
+    const parts = rawVessel.split('/');
+    cleanVesselName = parts[0].trim();
+    voyageCode = parts.slice(1).join('/').trim();
+  } else if (rawVessel.includes('-')) {
+    const parts = rawVessel.split('-');
+    cleanVesselName = parts[0].trim();
+    voyageCode = parts.slice(1).join('-').trim();
+  }
+
+  // Format tracking links and buttons
   if (rawUrl && !rawUrl.startsWith('http://') && !rawUrl.startsWith('https://')) {
     rawUrl = 'https://' + rawUrl;
   }
 
-  // Extract strict 7-digit IMO or 9-digit MMSI number from Column AK ("Route Mapping") or Vessel field
-  let imoParam = '';
-  const fullText = (rawUrl + ' ' + vessel);
-  const imoMatch = fullText.match(/imo[=\s]?(\d{7})/i) || fullText.match(/\b(\d{7})\b/);
-  const mmsiMatch = fullText.match(/mmsi[=\s]?(\d{9})/i) || fullText.match(/\b(\d{9})\b/);
-
-  if (imoMatch) {
-    imoParam = `imo=${imoMatch[1]}`;
-  } else if (mmsiMatch) {
-    imoParam = `mmsi=${mmsiMatch[1]}`;
-  }
-
-  // Render automatic interactive map embed IF a valid IMO/MMSI is extracted
-  let mapEmbedHtml = '';
-  if (imoParam) {
-    mapEmbedHtml = `
-      <div style="width:100%; height:450px; border-radius:10px; overflow:hidden; border:1px solid var(--line); margin-top:14px; position:relative;">
-        <iframe 
-          title="Live Vessel Tracking Map"
-          src="https://www.vesselfinder.com/aismap?${imoParam}&zoom=9&show_names=true" 
-          width="100%" 
-          height="100%" 
-          frameborder="0" 
-          scrolling="no"
-          style="border:0; width:100%; height:100%;">
-        </iframe>
-      </div>
-    `;
-  }
-
-  const targetUrl = isValidUrl(rawUrl) ? rawUrl : '';
-  const trackBtnHtml = targetUrl 
-    ? `<a class="btn btn-primary btn-sm" href="${targetUrl}" target="_blank" rel="noopener">Open Carrier Link ↗</a>`
+  const directLink = isValidUrl(rawUrl) ? rawUrl : '';
+  
+  // Create live vessel tracking button using parsed vessel name
+  const liveTrackSearchUrl = cleanVesselName 
+    ? `https://www.marinetraffic.com/en/ais/details/ships/shipid:search?query=${encodeURIComponent(cleanVesselName)}`
     : '';
+
+  let trackBtnHtml = '';
+  if (directLink) {
+    trackBtnHtml = `<a class="btn btn-primary btn-sm" href="${directLink}" target="_blank" rel="noopener">Open Route Mapping ↗</a>`;
+  } else if (liveTrackSearchUrl) {
+    trackBtnHtml = `<a class="btn btn-primary btn-sm" href="${liveTrackSearchUrl}" target="_blank" rel="noopener">Track Vessel Live ↗</a>`;
+  }
 
   document.getElementById('grpCarrier').innerHTML = `
     <div class="vessel-row">
       <div class="vessel-info">
         <span class="icon"><svg viewBox="0 0 24 24" fill="none" width="19" height="19"><path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
-        <div><div class="k">Vessel / Flight</div><div class="v">${vessel || '—'}</div></div>
+        <div>
+          <div class="k">Vessel Name</div>
+          <div class="v">${cleanVesselName || '—'}</div>
+        </div>
       </div>
       ${trackBtnHtml}
     </div>
-    ${tile('AWB / HBL', awb)}
-    ${mapEmbedHtml}
+    <div class="stat-tiles" style="grid-template-columns:repeat(2,1fr);">
+      ${tile('Voyage Number', voyageCode || '—')}
+      ${tile('AWB / HBL Number', awb || '—')}
+    </div>
   `;
 
   const comment = get(COL.comment);
