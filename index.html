@@ -109,8 +109,6 @@ input,select,textarea{font-family:inherit;font-size:15px;color:var(--ink);backgr
 .btn-sm{padding:9px 16px;font-size:13.5px;}
 .btn-square{border-radius:6px;text-transform:uppercase;letter-spacing:.03em;}
 .btn-block{width:100%;}
-.btn-navy{background:var(--navy-700);color:#fff;}
-.btn-navy:hover{background:var(--navy-800);}
 .btn-ghost-light{background:transparent;border-color:rgba(255,255,255,.3);color:#fff;}
 .btn-ghost-light:hover{background:rgba(255,255,255,.1);color:#fff;}
 .btn[disabled]{opacity:.55;cursor:not-allowed;}
@@ -322,13 +320,13 @@ input,select,textarea{font-family:inherit;font-size:15px;color:var(--ink);backgr
 .vessel-info .k{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);}
 .vessel-info .v{font-size:14.5px;font-weight:700;color:#fff;}
 
-/* Embedded Frame Display (Unclickable, Direct iframe) */
+/* Embedded Live Vessel Map Display */
 .map-container{
   width:100%;height:520px;border-radius:10px;overflow:hidden;border:1px solid var(--line);
   margin-top:16px;position:relative;background:var(--navy-950);
 }
 .map-container iframe{
-  width:100%;height:100%;border:none;pointer-events:none;
+  width:100%;height:100%;border:none;
 }
 
 .eta-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -801,11 +799,11 @@ input,select,textarea{font-family:inherit;font-size:15px;color:var(--ink);backgr
           <div class="eta-row" id="grpSchedule"></div>
         </div>
 
-        <!-- Carrier & Tracking -->
+        <!-- Carrier & Vessel Live Map -->
         <div class="group-card">
           <div class="group-head">
             <span class="group-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg></span>
-            <span class="group-title">Carrier &amp; Vessel Information</span>
+            <span class="group-title">Carrier &amp; Live Vessel Position</span>
           </div>
           <div id="grpCarrier"></div>
         </div>
@@ -1322,19 +1320,20 @@ function setupQuoteForm(form){
 document.querySelectorAll('.quote-form-js').forEach(setupQuoteForm);
 
 /* ============================================================
-   LIVE SHIPMENT TRACKING & EMBEDDED COLUMN AK
+   LIVE SHIPMENT TRACKING VIA MMSI / IMO (Column AL / AM)
    ============================================================ */
 const SHEET_ID  = "1TypMtS_OqVQ4xhwRgcNGpSqC-Zisec5Z897ByW5eDK8";
 const SHEET_GID = "0";
 const GVIZ_URL  = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}`;
 
 // Column mappings (0-indexed):
-// Column Z (Index 25) = Vessel/Voyage
-// Column AK (Index 36) = Embedded Tracking Webpage URL
+// Column Z (Index 25) = Vessel Name / Voyage
+// Column AL (Index 37) = MMSI Number
+// Column AM (Index 38) = IMO Number
 const COL = {
   project:1, status:2, freight:3, role:4, term:5, pol:6, pod:7,
   comment:12, delay:13, commodity:14, dg:15, packaging:16, cw:17, vol:18,
-  etd:23, eta:24, vessel:25, awbhbl:26, trackurl:36
+  etd:23, eta:24, vessel:25, awbhbl:26, mmsi:37, imo:38
 };
 
 let sheetRowsCache = null;
@@ -1454,7 +1453,8 @@ function renderResult(row, query){
 
   const rawVessel = get(COL.vessel);
   const awb = get(COL.awbhbl);
-  let embedUrl = get(COL.trackurl);
+  const mmsiVal = get(COL.mmsi);
+  const imoVal = get(COL.imo);
 
   let cleanVesselName = rawVessel;
   let voyageCode = '';
@@ -1469,20 +1469,13 @@ function renderResult(row, query){
     voyageCode = parts.slice(1).join('-').trim();
   }
 
-  // Pure embedded iframe display (Column AK link)
+  // Dynamic Vessel Tracking Map using MMSI (Column AL) or IMO (Column AM)
   let iframeContent = '';
-  if (embedUrl) {
-    if (!embedUrl.startsWith('http://') && !embedUrl.startsWith('https://')) {
-      embedUrl = 'https://' + embedUrl;
-    }
+  if (mmsiVal || imoVal) {
+    const mapUrl = `https://www.vesselfinder.com/aais-embed?mmsi=${mmsiVal || ''}&imo=${imoVal || ''}&zoom=5&show_track=true&names=true`;
     iframeContent = `
       <div class="map-container">
-        <iframe src="${embedUrl}" title="Live Tracking Display"></iframe>
-      </div>
-      <div style="margin-top:8px; text-align:right;">
-        <a href="${embedUrl}" target="_blank" rel="noopener noreferrer" style="font-size:12px; color:var(--muted); text-decoration:underline;">
-          Unable to see tracking content? Click to open tracking site in new window ↗
-        </a>
+        <iframe src="${mapUrl}" title="Live Vessel Map Display"></iframe>
       </div>
     `;
   } else {
@@ -1491,7 +1484,7 @@ function renderResult(row, query){
         <div style="color:var(--muted);">
           <svg viewBox="0 0 24 24" fill="none" width="36" height="36" style="margin:0 auto 10px; color:var(--orange);"><path d="M12 21s-7-6-7-11a7 7 0 1 1 14 0c0 5-7 11-7 11Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
           <div style="font-weight:700; font-size:15px; color:#fff;">Live Viewport Standby</div>
-          <div style="font-size:13px; margin-top:4px;">No tracking URL provided in Column AK for this shipment.</div>
+          <div style="font-size:13px; margin-top:4px;">No MMSI (Column AL) or IMO (Column AM) provided for this vessel.</div>
         </div>
       </div>
     `;
@@ -1507,9 +1500,11 @@ function renderResult(row, query){
         </div>
       </div>
     </div>
-    <div class="stat-tiles" style="grid-template-columns:repeat(2,1fr);">
+    <div class="stat-tiles" style="grid-template-columns:repeat(4,1fr);">
       ${tile('Voyage Number', voyageCode || '—')}
       ${tile('AWB / HBL Number', awb || '—')}
+      ${tile('MMSI Number', mmsiVal || '—')}
+      ${tile('IMO Number', imoVal || '—')}
     </div>
     ${iframeContent}
   `;
