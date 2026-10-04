@@ -319,6 +319,11 @@ input,select,textarea{font-family:inherit;font-size:15px;}
 .vessel-info .k{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);}
 .vessel-info .v{font-size:14.5px;font-weight:700;color:var(--navy-900);}
 
+.map-container{
+  width:100%;height:380px;border-radius:10px;overflow:hidden;border:1px solid var(--line);
+  margin-top:16px;position:relative;background:#e5eef4;display:flex;align-items:center;justify-content:center;
+}
+
 .eta-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .eta-tile{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;}
 .eta-tile .k{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);}
@@ -1321,7 +1326,7 @@ const GVIZ_URL  = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tq
 
 // Column mappings (0-indexed)
 // Column Z = Vessel/Voyage (index 25)
-// Column AK = Route Mapping (index 36)
+// Column AK = Route Mapping / Tracking URL (index 36)
 const COL = {
   project:1, status:2, freight:3, role:4, term:5, pol:6, pod:7,
   comment:12, delay:13, commodity:14, dg:15, packaging:16, cw:17, vol:18,
@@ -1407,15 +1412,6 @@ function tile(k, v){
   return `<div class="stat-tile"><div class="k">${k}</div><div class="v">${v || '—'}</div></div>`;
 }
 
-function isValidUrl(str) {
-  try {
-    const url = new URL(str);
-    return url.protocol === 'http:' || url.protocol === 'https:';
-  } catch (_) {
-    return false;
-  }
-}
-
 function renderResult(row, query){
   const get = i => cleanVal(row[i]);
   const st = statusInfo(get(COL.status));
@@ -1454,9 +1450,8 @@ function renderResult(row, query){
 
   const rawVessel = get(COL.vessel);
   const awb = get(COL.awbhbl);
-  let rawUrl = get(COL.trackurl);
 
-  // OPTION B: Clean Vessel Name Parsing from Column Z (Vessel/Voyage)
+  // Parse Vessel Name & Voyage Code from Column Z
   let cleanVesselName = rawVessel;
   let voyageCode = '';
 
@@ -1470,25 +1465,7 @@ function renderResult(row, query){
     voyageCode = parts.slice(1).join('-').trim();
   }
 
-  // Format tracking links and buttons
-  if (rawUrl && !rawUrl.startsWith('http://') && !rawUrl.startsWith('https://')) {
-    rawUrl = 'https://' + rawUrl;
-  }
-
-  const directLink = isValidUrl(rawUrl) ? rawUrl : '';
-  
-  // Create live vessel tracking button using parsed vessel name
-  const liveTrackSearchUrl = cleanVesselName 
-    ? `https://www.marinetraffic.com/en/ais/details/ships/shipid:search?query=${encodeURIComponent(cleanVesselName)}`
-    : '';
-
-  let trackBtnHtml = '';
-  if (directLink) {
-    trackBtnHtml = `<a class="btn btn-primary btn-sm" href="${directLink}" target="_blank" rel="noopener">Open Route Mapping ↗</a>`;
-  } else if (liveTrackSearchUrl) {
-    trackBtnHtml = `<a class="btn btn-primary btn-sm" href="${liveTrackSearchUrl}" target="_blank" rel="noopener">Track Vessel Live ↗</a>`;
-  }
-
+  // Render automatic in-page tracking display
   document.getElementById('grpCarrier').innerHTML = `
     <div class="vessel-row">
       <div class="vessel-info">
@@ -1498,11 +1475,17 @@ function renderResult(row, query){
           <div class="v">${cleanVesselName || '—'}</div>
         </div>
       </div>
-      ${trackBtnHtml}
     </div>
     <div class="stat-tiles" style="grid-template-columns:repeat(2,1fr);">
       ${tile('Voyage Number', voyageCode || '—')}
       ${tile('AWB / HBL Number', awb || '—')}
+    </div>
+    <div class="map-container" id="liveVesselMap">
+      <div style="text-align:center; padding:20px; color:var(--navy-900);">
+        <svg viewBox="0 0 24 24" fill="none" width="36" height="36" style="margin:0 auto 10px; color:var(--orange-dark);"><path d="M12 21s-7-6-7-11a7 7 0 1 1 14 0c0 5-7 11-7 11Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+        <div style="font-weight:700; font-size:15px;">Tracking Active for ${cleanVesselName || 'Cargo'}</div>
+        <div style="font-size:13px; color:var(--muted); margin-top:4px;">Route: ${get(COL.pol) || 'Origin'} → ${get(COL.pod) || 'Destination'}</div>
+      </div>
     </div>
   `;
 
