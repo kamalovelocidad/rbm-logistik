@@ -320,8 +320,9 @@ input,select,textarea{font-family:inherit;font-size:15px;}
 .vessel-info .v{font-size:14.5px;font-weight:700;color:var(--navy-900);}
 
 .map-container{
-  width:100%;height:380px;border-radius:10px;overflow:hidden;border:1px solid var(--line);
+  width:100%;min-height:220px;border-radius:10px;overflow:hidden;border:1px solid var(--line);
   margin-top:16px;position:relative;background:#e5eef4;display:flex;align-items:center;justify-content:center;
+  padding:24px;text-align:center;
 }
 
 .eta-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -1318,15 +1319,88 @@ function setupQuoteForm(form){
 document.querySelectorAll('.quote-form-js').forEach(setupQuoteForm);
 
 /* ============================================================
+   LIVE AISSTREAM WEBSOCKET INTEGRATION
+   ============================================================ */
+const AISSTREAM_API_KEY = "2f5c71d643efb8e05d0458a2cdbc3b72bf6c3677"; // Replace with your AISStream key
+let aisSocket = null;
+
+function connectAISStream(targetVesselName) {
+  if (!targetVesselName) return;
+  const searchName = targetVesselName.trim().toUpperCase();
+
+  // Close previous socket connection if open
+  if (aisSocket) {
+    aisSocket.close();
+  }
+
+  const mapContainer = document.getElementById('liveVesselMap');
+  mapContainer.innerHTML = `
+    <div style="text-align:center; padding:20px; color:var(--navy-900);">
+      <svg viewBox="0 0 24 24" fill="none" width="36" height="36" style="margin:0 auto 10px; color:var(--orange-dark);"><path d="M12 21s-7-6-7-11a7 7 0 1 1 14 0c0 5-7 11-7 11Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+      <div style="font-weight:700; font-size:15px;">Connecting to Live AIS Telemetry for ${targetVesselName}…</div>
+      <div style="font-size:13px; color:var(--muted); margin-top:4px;">Listening for AIS position reports...</div>
+    </div>
+  `;
+
+  try {
+    aisSocket = new WebSocket("wss://stream.aisstream.io/v0/stream");
+
+    aisSocket.onopen = function () {
+      const subscriptionMessage = {
+        APIKey: AISSTREAM_API_KEY,
+        BoundingBoxes: [[[-90, -180], [90, 180]]], // Global AIS coverage
+        FilterMessageTypes: ["PositionReport"]
+      };
+      aisSocket.send(JSON.stringify(subscriptionMessage));
+    };
+
+    aisSocket.onmessage = function (event) {
+      const data = JSON.parse(event.data);
+      if (data.MessageType === "PositionReport" && data.MetaData && data.MetaData.ShipName) {
+        const currentShipName = data.MetaData.ShipName.trim().toUpperCase();
+
+        if (currentShipName === searchName || currentShipName.includes(searchName)) {
+          const lat = data.MetaData.Latitude;
+          const lon = data.MetaData.Longitude;
+          const speed = data.Message && data.Message.PositionReport ? data.Message.PositionReport.Sog : '—';
+          const cog = data.Message && data.Message.PositionReport ? data.Message.PositionReport.Cog : '—';
+
+          mapContainer.innerHTML = `
+            <div style="text-align:center; padding:20px; color:var(--navy-900);">
+              <svg viewBox="0 0 24 24" fill="none" width="40" height="40" style="margin:0 auto 10px; color:var(--success);"><path d="M12 21s-7-6-7-11a7 7 0 1 1 14 0c0 5-7 11-7 11Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+              <div style="font-weight:800; font-size:17px; color:var(--navy-900);">${data.MetaData.ShipName}</div>
+              <div style="font-family:var(--font-mono); font-size:14px; margin-top:8px; font-weight:700; color:var(--teal);">
+                Lat: ${lat.toFixed(4)}° | Lon: ${lon.toFixed(4)}°
+              </div>
+              <div style="font-size:13px; color:var(--muted); margin-top:6px;">
+                Speed (SOG): <b>${speed} knots</b> | Course (COG): <b>${cog}°</b>
+              </div>
+            </div>
+          `;
+        }
+      }
+    };
+
+    aisSocket.onerror = function () {
+      mapContainer.innerHTML = `
+        <div style="text-align:center; padding:20px; color:var(--muted);">
+          <div style="font-weight:700; font-size:14px; color:var(--navy-900);">AIS Telemetry Offline</div>
+          <div style="font-size:12.5px; margin-top:4px;">Position data streaming is currently standby for ${targetVesselName}.</div>
+        </div>
+      `;
+    };
+  } catch (e) {
+    console.error("AIS Connection Error:", e);
+  }
+}
+
+/* ============================================================
    LIVE SHIPMENT TRACKING
    ============================================================ */
 const SHEET_ID  = "1TypMtS_OqVQ4xhwRgcNGpSqC-Zisec5Z897ByW5eDK8";
 const SHEET_GID = "0";
 const GVIZ_URL  = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}`;
 
-// Column mappings (0-indexed)
-// Column Z = Vessel/Voyage (index 25)
-// Column AK = Route Mapping / Tracking URL (index 36)
 const COL = {
   project:1, status:2, freight:3, role:4, term:5, pol:6, pod:7,
   comment:12, delay:13, commodity:14, dg:15, packaging:16, cw:17, vol:18,
@@ -1451,7 +1525,6 @@ function renderResult(row, query){
   const rawVessel = get(COL.vessel);
   const awb = get(COL.awbhbl);
 
-  // Parse Vessel Name & Voyage Code from Column Z
   let cleanVesselName = rawVessel;
   let voyageCode = '';
 
@@ -1465,7 +1538,6 @@ function renderResult(row, query){
     voyageCode = parts.slice(1).join('-').trim();
   }
 
-  // Render automatic in-page tracking display
   document.getElementById('grpCarrier').innerHTML = `
     <div class="vessel-row">
       <div class="vessel-info">
@@ -1480,14 +1552,12 @@ function renderResult(row, query){
       ${tile('Voyage Number', voyageCode || '—')}
       ${tile('AWB / HBL Number', awb || '—')}
     </div>
-    <div class="map-container" id="liveVesselMap">
-      <div style="text-align:center; padding:20px; color:var(--navy-900);">
-        <svg viewBox="0 0 24 24" fill="none" width="36" height="36" style="margin:0 auto 10px; color:var(--orange-dark);"><path d="M12 21s-7-6-7-11a7 7 0 1 1 14 0c0 5-7 11-7 11Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
-        <div style="font-weight:700; font-size:15px;">Tracking Active for ${cleanVesselName || 'Cargo'}</div>
-        <div style="font-size:13px; color:var(--muted); margin-top:4px;">Route: ${get(COL.pol) || 'Origin'} → ${get(COL.pod) || 'Destination'}</div>
-      </div>
-    </div>
+    <div class="map-container" id="liveVesselMap"></div>
   `;
+
+  if (cleanVesselName) {
+    connectAISStream(cleanVesselName);
+  }
 
   const comment = get(COL.comment);
   const delay = get(COL.delay);
