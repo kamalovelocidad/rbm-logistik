@@ -1319,7 +1319,7 @@ const SHEET_ID  = "1TypMtS_OqVQ4xhwRgcNGpSqC-Zisec5Z897ByW5eDK8";
 const SHEET_GID = "0";
 const GVIZ_URL  = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}`;
 
-// Column mappings (0-indexed) - Column AK is index 36
+// Column mappings (0-indexed) — Column AK ("Route Mapping") is index 36
 const COL = {
   project:1, status:2, freight:3, role:4, term:5, pol:6, pod:7,
   comment:12, delay:13, commodity:14, dg:15, packaging:16, cw:17, vol:18,
@@ -1459,25 +1459,31 @@ function renderResult(row, query){
     rawUrl = 'https://' + rawUrl;
   }
 
-  // Extract IMO or MMSI from Column AK URL or Vessel field
-  let imoNumber = '';
-  const imoMatch = (rawUrl + ' ' + vessel).match(/\bimo[=\s]?(\d{7})\b|\b(\d{7})\b/i);
+  // Extract strict 7-digit IMO or 9-digit MMSI number from Column AK ("Route Mapping") or Vessel field
+  let imoParam = '';
+  const fullText = (rawUrl + ' ' + vessel);
+  const imoMatch = fullText.match(/imo[=\s]?(\d{7})/i) || fullText.match(/\b(\d{7})\b/);
+  const mmsiMatch = fullText.match(/mmsi[=\s]?(\d{9})/i) || fullText.match(/\b(\d{9})\b/);
+
   if (imoMatch) {
-    imoNumber = imoMatch[1] || imoMatch[2];
+    imoParam = `imo=${imoMatch[1]}`;
+  } else if (mmsiMatch) {
+    imoParam = `mmsi=${mmsiMatch[1]}`;
   }
 
-  // Render automatic interactive map embed if IMO is found
+  // Render automatic interactive map embed IF a valid IMO/MMSI is extracted
   let mapEmbedHtml = '';
-  if (imoNumber) {
+  if (imoParam) {
     mapEmbedHtml = `
-      <div style="width:100%; height:420px; border-radius:10px; overflow:hidden; border:1px solid var(--line); margin-top:14px;">
+      <div style="width:100%; height:450px; border-radius:10px; overflow:hidden; border:1px solid var(--line); margin-top:14px; position:relative;">
         <iframe 
           title="Live Vessel Tracking Map"
-          src="https://www.vesselfinder.com/aismap?imo=${imoNumber}&zoom=9&show_names=true" 
+          src="https://www.vesselfinder.com/aismap?${imoParam}&zoom=9&show_names=true" 
           width="100%" 
           height="100%" 
           frameborder="0" 
-          scrolling="no">
+          scrolling="no"
+          style="border:0; width:100%; height:100%;">
         </iframe>
       </div>
     `;
