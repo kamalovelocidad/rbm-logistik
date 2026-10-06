@@ -120,13 +120,15 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
 /* ============ HOME LAYOUT ============ */
 .wrap-wide{max-width:1380px;margin:0 auto;padding:0 24px;}
 .home-shell{position:relative;isolation:isolate;overflow:hidden;background:var(--bg);}
-.home-grid{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:20px;align-items:start;}
+.home-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px;align-items:start;}
 #homeQuote,#about-section,#cargo-section,#contact{scroll-margin-top:80px;}
+
+.hero-sidebar{display:flex;flex-direction:column;gap:14px;width:100%;}
 
 /* ============ HERO ============ */
 .hero{
   position:relative;color:#fff;padding:32px 0 24px;min-height:300px;
-  display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:20px;align-items:center;
+  display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px;align-items:start;
 }
 .hero::before{
   content:"";position:absolute;top:0;bottom:0;left:-50vw;right:-50vw;z-index:-1;
@@ -146,6 +148,38 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
 .hero-modes svg{width:22px;height:22px;color:#fff;flex-shrink:0;}
 .hero-modes span{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;max-width:90px;line-height:1.2;}
 .hero-actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
+
+/* ============ FREIGHT RATES CAROUSEL WIDGET ============ */
+.rates-preview-card{
+  background:var(--paper-card);color:var(--ink);border-radius:8px;padding:14px 16px;box-shadow:var(--shadow-lg);
+  display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);position:relative;overflow:hidden;
+}
+.rates-card-head{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:8px;}
+.rates-card-head h3{font-size:13px;font-weight:800;text-transform:uppercase;color:#fff;display:flex;align-items:center;gap:6px;}
+.rates-card-head h3 span{color:var(--orange);}
+.carousel-controls{display:flex;align-items:center;gap:6px;}
+.carousel-btn{
+  width:24px;height:24px;border-radius:4px;background:var(--navy-800);border:1px solid var(--line-strong);
+  color:#fff;display:flex;align-items:center;justify-content:center;padding:0;transition:background .15s;
+}
+.carousel-btn:hover{background:var(--orange);border-color:var(--orange);}
+
+.rates-card-body{display:flex;flex-direction:column;gap:8px;min-height:140px;justify-content:center;}
+.rate-item-slide{display:none;animation:fadein .25s ease;}
+.rate-item-slide.active{display:flex;flex-direction:column;gap:8px;}
+
+.route-badge-row{display:flex;align-items:center;justify-content:space-between;background:var(--paper);padding:6px 10px;border-radius:5px;border:1px solid var(--line);}
+.route-badge-item{display:flex;flex-direction:column;}
+.route-badge-item .lbl{font-size:9px;font-weight:700;text-transform:uppercase;color:var(--muted);}
+.route-badge-item .val{font-size:12px;font-weight:800;color:#fff;}
+.route-arrow{color:var(--orange);font-weight:bold;}
+
+.charges-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.charge-mini-item{background:var(--paper);padding:5px 8px;border-radius:4px;border:1px solid var(--line);}
+.charge-mini-item .lbl{font-size:9px;color:var(--muted);text-transform:uppercase;display:block;}
+.charge-mini-item .val{font-size:11.5px;font-weight:700;color:var(--ink);font-family:var(--font-mono);}
+.charge-mini-item.highlight .val{color:var(--orange);}
+
 .hero-track{
   background:var(--paper-card);color:var(--ink);border-radius:8px;padding:16px 16px;box-shadow:var(--shadow-lg);
   display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);
@@ -248,10 +282,10 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
 .page-hero{
   background:linear-gradient(120deg,var(--navy-950),var(--paper));
   border-bottom:1px solid var(--line);
-  color:#fff;padding:36px 0 28px;
+  color:#fff;padding:36px 0 36px;
 }
 .page-hero h1{font-size:clamp(24px,3vw,34px);font-weight:900;margin-top:8px;}
-.page-hero p{margin-top:8px;color:var(--muted);max-width:520px;font-size:14.5px;}
+.page-hero p{margin-top:8px;color:var(--muted);max-width:560px;font-size:14.5px;line-height:1.5;}
 .breadcrumb{font-size:12px;color:var(--muted);font-weight:600;}
 .breadcrumb b{color:#fff;}
 
@@ -274,7 +308,7 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
 /* ============ TRACKING PAGE COMPACT ============ */
 .track-panel{
   background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;
-  box-shadow:var(--shadow-sm);margin-top:-36px;position:relative;z-index:5;
+  box-shadow:var(--shadow-sm);margin-top:16px;position:relative;z-index:5;
 }
 .track-form{display:flex;gap:8px;flex-wrap:wrap;}
 .track-form input{
@@ -350,7 +384,7 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
 /* ============ FREIGHT RATES SECTION ============ */
 .rates-panel{
   background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;
-  box-shadow:var(--shadow-sm);margin-top:-36px;position:relative;z-index:5;
+  box-shadow:var(--shadow-sm);margin-top:16px;position:relative;z-index:5;
 }
 .rates-filter-bar{
   display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center;
@@ -481,7 +515,7 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
 }
 @media (max-width:980px){
   .hero{grid-template-columns:1fr;}
-  .hero-track{max-width:400px;}
+  .hero-sidebar{max-width:400px;}
   .info-band{grid-template-columns:1fr 1fr;row-gap:20px;}
   .info-col:nth-child(2){border-right:none;padding-right:0;}
   .info-col-wide{grid-column:1/-1;padding-left:0;}
@@ -504,8 +538,7 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
   .footer-grid{grid-template-columns:1fr;}
   .cta-banner{flex-direction:column;align-items:flex-start;}
   .hero{padding-top:28px;}
-  .track-panel{margin-top:-28px;padding:16px;}
-  .rates-panel{margin-top:-28px;padding:16px;}
+  .track-panel,.rates-panel{margin-top:16px;padding:16px;}
 }
 .mobile-menu{
   display:none;position:fixed;inset:0;z-index:300;background:rgba(4,12,22,.8);
@@ -587,12 +620,32 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
             </div>
           </div>
 
-          <div class="hero-track">
-            <h3>Track Your Shipment</h3>
-            <label for="homeTrackInput">Enter your AWB / HBL / Shipment Reference</label>
-            <input id="homeTrackInput" type="text" placeholder="AWB / HBL / Reference Number" enterkeyhint="go">
-            <button class="btn btn-primary btn-square" id="homeTrackBtn">Track Now <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
-            <p>We'll keep you updated every step of the way.</p>
+          <!-- Hero Sidebar Widgets -->
+          <div class="hero-sidebar">
+            
+            <!-- Freight Rates Preview Carousel -->
+            <div class="rates-preview-card">
+              <div class="rates-card-head">
+                <h3>Freight Rates <span>LCL</span></h3>
+                <div class="carousel-controls">
+                  <button class="carousel-btn" id="ratePrevBtn" aria-label="Previous Rate">❮</button>
+                  <button class="carousel-btn" id="rateNextBtn" aria-label="Next Rate">❯</button>
+                </div>
+              </div>
+              <div class="rates-card-body" id="rateWidgetBody">
+                <div style="font-size:12px;color:var(--muted);text-align:center;">Loading indicative rates...</div>
+              </div>
+            </div>
+
+            <!-- Track Shipment Box -->
+            <div class="hero-track">
+              <h3>Track Your Shipment</h3>
+              <label for="homeTrackInput">Enter your AWB / HBL / Shipment Reference</label>
+              <input id="homeTrackInput" type="text" placeholder="AWB / HBL / Reference Number" enterkeyhint="go">
+              <button class="btn btn-primary btn-square" id="homeTrackBtn">Track Now <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+              <p>We'll keep you updated every step of the way.</p>
+            </div>
+
           </div>
         </div>
 
@@ -1423,8 +1476,6 @@ const SHEET_GID = "0";
 const GVIZ_URL  = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}`;
 
 // Column mappings (0-indexed):
-// Column Z (Index 25) = Vessel/Voyage
-// Column AK (Index 36) = Embedded Tracking Webpage URL
 const COL = {
   project:1, status:2, freight:3, role:4, term:5, pol:6, pod:7,
   comment:12, delay:13, commodity:14, dg:15, packaging:16, cw:17, vol:18,
@@ -1563,7 +1614,6 @@ function renderResult(row, query){
     voyageCode = parts.slice(1).join('-').trim();
   }
 
-  // Orange Track Cargo Button for Column AK URL
   let trackButtonHtml = '';
   if (embedUrl) {
     if (!embedUrl.startsWith('http://') && !embedUrl.startsWith('https://')) {
@@ -1631,40 +1681,41 @@ document.getElementById('homeTrackInput').addEventListener('keydown', e=>{
 });
 
 /* ============================================================
-   OCEAN FREIGHT RATES SHEET INTEGRATION
+   OCEAN FREIGHT RATES SHEET INTEGRATION & HOME WIDGET
    ============================================================ */
 const RATES_GVIZ_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=Ocean%20Freight%20Rate`;
 
 let ratesCache = null;
+let currentWidgetIdx = 0;
+let randomWidgetRates = [];
+
+async function fetchRatesData(){
+  if(ratesCache) return ratesCache;
+  const res = await fetch(RATES_GVIZ_URL);
+  if(!res.ok) throw new Error('Failed to load rates.');
+  const text = await res.text();
+  const jsonStart = text.indexOf('{');
+  const jsonEnd = text.lastIndexOf('}');
+  const json = JSON.parse(text.substring(jsonStart, jsonEnd + 1));
+  
+  const rows = json.table.rows.slice(1).map(r => (r.c || []).map(c => c ? (c.f ?? c.v) : ''));
+  ratesCache = rows.filter(r => r[0] || r[1]);
+  return ratesCache;
+}
 
 async function loadFreightRates(){
   const msg = document.getElementById('ratesMsg');
   const tbody = document.getElementById('ratesTbody');
   
-  if(ratesCache){
-    renderRatesTable(ratesCache);
-    return;
-  }
-
   msg.className = 'track-status-msg show loading';
   msg.textContent = 'Loading latest ocean freight rates...';
 
   try {
-    const res = await fetch(RATES_GVIZ_URL);
-    if(!res.ok) throw new Error('Failed to load rates.');
-    const text = await res.text();
-    const jsonStart = text.indexOf('{');
-    const jsonEnd = text.lastIndexOf('}');
-    const json = JSON.parse(text.substring(jsonStart, jsonEnd + 1));
+    const rows = await fetchRatesData();
+    msg.className = 'track-status-msg';
     
-    // Parse rows from sheet
-    const rows = json.table.rows.slice(1).map(r => (r.c || []).map(c => c ? (c.f ?? c.v) : ''));
-    
-    ratesCache = rows.filter(r => r[0] || r[1]); // Filter non-empty rows
-    msg.className = 'track-status-msg'; // Hide loading message
-    
-    populateCountryFilter(ratesCache);
-    renderRatesTable(ratesCache);
+    populateCountryFilter(rows);
+    renderRatesTable(rows);
 
   } catch(err) {
     console.error('Error fetching freight rates:', err);
@@ -1672,6 +1723,90 @@ async function loadFreightRates(){
     msg.textContent = 'Unable to load rate sheet right now. Please try again later.';
   }
 }
+
+async function initHomeRateWidget(){
+  const widgetBody = document.getElementById('rateWidgetBody');
+  try {
+    const rows = await fetchRatesData();
+    if(!rows.length) return;
+
+    // Pick 6 random rows
+    const shuffled = [...rows].sort(() => 0.5 - Math.random());
+    randomWidgetRates = shuffled.slice(0, 6);
+
+    renderWidgetSlides();
+  } catch(e){
+    console.error('Failed to init widget rates:', e);
+    widgetBody.innerHTML = `<div style="font-size:12px;color:var(--muted);text-align:center;">Rates unavailable right now.</div>`;
+  }
+}
+
+function renderWidgetSlides(){
+  const widgetBody = document.getElementById('rateWidgetBody');
+  
+  widgetBody.innerHTML = randomWidgetRates.map((r, idx) => {
+    const polCountry = cleanVal(r[0]);
+    const polCity = cleanVal(r[1]);
+    const podCountry = cleanVal(r[2]);
+    const podCity = cleanVal(r[3]);
+    const freight = cleanVal(r[4]);
+    const cfs = cleanVal(r[5]);
+    const mech = cleanVal(r[6]);
+    const other = cleanVal(r[7]);
+
+    const routeOrigin = `${polCity}, ${polCountry}`;
+    const routeDest = `${podCity}, ${podCountry}`;
+
+    return `
+      <div class="rate-item-slide ${idx === currentWidgetIdx ? 'active' : ''}">
+        <div class="route-badge-row">
+          <div class="route-badge-item">
+            <span class="lbl">POL (${polCountry || 'Origin'})</span>
+            <span class="val">${polCity || '—'}</span>
+          </div>
+          <span class="route-arrow">➔</span>
+          <div class="route-badge-item" style="text-align:right;">
+            <span class="lbl">POD (${podCountry || 'Dest'})</span>
+            <span class="val">${podCity || '—'}</span>
+          </div>
+        </div>
+        <div class="charges-mini-grid">
+          <div class="charge-mini-item highlight">
+            <span class="lbl">Ocean Freight</span>
+            <span class="val">${freight || '—'}</span>
+          </div>
+          <div class="charge-mini-item">
+            <span class="lbl">CFS Charge</span>
+            <span class="val">${cfs || '—'}</span>
+          </div>
+          <div class="charge-mini-item">
+            <span class="lbl">Mechanical</span>
+            <span class="val">${mech || '—'}</span>
+          </div>
+          <div class="charge-mini-item">
+            <span class="lbl">Other Charge</span>
+            <span class="val">${other || '—'}</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-xs btn-block" style="margin-top:2px;" onclick="quoteForRoute('${routeOrigin.replace(/'/g, "\\'")}', '${routeDest.replace(/'/g, "\\\'")}')">
+          Get Quote for Route ➔
+        </button>
+      </div>
+    `;
+  }).join('');
+}
+
+document.getElementById('ratePrevBtn').addEventListener('click', ()=>{
+  if(!randomWidgetRates.length) return;
+  currentWidgetIdx = (currentWidgetIdx - 1 + randomWidgetRates.length) % randomWidgetRates.length;
+  renderWidgetSlides();
+});
+
+document.getElementById('rateNextBtn').addEventListener('click', ()=>{
+  if(!randomWidgetRates.length) return;
+  currentWidgetIdx = (currentWidgetIdx + 1) % randomWidgetRates.length;
+  renderWidgetSlides();
+});
 
 function populateCountryFilter(rows){
   const select = document.getElementById('countryFilter');
@@ -1755,6 +1890,9 @@ function quoteForRoute(origin, dest){
 
 document.getElementById('ratesSearch').addEventListener('input', () => renderRatesTable(ratesCache || []));
 document.getElementById('countryFilter').addEventListener('change', () => renderRatesTable(ratesCache || []));
+
+// Initialize Rate Widget on Load
+initHomeRateWidget();
 </script>
 </body>
 </html>
