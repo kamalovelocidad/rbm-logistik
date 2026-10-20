@@ -741,19 +741,19 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
                 </select>
               </div>
               <div class="field">
-                <label>FCL / LCL <span class="req">*</span></label>
+                <label>LCL / FCL / AIR <span class="req">*</span></label>
                 <select name="fclLcl" required="">
                   <option value="">Select</option>
+                  <option>LCL</option>
                   <option>FCL 20'</option>
                   <option>FCL 40'</option>
                   <option>FCL 40' HC</option>
-                  <option>LCL</option>
-                  <option>N/A — Air / Trucking</option>
+                  <option>Air Freight</option>
                 </select>
               </div>
               <div class="field full">
-                <label>Commodity <span class="req">*</span></label>
-                <input type="text" name="commodity" placeholder="Type of commodity" required="">
+                <label>Commodity and HS Code <span class="req">*</span></label>
+                <input type="text" name="commodity" placeholder="e.g. Textiles (HS 6109.10)" required="">
               </div>
               <div class="field-row3">
                 <div class="field"><label>Packages</label><input type="number" min="0" name="packages" placeholder="e.g. 10"></div>
@@ -1042,20 +1042,20 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
               </select>
             </div>
             <div class="field">
-              <label>FCL / LCL</label>
-              <select id="fclLcl" name="fclLcl">
+              <label>LCL / FCL / AIR <span class="req">*</span></label>
+              <select id="fclLcl" name="fclLcl" required="">
                 <option value="">Select</option>
+                <option>LCL</option>
                 <option>FCL 20'</option>
                 <option>FCL 40'</option>
                 <option>FCL 40' HC</option>
-                <option>LCL</option>
-                <option>N/A — Air / Trucking</option>
+                <option>Air Freight</option>
               </select>
             </div>
 
             <div class="field full">
-              <label>Commodity <span class="req">*</span></label>
-              <input type="text" id="commodity" name="commodity" placeholder="Type of commodity" required="">
+              <label>Commodity and HS Code <span class="req">*</span></label>
+              <input type="text" id="commodity" name="commodity" placeholder="e.g. Textiles (HS 6109.10)" required="">
             </div>
 
             <div class="field-row3">
@@ -1384,28 +1384,71 @@ const countObserver = new IntersectionObserver((entries)=>{
 counters.forEach(c=>countObserver.observe(c));
 
 /* ============================================================
-   CITY / PORT AUTOCOMPLETE
+   EXPANDED GLOBAL CITIES & PORTS AUTOCOMPLETE DATASET
    ============================================================ */
 const CITIES = [
+  // Indonesia & Southeast Asia
   ["Jakarta, Indonesia","IDJKT"],["Surabaya, Indonesia","IDSUB"],["Bekasi, Indonesia","IDBKS"],
   ["Semarang, Indonesia","IDSRG"],["Medan (Belawan), Indonesia","IDBLW"],["Makassar, Indonesia","IDMAK"],
   ["Balikpapan, Indonesia","IDBPN"],["Batam, Indonesia","IDBTH"],["Bandung, Indonesia","IDBDO"],
-  ["Cikarang, Indonesia","IDCBN"],["Denpasar (Bali), Indonesia","IDDPS"],
-  ["Singapore","SGSIN"],["Shanghai, China","CNSHA"],["Shenzhen, China","CNSZX"],["Guangzhou, China","CNCAN"],
-  ["Ningbo, China","CNNGB"],["Qingdao, China","CNTAO"],["Tianjin, China","CNTXG"],["Nansha, China","CNNSA"],
-  ["Shekou, China","CNSHK"],["Xiamen, China","CNXMN"],["Hong Kong","HKHKG"],
-  ["Busan, South Korea","KRPUS"],["Tokyo, Japan","JPTYO"],["Yokohama, Japan","JPYOK"],["Nagoya, Japan","JPNGO"],
-  ["Kaohsiung, Taiwan","TWKHH"],["Bangkok, Thailand","THBKK"],["Laem Chabang, Thailand","THLCH"],
-  ["Ho Chi Minh City, Vietnam","VNSGN"],["Hai Phong, Vietnam","VNHPH"],["Manila, Philippines","PHMNL"],
-  ["Mumbai (Nhava Sheva), India","INNSA"],["Chennai, India","INMAA"],["Colombo, Sri Lanka","LKCMB"],
-  ["Dubai, UAE","AEDXB"],["Jebel Ali, UAE","AEJEA"],
+  ["Cikarang, Indonesia","IDCBN"],["Denpasar (Bali), Indonesia","IDDPS"],["Tangerang, Indonesia","IDTNG"],
+  ["Palembang, Indonesia","IDPLM"],["Depok, Indonesia","IDDPK"],["Bogor, Indonesia","IDBGR"],
+  ["Singapore","SGSIN"],["Kuala Lumpur, Malaysia","MYKUL"],["Port Klang, Malaysia","MYPKG"],
+  ["Penang, Malaysia","MYPEN"],["Johor Bahru, Malaysia","MYJHB"],["Bangkok, Thailand","THBKK"],
+  ["Laem Chabang, Thailand","THLCH"],["Ho Chi Minh City, Vietnam","VNSGN"],["Hai Phong, Vietnam","VNHPH"],
+  ["Da Nang, Vietnam","VNDAD"],["Hanoi, Vietnam","VNHAN"],["Manila, Philippines","PHMNL"],
+  ["Cebu, Philippines","PHCEB"],["Davao, Philippines","PHDVO"],["Phnom Penh, Cambodia","PNH"],
+  ["Yangon, Myanmar","RGN"],
+  
+  // East Asia & China
+  ["Shanghai, China","CNSHA"],["Shenzhen, China","CNSZX"],["Guangzhou, China","CNCAN"],
+  ["Ningbo-Zhoushan, China","CNNGB"],["Qingdao, China","CNTAO"],["Tianjin, China","CNTXG"],
+  ["Nansha, China","CNNSA"],["Shekou, China","CNSHK"],["Xiamen, China","CNXMN"],
+  ["Beijing, China","CNPEK"],["Hong Kong","HKHKG"],["Chongqing, China","CNCKG"],
+  ["Wuhan, China","CNWUH"],["Chengdu, China","CNTFU"],["Hangzhou, China","CNHGH"],
+  ["Tokyo, Japan","JPTYO"],["Yokohama, Japan","JPYOK"],["Nagoya, Japan","JPNGO"],
+  ["Osaka, Japan","JPOSA"],["Kobe, Japan","JPUKB"],["Busan, South Korea","KRPUS"],
+  ["Seoul, South Korea","KRSEL"],["Incheon, South Korea","KRICN"],["Kaohsiung, Taiwan","TWKHH"],
+  ["Taipei, Taiwan","TWTPE"],
+
+  // South Asia
+  ["Mumbai (Nhava Sheva), India","INNSA"],["Chennai, India","INMAA"],["Delhi, India","INDEL"],
+  ["Kolkata, India","INCCU"],["Bengaluru, India","INBLR"],["Colombo, Sri Lanka","LKCMB"],
+  ["Karachi, Pakistan","KHI"],["Chittagong, Bangladesh","CGP"],["Dhaka, Bangladesh","DAC"],
+
+  // Middle East
+  ["Dubai, UAE","AEDXB"],["Jebel Ali, UAE","AEJEA"],["Abu Dhabi, UAE","AUH"],
+  ["Riyadh, Saudi Arabia","RUH"],["Jeddah, Saudi Arabia","JED"],["Dammam, Saudi Arabia","DMM"],
+  ["Doha, Qatar","DOH"],["Salalah, Oman","SLL"],["Istanbul, Turkey","IST"],
+
+  // Europe
   ["Rotterdam, Netherlands","NLRTM"],["Hamburg, Germany","DEHAM"],["Antwerp, Belgium","BEANR"],
-  ["Felixstowe, United Kingdom","GBFXT"],["Le Havre, France","FRLEH"],["Barcelona, Spain","ESBCN"],
-  ["Valencia, Spain","ESVLC"],["Genoa, Italy","ITGOA"],["Piraeus, Greece","GRPIR"],
+  ["Felixstowe, United Kingdom","GBFXT"],["London, United Kingdom","LON"],["Le Havre, France","FRLEH"],
+  ["Paris, France","PAR"],["Barcelona, Spain","ESBCN"],["Valencia, Spain","ESVLC"],
+  ["Madrid, Spain","MAD"],["Genoa, Italy","ITGOA"],["Milan, Italy","MIL"],
+  ["Piraeus, Greece","GRPIR"],["Bremerhaven, Germany","BRV"],["Gdansk, Poland","GDN"],
+  ["Saint Petersburg, Russia","LED"],["Moscow, Russia","SVO"],
+
+  // North America
   ["Los Angeles, USA","USLAX"],["Long Beach, USA","USLGB"],["New York, USA","USNYC"],
-  ["Oakland, USA","USOAK"],["Houston, USA","USHOU"],
+  ["Oakland, USA","USOAK"],["Houston, USA","USHOU"],["Chicago, USA","CHI"],
+  ["Miami, USA","MIA"],["Seattle, USA","SEA"],["Savannah, USA","SAV"],
+  ["Toronto, Canada","YYZ"],["Vancouver, Canada","YVR"],["Montreal, Canada","YUL"],
+  ["Mexico City, Mexico","MEX"],["Manzanillo, Mexico","ZLO"],
+
+  // South & Central America
+  ["Sao Paulo, Brazil","GRU"],["Santos, Brazil","SSZ"],["Rio de Janeiro, Brazil","RIO"],
+  ["Buenos Aires, Argentina","BUE"],["Santiago, Chile","SCL"],["Bogota, Colombia","BOG"],
+  ["Lima, Peru","LIM"],["Panama City, Panama","PTY"],
+
+  // Africa
+  ["Cairo, Egypt","CAI"],["Alexandria, Egypt","ALY"],["Lagos, Nigeria","LOS"],
+  ["Cape Town, South Africa","CPT"],["Durban, South Africa","DUR"],["Johannesburg, South Africa","JNB"],
+  ["Casablanca, Morocco","CMN"],["Nairobi, Kenya","NBO"],["Mombasa, Kenya","MBA"],
+
+  // Oceania
   ["Melbourne, Australia","AUMEL"],["Sydney, Australia","AUSYD"],["Brisbane, Australia","AUBNE"],
-  ["Auckland, New Zealand","NZAKL"]
+  ["Perth, Australia","PER"],["Auckland, New Zealand","NZAKL"]
 ];
 
 function setupAutocomplete(inputEl, listEl){
@@ -1610,7 +1653,7 @@ function renderResult(row, query){
 
   const dgVal = get(COL.dg);
   document.getElementById('grpCargo').innerHTML = [
-    tile('Commodity', get(COL.commodity)),
+    tile('Commodity and HS Code', get(COL.commodity)),
     `<div class="stat-tile"><div class="k">Dangerous Goods</div><div class="v ${dgVal.toLowerCase()==='yes' ? 'dg-yes':''}">${dgVal || '—'}</div></div>`,
     tile('Total Packages', get(COL.packaging)),
     tile('Chargeable Weight', get(COL.cw) ? get(COL.cw) + ' kg' : '—'),
@@ -1676,7 +1719,7 @@ function renderResult(row, query){
   if(comment || delay){
     let html = '';
     if(comment) html += `<div class="note-card"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10Z" stroke="currentColor" stroke-width="1.8"/></svg><div class="txt"><b>Operational Note</b>${comment}</div></div>`;
-    if(delay) html += `<div class="note-card warn"><svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 1 2-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.8"/></svg><div class="txt"><b>Delay Flag</b>${delay}</div></div>`;
+    if(delay) html += `<div class="note-card warn"><svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.8"/></svg><div class="txt"><b>Delay Flag</b>${delay}</div></div>`;
     document.getElementById('grpNotes').innerHTML = html;
     notesCard.style.display = 'block';
   } else {
