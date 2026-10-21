@@ -1677,10 +1677,10 @@ function renderResult(row, query){
   /* Added Shipper and Consignee info into Shipment Info container */
   document.getElementById('grpInfo').innerHTML = [
     tile('Shipper', get(COL.shipper)),
-    tile('Consignee', get(COL.consignee))
+    tile('Consignee', get(COL.consignee)),
     tile('Mode', get(COL.freight)),
     tile('Direction', get(COL.role)),
-    tile('Incoterm', get(COL.term)),
+    tile('Incoterm', get(COL.term))
   ].join('');
 
   document.getElementById('grpRoute').innerHTML = `
