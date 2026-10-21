@@ -1577,7 +1577,7 @@ const GVIZ_URL  = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tq
 // Column mappings (0-indexed):
 const COL = {
   project:1, status:2, freight:3, role:4, term:5, pol:6, pod:7,
-  shipper:8, consignee:9, comment:12, delay:13, commodity:14, dg:15, packaging:16, cw:17, vol:18,
+  shipper:9, consignee:8, comment:12, delay:13, commodity:14, dg:15, packaging:16, cw:17, vol:18,
   etd:23, eta:24, vessel:25, awbhbl:26, trackurl:36
 };
 
@@ -1676,11 +1676,11 @@ function renderResult(row, query){
 
   /* Added Shipper and Consignee info into Shipment Info container */
   document.getElementById('grpInfo').innerHTML = [
+    tile('Shipper', get(COL.shipper)),
+    tile('Consignee', get(COL.consignee))
     tile('Mode', get(COL.freight)),
     tile('Direction', get(COL.role)),
     tile('Incoterm', get(COL.term)),
-    tile('Shipper', get(COL.shipper)),
-    tile('Consignee', get(COL.consignee))
   ].join('');
 
   document.getElementById('grpRoute').innerHTML = `
