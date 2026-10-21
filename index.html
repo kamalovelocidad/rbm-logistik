@@ -132,7 +132,7 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
   content:"";position:absolute;top:0;bottom:0;left:-50vw;right:-50vw;z-index:-1;
   background:
     linear-gradient(90deg,rgba(4,12,22,.96) 0%,rgba(4,12,22,.88) 38%,rgba(4,12,22,.65) 72%,rgba(4,12,22,.85) 100%),
-    url("https://raw.githubusercontent.com/kamalovelocidad/rbm-logistik/refs/heads/main/hero-port2.jpg") 60% 45%/cover no-repeat,
+    url("https://raw.githubusercontent.com/kamalovelocidad/rbm-logistik/refs/heads/main/hero-port.jpg") 60% 45%/cover no-repeat,
     var(--navy-950);
 }
 .hero h1{
@@ -329,8 +329,6 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
   font-size:14px;font-family:var(--font-mono);letter-spacing:.02em;background:var(--paper);color:#fff;
 }
 .track-form input:focus{border-color:var(--orange);}
-.track-hint{margin-top:8px;font-size:12px;color:var(--muted);}
-.track-hint code{background:var(--navy-950);padding:1px 5px;border-radius:4px;font-family:var(--font-mono);color:var(--teal);}
 .track-status-msg{margin-top:12px;padding:10px 12px;border-radius:6px;font-size:13px;display:none;}
 .track-status-msg.show{display:block;}
 .track-status-msg.error{background:rgba(225,29,72,0.15);color:#f43f5e;border:1px solid rgba(225,29,72,0.3);}
@@ -358,7 +356,18 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
 .route-point.dest .dot{background:var(--teal);box-shadow:0 0 0 2px var(--teal);}
 .route-point .lbl{font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);}
 .route-point .val{font-size:13px;font-weight:700;color:#fff;margin-top:1px;max-width:130px;}
-.route-line{flex:1;height:2px;background:repeating-linear-gradient(90deg,var(--line-strong) 0 6px,transparent 6px 10px);position:relative;top:-10px;}
+
+/* Route Connector Line Blinking Animation */
+.route-line{
+  flex:1;height:2px;
+  background:repeating-linear-gradient(90deg,var(--orange) 0 6px,transparent 6px 12px);
+  position:relative;top:-10px;
+  animation:routeLinePulse 1.8s infinite ease-in-out;
+}
+@keyframes routeLinePulse{
+  0%,100%{opacity:0.35;}
+  50%{opacity:1;}
+}
 
 .vessel-row{
   display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
@@ -399,6 +408,17 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
   background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;
   box-shadow:var(--shadow-sm);margin-top:20px;position:relative;z-index:5;
 }
+.mode-switch-bar{
+  display:flex;align-items:center;gap:10px;margin-bottom:18px;border-bottom:1px solid var(--line);padding-bottom:12px;
+}
+.mode-switch-btn{
+  background:var(--navy-800);border:1px solid var(--line-strong);color:var(--muted);
+  padding:8px 18px;font-size:13px;font-weight:800;border-radius:6px;cursor:pointer;transition:all .15s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.mode-switch-btn:hover{color:#fff;}
+.mode-switch-btn.active{background:var(--orange);color:#fff;border-color:var(--orange);}
+
 .rates-filter-bar{
   display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center;
 }
@@ -666,7 +686,7 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
                 <h3>Track Your Shipment</h3>
                 <label for="homeTrackInput">Enter AWB / HBL / Shipment Reference</label>
               </div>
-              <input id="homeTrackInput" type="text" placeholder="AWB / HBL / Reference Number" enterkeyhint="go">
+              <input id="homeTrackInput" type="text" placeholder="Enter AWB / HBL / Shipment Reference" enterkeyhint="go">
               <button class="btn btn-primary btn-square" id="homeTrackBtn">Track Now <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
               <p>Real-time updates every step of the way.</p>
             </div>
@@ -848,20 +868,32 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
   </section>
 </section>
 
-<!-- ============ OCEAN FREIGHT RATES PAGE ============ -->
+<!-- ============ FREIGHT RATES PAGE (SEA & AIR) ============ -->
 <section class="page" id="page-rates">
   <div class="page-hero">
     <div class="wrap">
-      <span class="breadcrumb">RBM Logistics / <b>Ocean Freight Rates</b></span>
-      <h1>Standard Ocean Freight Indicative Rates</h1>
-      <p>Explore current indicative LCL ocean freight and handling charges across key global trade lanes.</p>
+      <span class="breadcrumb">RBM Logistics / <b>Freight Rates</b></span>
+      <h1>Standard Indicative Freight Rates</h1>
+      <p>Explore current indicative sea and air freight rates and handling charges across key global trade lanes.</p>
     </div>
   </div>
 
   <div class="wrap">
     <div class="rates-panel">
+      <!-- SEA / AIR Switcher -->
+      <div class="mode-switch-bar">
+        <button class="mode-switch-btn active" id="pageModeSeaBtn" data-mode="LCL">
+          <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+          SEA Freight Rates
+        </button>
+        <button class="mode-switch-btn" id="pageModeAirBtn" data-mode="AIR">
+          <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M2 13l9-2 5-9 2 1-3 8 5-1 3 3-6 2-3 6-2-1 2-5-5 2-2-2 4-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+          AIR Freight Rates
+        </button>
+      </div>
+
       <div class="rates-filter-bar">
-        <input type="text" id="ratesSearch" placeholder="Search by Port or Country (e.g. Shanghai, Spain...)">
+        <input type="text" id="ratesSearch" placeholder="Search by Port, Airport, or Country...">
         <select id="countryFilter">
           <option value="">All Countries</option>
         </select>
@@ -872,13 +904,13 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
       <div class="rates-table-wrap">
         <table class="rates-table" id="ratesTable">
           <thead>
-            <tr>
-              <th>Port of Loading (POL)</th>
-              <th>Port of Discharge (POD)</th>
-              <th>Ocean Freight</th>
-              <th>CFS Charges</th>
-              <th>Mechanical Charges</th>
-              <th>Other Charges</th>
+            <tr id="ratesTheadRow">
+              <th id="thPol">Port of Loading (POL)</th>
+              <th id="thPod">Port of Discharge (POD)</th>
+              <th id="thFreight">Ocean Freight</th>
+              <th id="thCfs">CFS Charges</th>
+              <th id="thMech">Mechanical Charges</th>
+              <th id="thOther">Other Charges</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -894,8 +926,8 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
     <div class="wrap">
       <div class="cta-banner">
         <div>
-          <h3>Need a custom or FCL rate?</h3>
-          <p>Rates vary based on volume, container size, and seasonality. Request a tailored quote for exact pricing.</p>
+          <h3>Need a custom rate?</h3>
+          <p>Rates vary based on volume, weight, and seasonality. Request a tailored quote for exact pricing.</p>
         </div>
         <button class="btn btn-primary" data-nav="quote">Request Custom Quote →</button>
       </div>
@@ -909,17 +941,16 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
     <div class="wrap">
       <span class="breadcrumb">RBM Logistics / <b>Track Shipment</b></span>
       <h1>Track your shipment</h1>
-      <p>Enter your AWB, HBL, or project number below to see the latest status of your cargo.</p>
+      <p>Enter your Project Number or AWB/HBL below to see the latest status of your cargo.</p>
     </div>
   </div>
 
   <div class="wrap">
     <div class="track-panel" id="trackPanel">
       <div class="track-form">
-        <input type="text" id="trackInput" placeholder="e.g. RBM1083 or a project / AWB number">
+        <input type="text" id="trackInput" placeholder="Enter AWB / HBL / Shipment Reference">
         <button class="btn btn-primary" id="trackBtn">Track Shipment →</button>
       </div>
-      <p class="track-hint">Try a sample reference like <code>RBM1083</code> or <code>RBM1080</code>.</p>
 
       <div class="track-status-msg" id="trackMsg"></div>
 
@@ -938,7 +969,7 @@ input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);backgr
             <span class="group-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"></circle></svg></span>
             <span class="group-title">Shipment Info</span>
           </div>
-          <div class="stat-tiles" id="grpInfo" style="grid-template-columns:repeat(3,1fr);"></div>
+          <div class="stat-tiles" id="grpInfo" style="grid-template-columns:repeat(5,1fr);"></div>
         </div>
 
         <!-- Route -->
@@ -1346,7 +1377,7 @@ function goTo(pageId, scrollTarget, clickedBtn){
   }
 
   if(pageId === 'rates'){
-    loadFreightRates();
+    loadFreightRates(currentFreightPageMode);
   }
 }
 
@@ -1384,36 +1415,36 @@ const countObserver = new IntersectionObserver((entries)=>{
 counters.forEach(c=>countObserver.observe(c));
 
 /* ============================================================
-   EXPANDED GLOBAL CITIES & PORTS AUTOCOMPLETE DATASET
+   GLOBAL CITIES & PORTS AUTOCOMPLETE DATASET
    ============================================================ */
 const CITIES = [
   // Indonesia & Southeast Asia
   ["Jakarta, Indonesia","IDJKT"],["Surabaya, Indonesia","IDSUB"],["Bekasi, Indonesia","IDBKS"],
   ["Semarang, Indonesia","IDSRG"],["Medan (Belawan), Indonesia","IDBLW"],["Makassar, Indonesia","IDMAK"],
   ["Balikpapan, Indonesia","IDBPN"],["Batam, Indonesia","IDBTH"],["Bandung, Indonesia","IDBDO"],
-  ["Cikarang, Indonesia","IDCBN"],["Denpasar (Bali), Indonesia","IDDPS"],["Tangerang, Indonesia","IDTNG"],
-  ["Palembang, Indonesia","IDPLM"],["Depok, Indonesia","IDDPK"],["Bogor, Indonesia","IDBGR"],
+  ["Cikarang, Indonesia","IDCBN"],["Denpasar (Bali), Indonesia","IDDPS"],["Tangerang, Indonesia","TNG"],
+  ["Palembang, Indonesia","PLM"],["Depok, Indonesia","DPK"],["Bogor, Indonesia","BGR"],
   ["Singapore","SGSIN"],["Kuala Lumpur, Malaysia","MYKUL"],["Port Klang, Malaysia","MYPKG"],
   ["Penang, Malaysia","MYPEN"],["Johor Bahru, Malaysia","MYJHB"],["Bangkok, Thailand","THBKK"],
   ["Laem Chabang, Thailand","THLCH"],["Ho Chi Minh City, Vietnam","VNSGN"],["Hai Phong, Vietnam","VNHPH"],
-  ["Da Nang, Vietnam","VNDAD"],["Hanoi, Vietnam","VNHAN"],["Manila, Philippines","PHMNL"],
-  ["Cebu, Philippines","PHCEB"],["Davao, Philippines","PHDVO"],["Phnom Penh, Cambodia","PNH"],
+  ["Da Nang, Vietnam","VNDAD"],["Hanoi, Vietnam","HAN"],["Manila, Philippines","PHMNL"],
+  ["Cebu, Philippines","CEB"],["Davao, Philippines","DVO"],["Phnom Penh, Cambodia","PNH"],
   ["Yangon, Myanmar","RGN"],
   
   // East Asia & China
   ["Shanghai, China","CNSHA"],["Shenzhen, China","CNSZX"],["Guangzhou, China","CNCAN"],
   ["Ningbo-Zhoushan, China","CNNGB"],["Qingdao, China","CNTAO"],["Tianjin, China","CNTXG"],
   ["Nansha, China","CNNSA"],["Shekou, China","CNSHK"],["Xiamen, China","CNXMN"],
-  ["Beijing, China","CNPEK"],["Hong Kong","HKHKG"],["Chongqing, China","CNCKG"],
-  ["Wuhan, China","CNWUH"],["Chengdu, China","CNTFU"],["Hangzhou, China","CNHGH"],
+  ["Beijing, China","PEK"],["Hong Kong","HKHKG"],["Chongqing, China","CKG"],
+  ["Wuhan, China","WUH"],["Chengdu, China","TFU"],["Hangzhou, China","HGH"],
   ["Tokyo, Japan","JPTYO"],["Yokohama, Japan","JPYOK"],["Nagoya, Japan","JPNGO"],
-  ["Osaka, Japan","JPOSA"],["Kobe, Japan","JPUKB"],["Busan, South Korea","KRPUS"],
-  ["Seoul, South Korea","KRSEL"],["Incheon, South Korea","KRICN"],["Kaohsiung, Taiwan","TWKHH"],
-  ["Taipei, Taiwan","TWTPE"],
+  ["Osaka, Japan","OSA"],["Kobe, Japan","UKB"],["Busan, South Korea","KRPUS"],
+  ["Seoul, South Korea","SEL"],["Incheon, South Korea","ICN"],["Kaohsiung, Taiwan","TWKHH"],
+  ["Taipei, Taiwan","TPE"],
 
   // South Asia
-  ["Mumbai (Nhava Sheva), India","INNSA"],["Chennai, India","INMAA"],["Delhi, India","INDEL"],
-  ["Kolkata, India","INCCU"],["Bengaluru, India","INBLR"],["Colombo, Sri Lanka","LKCMB"],
+  ["Mumbai (Nhava Sheva), India","INNSA"],["Chennai, India","INMAA"],["Delhi, India","DEL"],
+  ["Kolkata, India","CCU"],["Bengaluru, India","BLR"],["Colombo, Sri Lanka","LKCMB"],
   ["Karachi, Pakistan","KHI"],["Chittagong, Bangladesh","CGP"],["Dhaka, Bangladesh","DAC"],
 
   // Middle East
@@ -1546,7 +1577,7 @@ const GVIZ_URL  = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tq
 // Column mappings (0-indexed):
 const COL = {
   project:1, status:2, freight:3, role:4, term:5, pol:6, pod:7,
-  comment:12, delay:13, commodity:14, dg:15, packaging:16, cw:17, vol:18,
+  shipper:8, consignee:9, comment:12, delay:13, commodity:14, dg:15, packaging:16, cw:17, vol:18,
   etd:23, eta:24, vessel:25, awbhbl:26, trackurl:36
 };
 
@@ -1600,6 +1631,7 @@ function hideTrackMsg(){
   document.getElementById('trackMsg').className = 'track-status-msg';
 }
 
+/* Tracking only matches Project Number (COL.project / Col B) or AWB/HBL (COL.awbhbl / Col AA) */
 async function runTrack(query){
   const q = (query || '').trim();
   document.getElementById('resultCard').classList.remove('show');
@@ -1609,12 +1641,15 @@ async function runTrack(query){
   try{
     const rows = await loadSheet();
     const needle = q.toLowerCase();
-    const exact = r => [r[0], r[COL.project], r[COL.awbhbl]].some(v => v && v.toString().toLowerCase().trim() === needle);
-    const partial = r => [r[0], r[COL.project], r[COL.awbhbl]].some(v => v && v.toString().toLowerCase().includes(needle));
+    
+    // STRICT SEARCH: Col B (Project Number) OR Col AA (AWB/HBL)
+    const exact = r => [r[COL.project], r[COL.awbhbl]].some(v => v && v.toString().toLowerCase().trim() === needle);
+    const partial = r => [r[COL.project], r[COL.awbhbl]].some(v => v && v.toString().toLowerCase().includes(needle));
+    
     const row = rows.find(exact) || rows.find(partial);
 
     if(!row){
-      showTrackMsg('error', `No shipment found for "${q}". Double-check the reference or contact us on WhatsApp.`);
+      showTrackMsg('error', `No shipment found for "${q}". Double-check your Project Number or AWB/HBL or contact us on WhatsApp.`);
       return;
     }
     hideTrackMsg();
@@ -1633,16 +1668,19 @@ function renderResult(row, query){
   const get = i => cleanVal(row[i]);
   const st = statusInfo(get(COL.status));
 
-  document.getElementById('resultRef').textContent = 'REF ' + (get(COL.project) || get(0) || query);
+  document.getElementById('resultRef').textContent = 'REF ' + (get(COL.project) || get(COL.awbhbl) || query);
   document.getElementById('resultTitle').textContent = (get(COL.commodity) || 'Shipment') + ' — ' + (get(COL.pol) || '—') + ' → ' + (get(COL.pod) || '—');
   const badge = document.getElementById('resultBadge');
   badge.textContent = st.label;
   badge.className = 'status-badge ' + st.cls;
 
+  /* Added Shipper and Consignee info into Shipment Info container */
   document.getElementById('grpInfo').innerHTML = [
     tile('Mode', get(COL.freight)),
     tile('Direction', get(COL.role)),
-    tile('Incoterm', get(COL.term))
+    tile('Incoterm', get(COL.term)),
+    tile('Shipper', get(COL.shipper)),
+    tile('Consignee', get(COL.consignee))
   ].join('');
 
   document.getElementById('grpRoute').innerHTML = `
@@ -1761,6 +1799,7 @@ let tabRatesCache = { LCL: null, FCL: null, AIR: null };
 let randomWidgetRates = { LCL: [], FCL: [], AIR: [] };
 let widgetIndex = { LCL: 0, FCL: 0, AIR: 0 };
 let currentActiveTab = 'LCL';
+let currentFreightPageMode = 'LCL'; // LCL (SEA) or AIR
 
 async function fetchTabRatesData(tabName){
   if(tabRatesCache[tabName]) return tabRatesCache[tabName];
@@ -1791,7 +1830,7 @@ async function initHomeRateWidget(tabName = 'LCL'){
 
     if(!randomWidgetRates[tabName].length) {
       const shuffled = [...rows].sort(() => 0.5 - Math.random());
-      randomWidgetRates[tabName] = shuffled.slice(0, 5); // Pick up to 5 random cards
+      randomWidgetRates[tabName] = shuffled.slice(0, 5);
     }
 
     renderWidgetSlide(tabName);
@@ -1825,12 +1864,12 @@ function renderWidgetSlide(tabName){
     <div class="rate-item-slide active">
       <div class="route-badge-row">
         <div class="route-badge-item">
-          <span class="lbl">POL (${polCountry || 'Origin'})</span>
+          <span class="lbl">${tabName === 'AIR' ? 'AOL' : 'POL'} (${polCountry || 'Origin'})</span>
           <span class="val">${polCity || '—'}</span>
         </div>
         <span class="route-arrow">➔</span>
         <div class="route-badge-item" style="text-align:right;">
-          <span class="lbl">POD (${podCountry || 'Dest'})</span>
+          <span class="lbl">${tabName === 'AIR' ? 'AOD' : 'POD'} (${podCountry || 'Dest'})</span>
           <span class="val">${podCity || '—'}</span>
         </div>
       </div>
@@ -1855,11 +1894,9 @@ function renderWidgetSlide(tabName){
     </div>
   `;
 
-  // Update Get Quote button dynamically for current active card
-  document.getElementById('widgetGetQuoteBtn').onclick = () => quoteForRoute(routeOrigin, routeDest);
+  document.getElementById('widgetGetQuoteBtn').onclick = () => quoteForRoute(routeOrigin, routeDest, tabName === 'AIR' ? 'Air Freight' : 'Sea Freight');
 }
 
-// Tab Switch Click Listeners
 document.querySelectorAll('.rate-tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.rate-tab-btn').forEach(b => b.classList.remove('active'));
@@ -1884,20 +1921,42 @@ document.getElementById('rateNextBtn').addEventListener('click', ()=>{
 });
 
 /* ============================================================
-   OCEAN FREIGHT RATES PAGE TABLE
+   FREIGHT RATES PAGE TABLE (SEA LCL vs AIR)
    ============================================================ */
-async function loadFreightRates(){
+async function loadFreightRates(mode = 'LCL'){
+  currentFreightPageMode = mode;
   const msg = document.getElementById('ratesMsg');
   
+  // Update Header Labels based on SEA vs AIR mode
+  const thPol = document.getElementById('thPol');
+  const thPod = document.getElementById('thPod');
+  const thFreight = document.getElementById('thFreight');
+  const thCfs = document.getElementById('thCfs');
+  const thMech = document.getElementById('thMech');
+
+  if (mode === 'AIR') {
+    thPol.textContent = 'Airport of Loading (AOL)';
+    thPod.textContent = 'Airport of Discharge (AOD)';
+    thFreight.textContent = 'Air Freight Rate';
+    thCfs.textContent = 'FSC / SSC Charges';
+    thMech.textContent = 'Screening Charges';
+  } else {
+    thPol.textContent = 'Port of Loading (POL)';
+    thPod.textContent = 'Port of Discharge (POD)';
+    thFreight.textContent = 'Ocean Freight';
+    thCfs.textContent = 'CFS Charges';
+    thMech.textContent = 'Mechanical Charges';
+  }
+
   msg.className = 'track-status-msg show loading';
-  msg.textContent = 'Loading latest ocean freight rates...';
+  msg.textContent = `Loading latest ${mode === 'AIR' ? 'Air' : 'Sea'} freight rates...`;
 
   try {
-    const rows = await fetchTabRatesData('LCL');
+    const rows = await fetchTabRatesData(mode);
     msg.className = 'track-status-msg';
     
     populateCountryFilter(rows);
-    renderRatesTable(rows);
+    renderRatesTable(rows, mode);
 
   } catch(err) {
     console.error('Error fetching freight rates:', err);
@@ -1909,10 +1968,10 @@ async function loadFreightRates(){
 function populateCountryFilter(rows){
   const select = document.getElementById('countryFilter');
   const countries = [...new Set(rows.map(r => cleanVal(r[0])).filter(Boolean))];
-  select.innerHTML = `<option value="">All POL Countries</option>` + countries.map(c => `<option value="${c}">${c}</option>`).join('');
+  select.innerHTML = `<option value="">All POL/AOL Countries</option>` + countries.map(c => `<option value="${c}">${c}</option>`).join('');
 }
 
-function renderRatesTable(rows){
+function renderRatesTable(rows, mode = 'LCL'){
   const searchQ = (document.getElementById('ratesSearch').value || '').toLowerCase().trim();
   const countryQ = document.getElementById('countryFilter').value;
   const tbody = document.getElementById('ratesTbody');
@@ -1950,6 +2009,7 @@ function renderRatesTable(rows){
 
     const routeOrigin = `${polCity}, ${polCountry}`;
     const routeDest = `${podCity}, ${podCountry}`;
+    const modeType = mode === 'AIR' ? 'Air Freight' : 'Sea Freight';
 
     return `
       <tr>
@@ -1966,7 +2026,7 @@ function renderRatesTable(rows){
         <td>${mech || '—'}</td>
         <td>${other || '—'}</td>
         <td>
-          <button class="btn btn-primary btn-xs btn-square" onclick="quoteForRoute('${routeOrigin.replace(/'/g, "\\'")}', '${routeDest.replace(/'/g, "\\\'")}')">
+          <button class="btn btn-primary btn-xs btn-square" onclick="quoteForRoute('${routeOrigin.replace(/'/g, "\\'")}', '${routeDest.replace(/'/g, "\\\'")}', '${modeType}')">
             Quote Route
           </button>
         </td>
@@ -1975,7 +2035,7 @@ function renderRatesTable(rows){
   }).join('');
 }
 
-function quoteForRoute(origin, dest){
+function quoteForRoute(origin, dest, type = "Sea Freight"){
   goTo('quote');
   const originInp = document.querySelector('#page-quote input[name="origin"]');
   const destInp = document.querySelector('#page-quote input[name="destination"]');
@@ -1983,11 +2043,23 @@ function quoteForRoute(origin, dest){
   
   if(originInp) originInp.value = origin;
   if(destInp) destInp.value = dest;
-  if(typeSelect) typeSelect.value = "Sea Freight";
+  if(typeSelect) typeSelect.value = type;
 }
 
-document.getElementById('ratesSearch').addEventListener('input', () => renderRatesTable(tabRatesCache['LCL'] || []));
-document.getElementById('countryFilter').addEventListener('change', () => renderRatesTable(tabRatesCache['LCL'] || []));
+// Mode Switchers on Freight Rates Page
+document.getElementById('pageModeSeaBtn').addEventListener('click', function(){
+  document.getElementById('pageModeSeaBtn').classList.add('active');
+  document.getElementById('pageModeAirBtn').classList.remove('active');
+  loadFreightRates('LCL');
+});
+document.getElementById('pageModeAirBtn').addEventListener('click', function(){
+  document.getElementById('pageModeAirBtn').classList.add('active');
+  document.getElementById('pageModeSeaBtn').classList.remove('active');
+  loadFreightRates('AIR');
+});
+
+document.getElementById('ratesSearch').addEventListener('input', () => renderRatesTable(tabRatesCache[currentFreightPageMode] || [], currentFreightPageMode));
+document.getElementById('countryFilter').addEventListener('change', () => renderRatesTable(tabRatesCache[currentFreightPageMode] || [], currentFreightPageMode));
 
 // Initialize Rate Widget on Load
 initHomeRateWidget('LCL');
