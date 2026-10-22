@@ -350,7 +350,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .result-card.show{display:block;animation:fadein .25s ease;}
 @keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
 
-/* PDF / PRINT PAPER FORM HEADER & STAMP */
 .paper-pdf-header{
   display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:10px;margin-bottom:10px;border-bottom:2px solid #111827;
 }
@@ -436,7 +435,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .stamp-box b{display:block;font-size:8.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
 .stamp-box span{font-size:7.5px;font-weight:600;}
 
-/* Single-page A4 PDF/Print Styles with Zero Top Margin Gap */
 @page {
   size: A4 portrait;
   margin: 5mm;
@@ -725,7 +723,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
           <!-- Hero Side-By-Side Widgets Row -->
           <div class="hero-widgets-row">
             
-            <!-- Tabbed Freight Rates Preview Carousel (3 Modes: LCL, FCL, AIR) -->
+            <!-- Tabbed Freight Rates Preview Carousel (LCL, FCL, AIR) -->
             <div class="rates-preview-card">
               <div class="rates-tabs-header">
                 <div class="tab-buttons">
@@ -985,7 +983,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
         </table>
       </div>
 
-      <!-- Freight Disclaimer Hint -->
       <div class="rates-disclaimer-hint">
         <svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.8"/></svg>
         <div>
@@ -1027,9 +1024,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 
       <div class="track-status-msg" id="trackMsg"></div>
 
-      <!-- Printable Paper Container Area (A4 1-Page Optimized with zero top margin overflow) -->
       <div class="result-card" id="resultCard">
-        <!-- Official Company Header for PDF / Print -->
         <div class="paper-pdf-header">
           <div class="paper-brand">
             <img src="https://raw.githubusercontent.com/kamalovelocidad/rbm-logistik/refs/heads/main/Logo%20RBM%20150x150p.png" alt="RBM Logistics">
@@ -1056,7 +1051,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
           </div>
         </div>
 
-        <!-- Shipment Info: Shipper, Consignee, Incoterm, Freight, Direction -->
         <div class="group-card">
           <div class="group-head">
             <div class="group-head-left">
@@ -1067,7 +1061,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
           <div class="stat-tiles" id="grpInfo"></div>
         </div>
 
-        <!-- Route -->
         <div class="group-card">
           <div class="group-head">
             <div class="group-head-left">
@@ -1078,7 +1071,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
           <div class="route-visual" id="grpRoute"></div>
         </div>
 
-        <!-- Cargo Details: Commodity and HS Code, Total Packages, Chargeable Weight, Volume, Dangerous Goods -->
         <div class="group-card">
           <div class="group-head">
             <div class="group-head-left">
@@ -1089,7 +1081,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
           <div class="stat-tiles" id="grpCargo"></div>
         </div>
 
-        <!-- Schedule -->
         <div class="group-card">
           <div class="group-head">
             <div class="group-head-left">
@@ -1100,7 +1091,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
           <div class="eta-row" id="grpSchedule"></div>
         </div>
 
-        <!-- Carrier & Tracking -->
         <div class="group-card">
           <div class="group-head">
             <div class="group-head-left">
@@ -1111,7 +1101,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
           <div id="grpCarrier"></div>
         </div>
 
-        <!-- Notes -->
         <div class="group-card" id="grpNotesCard" style="display:none;">
           <div class="group-head">
             <div class="group-head-left">
@@ -1122,7 +1111,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
           <div id="grpNotes"></div>
         </div>
 
-        <!-- Official Footer Authorization Stamp -->
         <div class="paper-footer-stamp">
           <div class="stamp-info">
             This document is an electronically generated cargo status report issued by PT Ridho Bangun Mandiri.<br>
@@ -1737,7 +1725,6 @@ function renderResult(row, query){
   badge.textContent = st.label;
   badge.className = 'status-badge ' + st.cls;
 
-  /* Shipment Info Exact Order: Shipper, Consignee, Incoterm, Freight, Direction */
   document.getElementById('grpInfo').innerHTML = [
     tile('Shipper', get(COL.shipper)),
     tile('Consignee', get(COL.consignee)),
@@ -1752,7 +1739,6 @@ function renderResult(row, query){
     <div class="route-point dest"><div class="dot"></div><div class="lbl">Destination</div><div class="val">${get(COL.pod) || '—'}</div></div>
   `;
 
-  /* Cargo Details Exact Order: Commodity and HS Code, Total Packages, Chargeable Weight, Volume, Dangerous Goods */
   const dgVal = get(COL.dg);
   document.getElementById('grpCargo').innerHTML = [
     tile('Commodity and HS Code', get(COL.commodity)),
@@ -1859,7 +1845,7 @@ const TAB_SHEET_NAMES = {
   'AIR': 'Air%20Freight%20Rate'
 };
 
-/* Exact Headers as defined in the Spreadsheets */
+/* Headers matching the spreadsheet tabs */
 const SHEET_HEADERS = {
   'LCL': ['POL Country', 'POL City', 'POD Country', 'POD City', 'Freight', 'CFS Charges', 'Mechanical Charges', 'Other', 'Liner', 'Transit Time', 'Cut Off', 'ETD', 'ETA'],
   'FCL': ['POL Country', 'POL City', 'POD Country', 'POD City', 'Freight 20 ft', 'Freight 40 ft', 'Liner', 'Transit Time', 'Cut Off', 'ETD', 'ETA'],
@@ -1887,7 +1873,6 @@ async function fetchTabRatesData(tabName){
   let headers = SHEET_HEADERS[tabName];
   let rows = rawRows;
 
-  // If row 1 contains exact header strings from spreadsheet, strip it off
   if (rows.length > 0 && cleanVal(rows[0][0]).toLowerCase().includes('pol')) {
     rows = rows.slice(1);
   }
@@ -2051,7 +2036,7 @@ document.getElementById('rateNextBtn').addEventListener('click', ()=>{
 });
 
 /* ============================================================
-   FREIGHT RATES PAGE TABLE (FULL SHEET COLUMNS & DYNAMIC HEADERS)
+   FREIGHT RATES PAGE TABLE
    ============================================================ */
 async function loadFreightRates(mode = 'LCL'){
   currentFreightPageMode = mode;
@@ -2089,7 +2074,6 @@ function renderRatesTable(data, mode = 'LCL'){
   const headers = data.headers;
   const rows = data.rows;
 
-  // Build dynamic table headers directly from sheet
   thead.innerHTML = `<tr>${headers.map(h => `<th>${h}</th>`).join('')}<th>Action</th></tr>`;
 
   const filtered = rows.filter(r => {
@@ -2116,7 +2100,6 @@ function renderRatesTable(data, mode = 'LCL'){
 
     const rowCells = headers.map((_, i) => {
       const val = cleanVal(r[i]);
-      // Highlight freight rate columns
       if ((mode === 'FCL' && (i === 4 || i === 5)) || (mode !== 'FCL' && i === 4)) {
         return `<td class="rate-val">${val || '—'}</td>`;
       }
