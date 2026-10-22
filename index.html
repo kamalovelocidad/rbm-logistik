@@ -352,7 +352,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 
 /* PDF / PRINT PAPER FORM HEADER & STAMP */
 .paper-pdf-header{
-  display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:10px;margin-bottom:10px;border-bottom:2px solid #111827;
+  display:flex;justify-between:space-between;align-items:flex-start;padding-bottom:10px;margin-bottom:10px;border-bottom:2px solid #111827;
 }
 .paper-brand{display:flex;align-items:center;gap:10px;}
 .paper-brand img{height:38px;width:auto;}
@@ -780,7 +780,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
           </div>
           <div class="info-col">
             <h4>Why Choose RBM Logistics?</h4>
-            <!-- Updated list with exact requested items -->
             <ul class="why-list">
               <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="currentColor"></circle><path d="m7.5 12.5 3 3 6-6.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Open freight rates</li>
               <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="currentColor"></circle><path d="m7.5 12.5 3 3 6-6.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Quotes within 1 business day</li>
@@ -790,7 +789,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
             </ul>
           </div>
           <div class="info-col info-col-wide">
-            <!-- Updated stats values -->
             <div class="band-stats">
               <div><b data-count="2">2+</b><span>Years in Business</span></div>
               <div><b data-count="90">90+</b><span>Shipments Handled</span></div>
@@ -968,7 +966,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
       </div>
 
       <div class="rates-filter-bar">
-        <input type="text" id="ratesSearch" placeholder="Search by Port, Airport, Carrier, or Country...">
+        <input type="text" id="ratesSearch" placeholder="Search rates sheet...">
         <select id="countryFilter">
           <option value="">All Countries</option>
         </select>
@@ -978,19 +976,11 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 
       <div class="rates-table-wrap">
         <table class="rates-table" id="ratesTable">
-          <thead>
-            <tr id="ratesTheadRow">
-              <th id="thPol">Port of Loading (POL)</th>
-              <th id="thPod">Port of Discharge (POD)</th>
-              <th id="thFreight">Freight Rate</th>
-              <th id="thCfs">CFS / Handling</th>
-              <th id="thMech">Mechanical / Charges</th>
-              <th id="thOther">Schedule / ETD</th>
-              <th>Action</th>
-            </tr>
+          <thead id="ratesThead">
+            <!-- Dynamic header row inserted here -->
           </thead>
           <tbody id="ratesTbody">
-            <!-- Dynamic rows inserted here -->
+            <!-- Dynamic data rows inserted here -->
           </tbody>
         </table>
       </div>
@@ -1438,7 +1428,7 @@ const HOME_CARGO = [
   {n:"Dangerous Goods (DG)", i:'<path d="M12 2 22 12 12 22 2 12 12 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 8v5M12 16v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>'},
   {n:"Perishable Cargo", i:'<path d="M12 2v20M4 6l16 12M20 6 4 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'},
   {n:"Machinery", i:'<circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'},
-  {n:"Oversized Cargo", i:'<rect x="3" y="7" width="18" height="12" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M7 7v12M11 7v12M15 7v12M3 4h18" stroke="currentColor" stroke-width="1.6"/>'},
+  {n:"Oversized Cargo", i:'<rect x="3" y="7" width="18" height="12" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M7 7v12M11 7v12M15 7v12M3 4h18" stroke="currentColor" stroke-width="1.6"/><path d="M7 7v12M11 7v12M15 7v12M3 4h18" stroke="currentColor" stroke-width="1.6"/>'},
   {n:"Project Cargo", i:'<path d="M3 21h18M5 21V10l7-6 7 6v11" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 21v-5h6v5" stroke="currentColor" stroke-width="1.6"/>'}
 ];
 
@@ -1861,7 +1851,7 @@ document.getElementById('homeTrackInput').addEventListener('keydown', e=>{
 });
 
 /* ============================================================
-   MULTI-TAB FREIGHT RATES WIDGET (LCL / FCL / AIR)
+   MULTI-TAB FREIGHT RATES DATA FETCHING & DYNAMIC COLUMNS
    ============================================================ */
 const TAB_SHEET_NAMES = {
   'LCL': 'LCL%20Freight%20Rate',
@@ -1869,14 +1859,14 @@ const TAB_SHEET_NAMES = {
   'AIR': 'Air%20Freight%20Rate'
 };
 
-let tabRatesCache = { LCL: null, FCL: null, AIR: null };
+let tabRatesParsed = { LCL: null, FCL: null, AIR: null };
 let randomWidgetRates = { LCL: [], FCL: [], AIR: [] };
 let widgetIndex = { LCL: 0, FCL: 0, AIR: 0 };
 let currentActiveTab = 'LCL';
 let currentFreightPageMode = 'LCL';
 
 async function fetchTabRatesData(tabName){
-  if(tabRatesCache[tabName]) return tabRatesCache[tabName];
+  if(tabRatesParsed[tabName]) return tabRatesParsed[tabName];
   const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${TAB_SHEET_NAMES[tabName]}`;
   const res = await fetch(url);
   if(!res.ok) throw new Error('Failed to load ' + tabName + ' rates.');
@@ -1885,10 +1875,32 @@ async function fetchTabRatesData(tabName){
   const jsonEnd = text.lastIndexOf('}');
   const json = JSON.parse(text.substring(jsonStart, jsonEnd + 1));
   
-  const rows = json.table.rows.slice(1).map(r => (r.c || []).map(c => c ? (c.f ?? c.v) : ''));
-  const cleaned = rows.filter(r => r[0] || r[1]);
-  tabRatesCache[tabName] = cleaned;
-  return cleaned;
+  const rawHeaders = (json.table.cols || []).map(c => c ? (c.label || c.id) : '');
+  const rawRows = json.table.rows.map(r => (r.c || []).map(c => c ? (c.f ?? c.v) : ''));
+
+  let headers = [];
+  let rows = [];
+
+  if (rawRows.length > 0) {
+    const firstRowVals = rawRows[0].map(cleanVal);
+    const hasHeaderInFirstRow = firstRowVals.some(v => v && !v.match(/^[0-9.$]+$/));
+
+    if (hasHeaderInFirstRow) {
+      headers = firstRowVals.map((v, idx) => v || rawHeaders[idx] || `Column ${idx+1}`);
+      rows = rawRows.slice(1);
+    } else {
+      headers = rawHeaders.map((v, idx) => v || `Column ${idx+1}`);
+      rows = rawRows;
+    }
+  } else {
+    headers = rawHeaders;
+  }
+
+  const cleanedRows = rows.filter(r => r.some(cell => cleanVal(cell) !== ''));
+
+  const parsedData = { headers, rows: cleanedRows };
+  tabRatesParsed[tabName] = parsedData;
+  return parsedData;
 }
 
 async function initHomeRateWidget(tabName = 'LCL'){
@@ -1896,7 +1908,9 @@ async function initHomeRateWidget(tabName = 'LCL'){
   widgetBody.innerHTML = `<div style="font-size:11.5px;color:var(--muted);text-align:center;">Loading ${tabName} rates...</div>`;
 
   try {
-    const rows = await fetchTabRatesData(tabName);
+    const data = await fetchTabRatesData(tabName);
+    const rows = data.rows;
+
     if(!rows.length) {
       widgetBody.innerHTML = `<div style="font-size:11.5px;color:var(--muted);text-align:center;">No ${tabName} rates available.</div>`;
       return;
@@ -1995,51 +2009,21 @@ document.getElementById('rateNextBtn').addEventListener('click', ()=>{
 });
 
 /* ============================================================
-   FREIGHT RATES PAGE TABLE (LCL, FCL, AIR)
+   FREIGHT RATES PAGE TABLE (FULL SHEET COLUMNS & DYNAMIC HEADERS)
    ============================================================ */
 async function loadFreightRates(mode = 'LCL'){
   currentFreightPageMode = mode;
   const msg = document.getElementById('ratesMsg');
-  
-  const thPol = document.getElementById('thPol');
-  const thPod = document.getElementById('thPod');
-  const thFreight = document.getElementById('thFreight');
-  const thCfs = document.getElementById('thCfs');
-  const thMech = document.getElementById('thMech');
-  const thOther = document.getElementById('thOther');
-
-  if (mode === 'AIR') {
-    thPol.textContent = 'Airport of Loading (AOL)';
-    thPod.textContent = 'Airport of Discharge (AOD)';
-    thFreight.textContent = 'Air Freight Rate';
-    thCfs.textContent = 'FSC / SSC Charges';
-    thMech.textContent = 'Screening Charges';
-    thOther.textContent = 'Flight Schedule / ETD';
-  } else if (mode === 'FCL') {
-    thPol.textContent = 'Port of Loading (POL)';
-    thPod.textContent = 'Port of Discharge (POD)';
-    thFreight.textContent = 'FCL Freight Rate';
-    thCfs.textContent = 'THC / Terminal Fee';
-    thMech.textContent = 'Documentation Fee';
-    thOther.textContent = 'Vessel Schedule / ETD';
-  } else {
-    thPol.textContent = 'Port of Loading (POL)';
-    thPod.textContent = 'Port of Discharge (POD)';
-    thFreight.textContent = 'Ocean Freight';
-    thCfs.textContent = 'CFS Charges';
-    thMech.textContent = 'Mechanical Charges';
-    thOther.textContent = 'Sailing Schedule / ETD';
-  }
 
   msg.className = 'track-status-msg show loading';
   msg.textContent = `Loading latest ${mode} freight rates...`;
 
   try {
-    const rows = await fetchTabRatesData(mode);
+    const data = await fetchTabRatesData(mode);
     msg.className = 'track-status-msg';
     
-    populateCountryFilter(rows);
-    renderRatesTable(rows, mode);
+    populateCountryFilter(data.rows);
+    renderRatesTable(data, mode);
 
   } catch(err) {
     console.error('Error fetching freight rates:', err);
@@ -2054,31 +2038,27 @@ function populateCountryFilter(rows){
   select.innerHTML = `<option value="">All POL/AOL Countries</option>` + countries.map(c => `<option value="${c}">${c}</option>`).join('');
 }
 
-function renderRatesTable(rows, mode = 'LCL'){
+function renderRatesTable(data, mode = 'LCL'){
   const searchQ = (document.getElementById('ratesSearch').value || '').toLowerCase().trim();
   const countryQ = document.getElementById('countryFilter').value;
+  const thead = document.getElementById('ratesThead');
   const tbody = document.getElementById('ratesTbody');
+
+  const headers = data.headers;
+  const rows = data.rows;
+
+  // Build dynamic table headers directly from sheet
+  thead.innerHTML = `<tr>${headers.map(h => `<th>${h}</th>`).join('')}<th>Action</th></tr>`;
 
   const filtered = rows.filter(r => {
     const polCountry = cleanVal(r[0]);
-    const polCity = cleanVal(r[1]);
-    const podCountry = cleanVal(r[2]);
-    const podCity = cleanVal(r[3]);
-    const carrier = cleanVal(r[8] || '');
-    
     const matchesCountry = !countryQ || polCountry === countryQ;
-    const matchesSearch = !searchQ || 
-      polCountry.toLowerCase().includes(searchQ) ||
-      polCity.toLowerCase().includes(searchQ) ||
-      podCountry.toLowerCase().includes(searchQ) ||
-      podCity.toLowerCase().includes(searchQ) ||
-      carrier.toLowerCase().includes(searchQ);
-
+    const matchesSearch = !searchQ || r.some(cell => cleanVal(cell).toLowerCase().includes(searchQ));
     return matchesCountry && matchesSearch;
   });
 
   if(!filtered.length){
-    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:20px;">No matching rates found.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="${headers.length + 1}" style="text-align:center;color:var(--muted);padding:20px;">No matching rates found.</td></tr>`;
     return;
   }
 
@@ -2087,29 +2067,21 @@ function renderRatesTable(rows, mode = 'LCL'){
     const polCity = cleanVal(r[1]);
     const podCountry = cleanVal(r[2]);
     const podCity = cleanVal(r[3]);
-    const freight = cleanVal(r[4]);
-    const cfs = cleanVal(r[5]);
-    const mech = cleanVal(r[6]);
-    const schedule = cleanVal(r[7]);
 
     const routeOrigin = `${polCity}, ${polCountry}`;
     const routeDest = `${podCity}, ${podCountry}`;
     const modeType = mode === 'AIR' ? 'Air Freight' : 'Sea Freight';
 
+    const rowCells = headers.map((_, i) => {
+      const val = cleanVal(r[i]);
+      // Highlight freight rate column (usually column index 4) or numeric rate values
+      if (i === 4) return `<td class="rate-val">${val || '—'}</td>`;
+      return `<td>${val || '—'}</td>`;
+    }).join('');
+
     return `
       <tr>
-        <td>
-          <span class="port-tag">${polCity || '—'}</span>
-          <span class="country-tag">${polCountry}</span>
-        </td>
-        <td>
-          <span class="port-tag">${podCity || '—'}</span>
-          <span class="country-tag">${podCountry}</span>
-        </td>
-        <td class="rate-val">${freight || '—'}</td>
-        <td>${cfs || '—'}</td>
-        <td>${mech || '—'}</td>
-        <td><b>${schedule || '—'}</b></td>
+        ${rowCells}
         <td>
           <button class="btn btn-primary btn-xs btn-square" onclick="quoteForRoute('${routeOrigin.replace(/'/g, "\\'")}', '${routeDest.replace(/'/g, "\\\'")}', '${modeType}', '${mode}')">
             Quote
@@ -2153,8 +2125,16 @@ document.getElementById('pageModeAirBtn').addEventListener('click', function(){
   loadFreightRates('AIR');
 });
 
-document.getElementById('ratesSearch').addEventListener('input', () => renderRatesTable(tabRatesCache[currentFreightPageMode] || [], currentFreightPageMode));
-document.getElementById('countryFilter').addEventListener('change', () => renderRatesTable(tabRatesCache[currentFreightPageMode] || [], currentFreightPageMode));
+document.getElementById('ratesSearch').addEventListener('input', () => {
+  if (tabRatesParsed[currentFreightPageMode]) {
+    renderRatesTable(tabRatesParsed[currentFreightPageMode], currentFreightPageMode);
+  }
+});
+document.getElementById('countryFilter').addEventListener('change', () => {
+  if (tabRatesParsed[currentFreightPageMode]) {
+    renderRatesTable(tabRatesParsed[currentFreightPageMode], currentFreightPageMode);
+  }
+});
 
 // Initialize Rate Widget on Load
 initHomeRateWidget('LCL');
