@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<!-- LordIcon Animated Icons Library -->
+<script src="https://cdn.lordicon.com/lordicon.js"></script>
 <style>
 /* ============ DARK THEME TOKENS & COMPACT LAYOUT ============ */
 :root{
@@ -140,7 +142,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .hero p.lead{margin-top:8px;font-size:14px;color:#c9d8e6;max-width:480px;}
 .hero-modes{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px;}
 .hero-modes li{display:flex;align-items:center;gap:6px;}
-.hero-modes svg{width:18px;height:18px;color:#fff;flex-shrink:0;}
 .hero-modes span{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;max-width:85px;line-height:1.2;}
 .hero-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
 
@@ -172,7 +173,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 }
 .carousel-btn:hover{background:var(--orange);border-color:var(--orange);}
 
-.rates-card-body{display:flex;flex-direction:column;gap:5px;margin:6px 0;min-height:115px;justify-content:center;}
+.rates-card-body{display:flex;flex-direction:column;gap:5px;margin:6px 0;min-height:140px;justify-content:center;}
 .rate-item-slide{display:none;}
 .rate-item-slide.active{display:flex;flex-direction:column;gap:5px;animation:fadein .2s ease;}
 
@@ -182,10 +183,10 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .route-badge-item .val{font-size:11.5px;font-weight:800;color:#fff;}
 .route-arrow{color:var(--orange);font-weight:bold;font-size:11px;}
 
-.charges-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
-.charge-mini-item{background:var(--paper);padding:4px 6px;border-radius:4px;border:1px solid var(--line);}
+.charges-full-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+.charge-mini-item{background:var(--paper);padding:3px 6px;border-radius:4px;border:1px solid var(--line);}
 .charge-mini-item .lbl{font-size:8px;color:var(--muted);text-transform:uppercase;display:block;}
-.charge-mini-item .val{font-size:10.5px;font-weight:700;color:var(--ink);font-family:var(--font-mono);}
+.charge-mini-item .val{font-size:10px;font-weight:700;color:var(--ink);font-family:var(--font-mono);}
 .charge-mini-item.highlight .val{color:var(--orange);}
 
 .rate-card-actions{display:grid;grid-template-columns:1fr 1fr;gap:5px;}
@@ -206,25 +207,41 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .hero-track input:focus{border-color:var(--orange);}
 .hero-track p{font-size:10px;color:var(--muted);margin-top:2px;}
 
-/* ============ HOME SERVICES ============ */
+/* ============ HOME SERVICES (COMPACT WITH ANIMATED ICONS) ============ */
 .home-services{padding:12px 0 16px;}
 .home-section-head{text-align:center;}
 .home-section-head .kicker{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--orange);}
 .home-section-head h2{font-size:clamp(16px,1.6vw,22px);font-weight:700;color:#fff;margin-top:2px;}
 .svc-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin-top:10px;}
 .svc-tile{
-  background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:10px 8px;
-  display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;
+  background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:8px 6px;
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:3px;
   transition:transform .15s, box-shadow .15s;
 }
 .svc-tile:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);border-color:var(--orange);}
-.svc-icon{color:var(--teal);}
-.svc-icon svg{width:24px;height:24px;}
-.svc-tile h3{font-size:11.5px;font-weight:800;text-transform:uppercase;color:#fff;margin-top:2px;}
-.svc-tile p{font-size:10.5px;color:var(--muted);line-height:1.25;}
-.svc-tile .link-more{margin-top:auto;padding-top:2px;font-weight:700;font-size:10.5px;color:var(--orange);display:inline-flex;align-items:center;gap:3px;}
-.svc-tile .link-more svg{width:10px;height:10px;transition:transform .15s;}
+.svc-tile lord-icon{width:32px;height:32px;}
+.svc-tile h3{font-size:11px;font-weight:800;text-transform:uppercase;color:#fff;margin-top:2px;}
+.svc-tile p{font-size:9.5px;color:var(--muted);line-height:1.2;}
+.svc-tile .link-more{margin-top:auto;padding-top:2px;font-weight:700;font-size:9.5px;color:var(--orange);display:inline-flex;align-items:center;gap:2px;}
+.svc-tile .link-more svg{width:9px;height:9px;transition:transform .15s;}
 .svc-tile:hover .link-more svg{transform:translateX(2px);}
+
+/* ============ COMPACT SERVICES FULL PAGE ============ */
+.svc-grid-full{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.svc-full-card{
+  background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 10px;
+  display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden;
+}
+.svc-full-card .num{position:absolute;top:10px;right:10px;font-family:var(--font-mono);font-size:9.5px;color:var(--line-strong);font-weight:700;}
+.svc-full-card lord-icon{width:36px;height:36px;}
+.svc-full-card h3{font-size:13.5px;color:#fff;}
+.svc-full-card .pitch{font-family:var(--font-display);font-weight:700;font-size:10.5px;color:var(--orange);}
+.svc-full-card p.desc{color:var(--muted);font-size:11.5px;line-height:1.3;}
+.svc-full-card .feat{display:flex;flex-direction:column;gap:4px;margin-top:2px;}
+.svc-full-card .feat li{display:flex;gap:4px;font-size:11px;color:var(--ink);}
+.svc-full-card .feat svg{width:12px;height:12px;color:var(--teal);flex-shrink:0;margin-top:1px;}
+.cargo-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.cargo-tag{padding:4px 8px;border-radius:4px;background:var(--paper-card);border:1px solid var(--line);font-size:10.5px;font-weight:600;color:var(--ink);}
 
 /* ============ INFO BAND ============ */
 .info-band{position:relative;display:grid;grid-template-columns:1fr 1fr 1.2fr;padding:14px 0 16px;}
@@ -280,22 +297,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .breadcrumb{font-size:11.5px;color:var(--muted);font-weight:600;}
 .breadcrumb b{color:#fff;}
 
-/* ============ SERVICES PAGE ============ */
-.svc-grid-full{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-.svc-full-card{
-  background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 14px;
-  display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;
-}
-.svc-full-card .num{position:absolute;top:12px;right:14px;font-family:var(--font-mono);font-size:10.5px;color:var(--line-strong);font-weight:700;}
-.svc-full-card h3{font-size:15px;color:#fff;}
-.svc-full-card .pitch{font-family:var(--font-display);font-weight:700;font-size:11.5px;color:var(--orange);}
-.svc-full-card p.desc{color:var(--muted);font-size:12.5px;}
-.svc-full-card .feat{display:flex;flex-direction:column;gap:5px;margin-top:2px;}
-.svc-full-card .feat li{display:flex;gap:5px;font-size:12px;color:var(--ink);}
-.svc-full-card .feat svg{width:13px;height:13px;color:var(--teal);flex-shrink:0;margin-top:1px;}
-.cargo-tags{display:flex;flex-wrap:wrap;gap:6px;}
-.cargo-tag{padding:5px 10px;border-radius:5px;background:var(--paper-card);border:1px solid var(--line);font-size:11.5px;font-weight:600;color:var(--ink);}
-
 /* ============ FREIGHT RATES PAGE COMPACT CARD WIDGET LAYOUT ============ */
 .rates-panel{
   background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
@@ -325,7 +326,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 }
 
 .page-rate-card-container{
-  max-width:540px;margin:0 auto;background:var(--paper);border:1px solid var(--line-strong);
+  max-width:580px;margin:0 auto;background:var(--paper);border:1px solid var(--line-strong);
   border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-md);
 }
 
@@ -900,7 +901,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
     <div class="wrap">
       <span class="breadcrumb">RBM Logistics / <b>Freight Rates</b></span>
       <h1>Standard Indicative Freight Rates</h1>
-      <p>Browse indicative LCL, FCL, and Air freight rates in a compact rate card view with live search and country filters.</p>
+      <p>Browse indicative LCL, FCL, and Air freight rates with all spreadsheet headers rendered in a compact card view.</p>
     </div>
   </div>
 
@@ -924,7 +925,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 
       <!-- Filter Controls -->
       <div class="rates-filter-bar">
-        <input type="text" id="ratesSearch" placeholder="Search route, city or liner...">
+        <input type="text" id="ratesSearch" placeholder="Search route, city, liner, flight...">
         <select id="countryFilter">
           <option value="">All Countries</option>
         </select>
@@ -1338,42 +1339,48 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 
 <script>
 /* ============================================================
-   DATA — services, industries, cargo tags
+   DATA — SERVICES WITH ANIMATED LORDICONS & CARGO
    ============================================================ */
 const SERVICES = [
   {
     key:"sea", short:"FCL & LCL shipping solutions with competitive rates and reliable carriers.", title:"Sea Freight", pitch:"FCL & LCL, always tracked",
     desc:"Full and less-than-container shipping with competitive rates and reliable carriers across major trade lanes.",
+    lordicon:'src="https://cdn.lordicon.com/pfzzedfl.json" trigger="loop" colors="primary:#12b5cb,secondary:#f5811f"',
     icon:'<path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 5V3" stroke="currentColor" stroke-width="1.8"/>',
     features:["Weekly sailings on core lanes","FCL 20'/40'/40'HC & LCL consolidation","Live carrier tracking updates"]
   },
   {
     key:"air", short:"Fast and flexible air freight solutions for your time-sensitive shipments.", title:"Air Freight", pitch:"When speed is the priority",
     desc:"Fast, flexible air freight solutions for time-sensitive shipments, from same-day to consolidated cargo.",
+    lordicon:'src="https://cdn.lordicon.com/lsbpikid.json" trigger="loop" colors="primary:#12b5cb,secondary:#f5811f"',
     icon:'<path d="M2 13l9-2 5-9 2 1-3 8 5-1 3 3-6 2-3 6-2-1 2-5-5 2-2-2 4-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>',
     features:["Priority & standard air options","Charter capacity for oversized loads","Real-time AWB status"]
   },
   {
     key:"customs", short:"Import & export customs clearance and documentation handled by experts.", title:"Customs Clearance", pitch:"Zero-surprise paperwork",
     desc:"Import & export customs clearance and documentation handled by licensed, experienced brokers.",
+    lordicon:'src="https://cdn.lordicon.com/fntaenat.json" trigger="loop" colors="primary:#12b5cb,secondary:#f5811f"',
     icon:'<rect x="4" y="7" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.8"/>',
     features:["PIB / PEB filing & duty calculation","HS code classification support","Bonded warehouse coordination"]
   },
   {
-    key:"trucking", short:"Port, warehouse and door-to-door trucking services with modern and reliable fleet.", title:"Trucking", pitch:"Port to door, on time",
+    key:"trucking", short:"Port, warehouse and door-to-door trucking services with modern fleet.", title:"Trucking", pitch:"Port to door, on time",
     desc:"Port, warehouse and door-to-door trucking services with a modern, reliable fleet.",
+    lordicon:'src="https://cdn.lordicon.com/mvik9482.json" trigger="loop" colors="primary:#12b5cb,secondary:#f5811f"',
     icon:'<path d="M3 16V7a1 1 0 0 1 1-1h9v10" stroke="currentColor" stroke-width="1.8"/><path d="M13 10h4l4 4v2h-3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="18" r="2" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="18" r="2" stroke="currentColor" stroke-width="1.8"/>',
     features:["Container & LTL trucking fleet","Cross-Jawa & inter-island routes","Real-time driver dispatch"]
   },
   {
-    key:"special", short:"Machinery, project cargo, DG, oversized and other special handling requirements.", title:"Special Cargo", pitch:"Oversized? Dangerous? Handled.",
+    key:"special", short:"Machinery, project cargo, DG, oversized and special handling.", title:"Special Cargo", pitch:"Oversized? Dangerous? Handled.",
     desc:"Machinery, project cargo, dangerous goods, oversized and other special handling requirements.",
+    lordicon:'src="https://cdn.lordicon.com/fptaoyna.json" trigger="loop" colors="primary:#12b5cb,secondary:#f5811f"',
     icon:'<rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 9h16M9 4v16" stroke="currentColor" stroke-width="1.8"/>',
     features:["DG-certified handling & documentation","Heavy-lift & project cargo planning","Custom crating and lashing"]
   },
   {
-    key:"multimodal", short:"Integrated sea, air and land solutions from origin to destination.", title:"Multimodal Transportation", pitch:"One route, every mode",
+    key:"multimodal", short:"Integrated sea, air and land solutions from origin to destination.", title:"Multimodal Transport", pitch:"One route, every mode",
     desc:"Integrated sea, air and land solutions planned end to end from origin to final destination.",
+    lordicon:'src="https://cdn.lordicon.com/qhgwoikw.json" trigger="loop" colors="primary:#12b5cb,secondary:#f5811f"',
     icon:'<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.7 4 6.3 4 9s-1.5 6.3-4 9c-2.5-2.7-4-6.3-4-9s1.5-6.3 4-9Z" stroke="currentColor" stroke-width="1.8"/>',
     features:["Single point of contact, one invoice","Route optimisation for cost or speed","Consolidated tracking across modes"]
   }
@@ -1401,13 +1408,13 @@ const INDUSTRIES = [
 ];
 
 /* ============================================================
-   RENDER STATIC CONTENT
+   RENDER STATIC CONTENT WITH LORDICONS
    ============================================================ */
 function iconSvg(inner){ return `<svg viewBox="0 0 24 24" fill="none">${inner}</svg>`; }
 
 document.getElementById('homeServiceGrid').innerHTML = SERVICES.map(s=>`
   <div class="svc-tile">
-    <span class="svc-icon">${iconSvg(s.icon)}</span>
+    <lord-icon ${s.lordicon}></lord-icon>
     <h3>${s.title}</h3>
     <p>${s.short}</p>
     <a class="link-more" href="#" data-nav="services">Learn more ${iconSvg('<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>')}</a>
@@ -1419,7 +1426,7 @@ document.getElementById('homeCargoList').innerHTML = HOME_CARGO.map(c=>`<li>${ic
 document.getElementById('servicesFullGrid').innerHTML = SERVICES.map((s,i)=>`
   <div class="svc-full-card">
     <span class="num">0${i+1}</span>
-    <div class="icon-tile">${iconSvg(s.icon)}</div>
+    <lord-icon ${s.lordicon}></lord-icon>
     <div class="pitch">${s.pitch}</div>
     <h3>${s.title}</h3>
     <p class="desc">${s.desc}</p>
@@ -1808,7 +1815,7 @@ document.getElementById('homeTrackInput').addEventListener('keydown', e=>{
 });
 
 /* ============================================================
-   MULTI-TAB FREIGHT RATES DATA FETCHING & SCHEMAS
+   MULTI-TAB FREIGHT RATES DATA FETCHING & FULL HEADER CARD BUILDER
    ============================================================ */
 const TAB_SHEET_NAMES = {
   'LCL': 'LCL%20Freight%20Rate',
@@ -1816,7 +1823,7 @@ const TAB_SHEET_NAMES = {
   'AIR': 'Air%20Freight%20Rate'
 };
 
-/* Exact Spreadsheet Header Row Standard */
+/* Exact Spreadsheet Header Row Definitions */
 const SHEET_HEADERS = {
   'LCL': ['POL Country', 'POL City', 'POD Country', 'POD City', 'Freight', 'CFS Charges', 'Mechanical Charges', 'Other', 'Liner', 'Transit Time', 'Cut Off', 'ETD', 'ETA'],
   'FCL': ['POL Country', 'POL City', 'POD Country', 'POD City', 'Freight 20 ft', 'Freight 40 ft', 'Liner', 'Transit Time', 'Cut Off', 'ETD', 'ETA'],
@@ -1863,77 +1870,26 @@ async function fetchTabRatesData(tabName){
 }
 
 /* ============================================================
-   CARD BUILDER HELPER (Used for Homepage Widget & Rate Page)
+   CARD BUILDER HELPER (Includes ALL headers and contents)
    ============================================================ */
-function buildRateCardHtml(r, tabName){
+function buildFullHeaderRateCardHtml(r, tabName){
+  const headers = SHEET_HEADERS[tabName];
   const polCountry = cleanVal(r[0]);
   const polCity = cleanVal(r[1]);
   const podCountry = cleanVal(r[2]);
   const podCity = cleanVal(r[3]);
 
-  let miniGridHtml = '';
-
-  if (tabName === 'LCL') {
-    miniGridHtml = `
-      <div class="charges-mini-grid">
-        <div class="charge-mini-item highlight">
-          <span class="lbl">Freight</span>
-          <span class="val">${cleanVal(r[4]) || '—'}</span>
-        </div>
-        <div class="charge-mini-item">
-          <span class="lbl">CFS Charges</span>
-          <span class="val">${cleanVal(r[5]) || '—'}</span>
-        </div>
-        <div class="charge-mini-item">
-          <span class="lbl">Mechanical / Other</span>
-          <span class="val">${cleanVal(r[6]) || cleanVal(r[7]) || '—'}</span>
-        </div>
-        <div class="charge-mini-item">
-          <span class="lbl">Liner / Transit</span>
-          <span class="val">${cleanVal(r[8]) || cleanVal(r[9]) || '—'}</span>
-        </div>
-      </div>
-    `;
-  } else if (tabName === 'FCL') {
-    miniGridHtml = `
-      <div class="charges-mini-grid">
-        <div class="charge-mini-item highlight">
-          <span class="lbl">Freight 20 ft</span>
-          <span class="val">${cleanVal(r[4]) || '—'}</span>
-        </div>
-        <div class="charge-mini-item highlight">
-          <span class="lbl">Freight 40 ft</span>
-          <span class="val">${cleanVal(r[5]) || '—'}</span>
-        </div>
-        <div class="charge-mini-item">
-          <span class="lbl">Liner</span>
-          <span class="val">${cleanVal(r[6]) || '—'}</span>
-        </div>
-        <div class="charge-mini-item">
-          <span class="lbl">Transit Time</span>
-          <span class="val">${cleanVal(r[7]) || '—'}</span>
-        </div>
-      </div>
-    `;
-  } else if (tabName === 'AIR') {
-    miniGridHtml = `
-      <div class="charges-mini-grid">
-        <div class="charge-mini-item highlight">
-          <span class="lbl">Freight</span>
-          <span class="val">${cleanVal(r[4]) || '—'}</span>
-        </div>
-        <div class="charge-mini-item">
-          <span class="lbl">FSC / SSC</span>
-          <span class="val">${cleanVal(r[5]) ? cleanVal(r[5]) + ' / ' + cleanVal(r[6]) : '—'}</span>
-        </div>
-        <div class="charge-mini-item">
-          <span class="lbl">THC / AWB</span>
-          <span class="val">${cleanVal(r[7]) || cleanVal(r[8]) || '—'}</span>
-        </div>
-        <div class="charge-mini-item">
-          <span class="lbl">Flight / Transit</span>
-          <span class="val">${cleanVal(r[9]) || cleanVal(r[10]) || '—'}</span>
-        </div>
+  // Build key-value items for every header standard except origin/destination ports
+  let chargeItemsHtml = '';
+  for(let i = 4; i < headers.length; i++){
+    const label = headers[i];
+    const value = cleanVal(r[i]) || '—';
+    const isFreight = label.toLowerCase().includes('freight');
+    
+    chargeItemsHtml += `
+      <div class="charge-mini-item ${isFreight ? 'highlight' : ''}">
+        <span class="lbl">${label}</span>
+        <span class="val">${value}</span>
       </div>
     `;
   }
@@ -1951,7 +1907,9 @@ function buildRateCardHtml(r, tabName){
           <span class="val">${podCity || '—'}</span>
         </div>
       </div>
-      ${miniGridHtml}
+      <div class="charges-full-grid">
+        ${chargeItemsHtml}
+      </div>
     </div>
   `;
 }
@@ -2000,7 +1958,7 @@ function renderHomeWidgetSlide(tabName){
   const routeOrigin = `${polCity}, ${polCountry}`;
   const routeDest = `${podCity}, ${podCountry}`;
 
-  widgetBody.innerHTML = buildRateCardHtml(r, tabName);
+  widgetBody.innerHTML = buildFullHeaderRateCardHtml(r, tabName);
 
   document.getElementById('homeWidgetGetQuoteBtn').onclick = () => quoteForRoute(routeOrigin, routeDest, tabName === 'AIR' ? 'Air Freight' : 'Sea Freight', tabName);
 }
@@ -2097,7 +2055,7 @@ function renderPageRateCard(){
   const routeOrigin = `${polCity}, ${polCountry}`;
   const routeDest = `${podCity}, ${podCountry}`;
 
-  cardBody.innerHTML = buildRateCardHtml(r, mode);
+  cardBody.innerHTML = buildFullHeaderRateCardHtml(r, mode);
   counter.textContent = `${pageCurrentRateIndex + 1} of ${pageFilteredRates.length}`;
 
   document.getElementById('pageWidgetGetQuoteBtn').onclick = () => quoteForRoute(routeOrigin, routeDest, mode === 'AIR' ? 'Air Freight' : 'Sea Freight', mode);
