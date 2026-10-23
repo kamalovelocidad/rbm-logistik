@@ -112,9 +112,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .btn-block{width:100%;}
 .btn-navy{background:var(--navy-700);color:#fff;}
 .btn-navy:hover{background:var(--navy-800);}
-.btn-ghost-light{background:transparent;border-color:rgba(255,255,255,.3);color:#fff;}
-.btn-ghost-light:hover{background:rgba(255,255,255,.1);color:#fff;}
-.btn[disabled]{opacity:.55;cursor:not-allowed;}
 .menu-toggle{display:none;background:none;border:1.5px solid var(--line-strong);border-radius:6px;width:34px;height:34px;align-items:center;justify-content:center;color:#fff;}
 
 /* ============ HOME LAYOUT ============ */
@@ -152,7 +149,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
   display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:stretch;width:100%;
 }
 
-/* ============ TABBED FREIGHT RATES WIDGET ============ */
+/* ============ COMPACT FREIGHT RATES CARD & WIDGET ============ */
 .rates-preview-card{
   background:var(--paper-card);color:var(--ink);border-radius:var(--radius);padding:10px 12px;box-shadow:var(--shadow-md);
   display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);
@@ -170,28 +167,29 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 
 .carousel-controls{display:flex;align-items:center;gap:3px;}
 .carousel-btn{
-  width:20px;height:20px;border-radius:4px;background:var(--navy-800);border:1px solid var(--line-strong);
-  color:#fff;display:flex;align-items:center;justify-content:center;padding:0;transition:background .15s;font-size:9.5px;
+  width:22px;height:22px;border-radius:4px;background:var(--navy-800);border:1px solid var(--line-strong);
+  color:#fff;display:flex;align-items:center;justify-content:center;padding:0;transition:background .15s;font-size:10px;
 }
 .carousel-btn:hover{background:var(--orange);border-color:var(--orange);}
 
-.rates-card-body{display:flex;flex-direction:column;gap:5px;margin:6px 0;min-height:100px;justify-content:center;}
+.rates-card-body{display:flex;flex-direction:column;gap:5px;margin:6px 0;min-height:115px;justify-content:center;}
 .rate-item-slide{display:none;}
 .rate-item-slide.active{display:flex;flex-direction:column;gap:5px;animation:fadein .2s ease;}
 
-.route-badge-row{display:flex;align-items:center;justify-content:space-between;background:var(--paper);padding:5px 8px;border-radius:4px;border:1px solid var(--line);}
+.route-badge-row{display:flex;align-items:center;justify-content:space-between;background:var(--paper);padding:6px 8px;border-radius:4px;border:1px solid var(--line);}
 .route-badge-item{display:flex;flex-direction:column;}
 .route-badge-item .lbl{font-size:8.5px;font-weight:700;text-transform:uppercase;color:var(--muted);}
 .route-badge-item .val{font-size:11.5px;font-weight:800;color:#fff;}
 .route-arrow{color:var(--orange);font-weight:bold;font-size:11px;}
 
-.charges-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
-.charge-mini-item{background:var(--paper);padding:3px 6px;border-radius:4px;border:1px solid var(--line);}
+.charges-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+.charge-mini-item{background:var(--paper);padding:4px 6px;border-radius:4px;border:1px solid var(--line);}
 .charge-mini-item .lbl{font-size:8px;color:var(--muted);text-transform:uppercase;display:block;}
 .charge-mini-item .val{font-size:10.5px;font-weight:700;color:var(--ink);font-family:var(--font-mono);}
 .charge-mini-item.highlight .val{color:var(--orange);}
 
 .rate-card-actions{display:grid;grid-template-columns:1fr 1fr;gap:5px;}
+.rate-card-counter{font-size:9.5px;color:var(--muted);text-align:center;font-family:var(--font-mono);}
 
 /* ============ TRACK WIDGET ============ */
 .hero-track{
@@ -270,26 +268,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .section-head h2{font-size:clamp(18px,2.2vw,24px);font-weight:800;margin-top:6px;color:#fff;}
 .section-head p{margin-top:6px;color:var(--muted);font-size:13.5px;}
 .section-alt{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-.center{text-align:center;margin-left:auto;margin-right:auto;}
-
-/* ============ ICON TILE ============ */
-.icon-tile{
-  width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;
-  background:var(--teal-light);color:var(--teal);flex-shrink:0;
-}
-.icon-tile svg{width:18px;height:18px;}
-
-/* ============ CTA BANNER ============ */
-.cta-banner{
-  background:linear-gradient(120deg,var(--navy-800) 0%,var(--paper-card) 100%);
-  border:1px solid var(--line-strong);
-  border-radius:var(--radius);padding:20px 22px;display:flex;align-items:center;justify-content:space-between;
-  gap:12px;color:#fff;flex-wrap:wrap;
-}
-.cta-banner h3{font-size:17px;font-weight:800;}
-.cta-banner p{margin-top:3px;color:var(--muted);font-size:13px;}
-.cta-banner .btn-primary{background:var(--orange);color:#fff;box-shadow:none;}
-.cta-banner .btn-primary:hover{background:var(--orange-dark);color:#fff;}
 
 /* ============ PAGE HEADER ============ */
 .page-hero{
@@ -317,6 +295,45 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .svc-full-card .feat svg{width:13px;height:13px;color:var(--teal);flex-shrink:0;margin-top:1px;}
 .cargo-tags{display:flex;flex-wrap:wrap;gap:6px;}
 .cargo-tag{padding:5px 10px;border-radius:5px;background:var(--paper-card);border:1px solid var(--line);font-size:11.5px;font-weight:600;color:var(--ink);}
+
+/* ============ FREIGHT RATES PAGE COMPACT CARD WIDGET LAYOUT ============ */
+.rates-panel{
+  background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
+  box-shadow:var(--shadow-sm);margin-top:16px;position:relative;z-index:5;
+}
+.mode-switch-bar{
+  display:flex;align-items:center;gap:8px;margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:10px;
+}
+.mode-switch-btn{
+  background:var(--navy-800);border:1px solid var(--line-strong);color:var(--muted);
+  padding:6px 14px;font-size:12px;font-weight:800;border-radius:5px;cursor:pointer;transition:all .15s;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.mode-switch-btn:hover{color:#fff;}
+.mode-switch-btn.active{background:var(--orange);color:#fff;border-color:var(--orange);}
+
+.rates-filter-bar{
+  display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:center;
+}
+.rates-filter-bar input{
+  flex:1;min-width:200px;padding:8px 12px;border-radius:5px;border:1px solid var(--line-strong);
+  font-size:13px;background:var(--paper);color:#fff;
+}
+.rates-filter-bar select{
+  min-width:150px;padding:8px 10px;border-radius:5px;border:1px solid var(--line-strong);
+  font-size:13px;background:var(--paper);color:#fff;
+}
+
+.page-rate-card-container{
+  max-width:540px;margin:0 auto;background:var(--paper);border:1px solid var(--line-strong);
+  border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-md);
+}
+
+.rates-disclaimer-hint{
+  margin-top:16px;padding:10px 12px;border-radius:6px;background:var(--paper);border:1px solid var(--line);
+  font-size:11px;color:var(--muted);line-height:1.4;display:flex;align-items:flex-start;gap:6px;
+}
+.rates-disclaimer-hint svg{width:14px;height:14px;color:var(--orange);flex-shrink:0;margin-top:1px;}
 
 /* ============ TRACKING PAGE COMPACT & PAPER SHEET CONTAINER ============ */
 .track-panel{
@@ -465,63 +482,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
   .route-line { animation: none !important; opacity: 1 !important; }
 }
 
-/* ============ FREIGHT RATES SECTION ============ */
-.rates-panel{
-  background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
-  box-shadow:var(--shadow-sm);margin-top:16px;position:relative;z-index:5;
-}
-.mode-switch-bar{
-  display:flex;align-items:center;gap:8px;margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:10px;
-}
-.mode-switch-btn{
-  background:var(--navy-800);border:1px solid var(--line-strong);color:var(--muted);
-  padding:6px 14px;font-size:12px;font-weight:800;border-radius:5px;cursor:pointer;transition:all .15s;
-  display:inline-flex;align-items:center;gap:6px;
-}
-.mode-switch-btn:hover{color:#fff;}
-.mode-switch-btn.active{background:var(--orange);color:#fff;border-color:var(--orange);}
-
-.rates-filter-bar{
-  display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;align-items:center;
-}
-.rates-filter-bar input{
-  flex:1;min-width:200px;padding:8px 12px;border-radius:5px;border:1px solid var(--line-strong);
-  font-size:13px;background:var(--paper);color:#fff;
-}
-.rates-filter-bar select{
-  min-width:150px;padding:8px 10px;border-radius:5px;border:1px solid var(--line-strong);
-  font-size:13px;background:var(--paper);color:#fff;
-}
-.rates-table-wrap{overflow-x:auto;}
-.rates-table{
-  width:100%;border-collapse:collapse;text-align:left;font-size:12.5px;
-}
-.rates-table th{
-  background:var(--paper);color:var(--muted);font-weight:700;font-size:10.5px;
-  text-transform:uppercase;letter-spacing:.05em;padding:10px 12px;border-bottom:1px solid var(--line-strong);
-  white-space:nowrap;
-}
-.rates-table td{
-  padding:10px 12px;border-bottom:1px solid var(--line);color:var(--ink);white-space:nowrap;
-}
-.rates-table tbody tr:hover{background:var(--navy-800);}
-.rates-table .port-tag{font-weight:700;color:#fff;display:block;}
-.rates-table .country-tag{font-size:10.5px;color:var(--muted);}
-.rates-table .rate-val{font-family:var(--font-mono);font-weight:700;color:var(--orange);}
-
-.rates-disclaimer-hint{
-  margin-top:12px;padding:10px 12px;border-radius:6px;background:var(--paper);border:1px solid var(--line);
-  font-size:11px;color:var(--muted);line-height:1.4;display:flex;align-items:flex-start;gap:6px;
-}
-.rates-disclaimer-hint svg{width:14px;height:14px;color:var(--orange);flex-shrink:0;margin-top:1px;}
-
-@media (max-width:720px){
-  .stat-tiles{grid-template-columns:repeat(2,1fr);}
-  .eta-row{grid-template-columns:1fr;}
-  .route-point .val{max-width:90px;font-size:10.5px;}
-  .hero-widgets-row{grid-template-columns:1fr;}
-}
-
 /* ============ QUOTE PAGE ============ */
 .quote-layout{display:grid;grid-template-columns:1.3fr .8fr;gap:20px;align-items:start;}
 .quote-card{background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow-sm);}
@@ -636,7 +596,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
   .industry-icons{grid-template-columns:repeat(3,1fr);row-gap:8px;}
   .svc-grid-full{grid-template-columns:1fr;}
   .footer-grid{grid-template-columns:1fr;}
-  .cta-banner{flex-direction:column;align-items:flex-start;}
   .hero{padding-top:20px;}
   .track-panel,.rates-panel{margin-top:12px;padding:12px;}
   .hero-widgets-row{grid-template-columns:1fr;}
@@ -723,7 +682,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
           <!-- Hero Side-By-Side Widgets Row -->
           <div class="hero-widgets-row">
             
-            <!-- Tabbed Freight Rates Preview Carousel (LCL, FCL, AIR) -->
+            <!-- Tabbed Freight Rates Preview Card Widget (LCL, FCL, AIR) -->
             <div class="rates-preview-card">
               <div class="rates-tabs-header">
                 <div class="tab-buttons">
@@ -732,18 +691,18 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
                   <button class="rate-tab-btn" data-tab="AIR">AIR</button>
                 </div>
                 <div class="carousel-controls">
-                  <button class="carousel-btn" id="ratePrevBtn" aria-label="Previous Rate">❮</button>
-                  <button class="carousel-btn" id="rateNextBtn" aria-label="Next Rate">❯</button>
+                  <button class="carousel-btn" id="homeRatePrevBtn" aria-label="Previous Rate">❮</button>
+                  <button class="carousel-btn" id="homeRateNextBtn" aria-label="Next Rate">❯</button>
                 </div>
               </div>
               
-              <div class="rates-card-body" id="rateWidgetBody">
-                <div style="font-size:11.5px;color:var(--muted);text-align:center;">Loading indicative rates...</div>
+              <div class="rates-card-body" id="homeRateWidgetBody">
+                <div style="font-size:11.5px;color:var(--muted);text-align:center;">Loading rates...</div>
               </div>
 
               <div class="rate-card-actions">
-                <button class="btn btn-primary btn-xs btn-square" id="widgetGetQuoteBtn">Quote</button>
-                <button class="btn btn-navy btn-xs btn-square" data-nav="rates">See More ➔</button>
+                <button class="btn btn-primary btn-xs btn-square" id="homeWidgetGetQuoteBtn">Quote</button>
+                <button class="btn btn-navy btn-xs btn-square" data-nav="rates">Explore All ➔</button>
               </div>
             </div>
 
@@ -935,13 +894,13 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
   </section>
 </section>
 
-<!-- ============ FREIGHT RATES PAGE (LCL, FCL & AIR) ============ -->
+<!-- ============ FREIGHT RATES PAGE (COMPACT CARD WIDGET LAYOUT) ============ -->
 <section class="page" id="page-rates">
   <div class="page-hero">
     <div class="wrap">
       <span class="breadcrumb">RBM Logistics / <b>Freight Rates</b></span>
       <h1>Standard Indicative Freight Rates</h1>
-      <p>Explore current indicative LCL, FCL, and Air freight rates along with schedules and handling charges across key global trade lanes.</p>
+      <p>Browse indicative LCL, FCL, and Air freight rates in a compact rate card view with live search and country filters.</p>
     </div>
   </div>
 
@@ -963,8 +922,9 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
         </button>
       </div>
 
+      <!-- Filter Controls -->
       <div class="rates-filter-bar">
-        <input type="text" id="ratesSearch" placeholder="Search rates sheet...">
+        <input type="text" id="ratesSearch" placeholder="Search route, city or liner...">
         <select id="countryFilter">
           <option value="">All Countries</option>
         </select>
@@ -972,21 +932,32 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 
       <div class="track-status-msg" id="ratesMsg"></div>
 
-      <div class="rates-table-wrap">
-        <table class="rates-table" id="ratesTable">
-          <thead id="ratesThead">
-            <!-- Dynamic header row inserted here -->
-          </thead>
-          <tbody id="ratesTbody">
-            <!-- Dynamic data rows inserted here -->
-          </tbody>
-        </table>
+      <!-- Compact Rate Card Widget Container -->
+      <div class="page-rate-card-container">
+        <div class="rates-tabs-header" style="margin-bottom:8px;">
+          <div style="font-size:11.5px;font-weight:800;color:var(--orange);text-transform:uppercase;" id="pageRateModeLabel">
+            LCL Rate Sheet
+          </div>
+          <div class="carousel-controls">
+            <button class="carousel-btn" id="pageRatePrevBtn" aria-label="Previous Rate">❮</button>
+            <button class="carousel-btn" id="pageRateNextBtn" aria-label="Next Rate">❯</button>
+          </div>
+        </div>
+
+        <div class="rates-card-body" id="pageRateCardBody">
+          <div style="font-size:11.5px;color:var(--muted);text-align:center;">Loading rates...</div>
+        </div>
+
+        <div class="rate-card-actions" style="margin-top:10px;">
+          <button class="btn btn-primary btn-sm btn-square" id="pageWidgetGetQuoteBtn">Request Quote for Route</button>
+          <div class="rate-card-counter" id="pageRateCardCounter" style="display:flex;align-items:center;justify-content:center;">— / —</div>
+        </div>
       </div>
 
       <div class="rates-disclaimer-hint">
         <svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.8"/></svg>
         <div>
-          <b>Freight Rates Note &amp; Disclaimer:</b> Cost listed is for freight charges only and does not include additional liner/carrier charges if applicable. Subject to delay. Rates apply for general cargo, stackable cargo, normal weight, volume &amp; measurement only. Please contact us for further details or custom quotes.
+          <b>Freight Rates Note &amp; Disclaimer:</b> Cost listed is for freight charges only and does not include additional liner/carrier local charges if applicable. Rates apply for general cargo, stackable cargo, normal weight, volume &amp; measurement only. Please contact us for further details or custom quotes.
         </div>
       </div>
     </div>
@@ -1036,7 +1007,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
           </div>
           <div class="paper-doc-meta">
             <div class="paper-doc-title">Cargo Tracking Report</div>
-            <div class="paper-timestamp" id="reportTimestamp">Generated on: Oct 22, 2026 WIB</div>
+            <div class="paper-timestamp" id="reportTimestamp">Generated on: Oct 23, 2026 WIB</div>
           </div>
         </div>
 
@@ -1483,7 +1454,7 @@ function goTo(pageId, scrollTarget, clickedBtn){
   }
 
   if(pageId === 'rates'){
-    loadFreightRates(currentFreightPageMode);
+    loadFreightRatesPage(currentFreightPageMode);
   }
 }
 
@@ -1845,7 +1816,7 @@ const TAB_SHEET_NAMES = {
   'AIR': 'Air%20Freight%20Rate'
 };
 
-/* Headers matching the spreadsheet tabs */
+/* Exact Spreadsheet Header Row Standard */
 const SHEET_HEADERS = {
   'LCL': ['POL Country', 'POL City', 'POD Country', 'POD City', 'Freight', 'CFS Charges', 'Mechanical Charges', 'Other', 'Liner', 'Transit Time', 'Cut Off', 'ETD', 'ETA'],
   'FCL': ['POL Country', 'POL City', 'POD Country', 'POD City', 'Freight 20 ft', 'Freight 40 ft', 'Liner', 'Transit Time', 'Cut Off', 'ETD', 'ETA'],
@@ -1853,10 +1824,16 @@ const SHEET_HEADERS = {
 };
 
 let tabRatesParsed = { LCL: null, FCL: null, AIR: null };
+
+/* State management for Homepage Widget Carousel */
 let randomWidgetRates = { LCL: [], FCL: [], AIR: [] };
-let widgetIndex = { LCL: 0, FCL: 0, AIR: 0 };
-let currentActiveTab = 'LCL';
+let homeWidgetIndex = { LCL: 0, FCL: 0, AIR: 0 };
+let currentActiveHomeTab = 'LCL';
+
+/* State management for Freight Rate Page Carousel & Filters */
 let currentFreightPageMode = 'LCL';
+let pageFilteredRates = [];
+let pageCurrentRateIndex = 0;
 
 async function fetchTabRatesData(tabName){
   if(tabRatesParsed[tabName]) return tabRatesParsed[tabName];
@@ -1873,6 +1850,7 @@ async function fetchTabRatesData(tabName){
   let headers = SHEET_HEADERS[tabName];
   let rows = rawRows;
 
+  // Skip header row if returned inside body
   if (rows.length > 0 && cleanVal(rows[0][0]).toLowerCase().includes('pol')) {
     rows = rows.slice(1);
   }
@@ -1884,46 +1862,14 @@ async function fetchTabRatesData(tabName){
   return parsedData;
 }
 
-async function initHomeRateWidget(tabName = 'LCL'){
-  const widgetBody = document.getElementById('rateWidgetBody');
-  widgetBody.innerHTML = `<div style="font-size:11.5px;color:var(--muted);text-align:center;">Loading ${tabName} rates...</div>`;
-
-  try {
-    const data = await fetchTabRatesData(tabName);
-    const rows = data.rows;
-
-    if(!rows.length) {
-      widgetBody.innerHTML = `<div style="font-size:11.5px;color:var(--muted);text-align:center;">No ${tabName} rates available.</div>`;
-      return;
-    }
-
-    if(!randomWidgetRates[tabName].length) {
-      const shuffled = [...rows].sort(() => 0.5 - Math.random());
-      randomWidgetRates[tabName] = shuffled.slice(0, 5);
-    }
-
-    renderWidgetSlide(tabName);
-  } catch(e){
-    console.error('Failed to init widget rates:', e);
-    widgetBody.innerHTML = `<div style="font-size:11.5px;color:var(--muted);text-align:center;">Rates unavailable right now.</div>`;
-  }
-}
-
-function renderWidgetSlide(tabName){
-  const widgetBody = document.getElementById('rateWidgetBody');
-  const rates = randomWidgetRates[tabName];
-  const idx = widgetIndex[tabName];
-
-  if(!rates || !rates.length) return;
-
-  const r = rates[idx];
+/* ============================================================
+   CARD BUILDER HELPER (Used for Homepage Widget & Rate Page)
+   ============================================================ */
+function buildRateCardHtml(r, tabName){
   const polCountry = cleanVal(r[0]);
   const polCity = cleanVal(r[1]);
   const podCountry = cleanVal(r[2]);
   const podCity = cleanVal(r[3]);
-
-  const routeOrigin = `${polCity}, ${polCountry}`;
-  const routeDest = `${podCity}, ${podCountry}`;
 
   let miniGridHtml = '';
 
@@ -1931,7 +1877,7 @@ function renderWidgetSlide(tabName){
     miniGridHtml = `
       <div class="charges-mini-grid">
         <div class="charge-mini-item highlight">
-          <span class="lbl">Ocean Freight</span>
+          <span class="lbl">Freight</span>
           <span class="val">${cleanVal(r[4]) || '—'}</span>
         </div>
         <div class="charge-mini-item">
@@ -1939,12 +1885,12 @@ function renderWidgetSlide(tabName){
           <span class="val">${cleanVal(r[5]) || '—'}</span>
         </div>
         <div class="charge-mini-item">
-          <span class="lbl">Mechanical Charges</span>
-          <span class="val">${cleanVal(r[6]) || '—'}</span>
+          <span class="lbl">Mechanical / Other</span>
+          <span class="val">${cleanVal(r[6]) || cleanVal(r[7]) || '—'}</span>
         </div>
         <div class="charge-mini-item">
-          <span class="lbl">Transit / Schedule</span>
-          <span class="val">${cleanVal(r[9]) || cleanVal(r[11]) || '—'}</span>
+          <span class="lbl">Liner / Transit</span>
+          <span class="val">${cleanVal(r[8]) || cleanVal(r[9]) || '—'}</span>
         </div>
       </div>
     `;
@@ -1973,7 +1919,7 @@ function renderWidgetSlide(tabName){
     miniGridHtml = `
       <div class="charges-mini-grid">
         <div class="charge-mini-item highlight">
-          <span class="lbl">Air Freight</span>
+          <span class="lbl">Freight</span>
           <span class="val">${cleanVal(r[4]) || '—'}</span>
         </div>
         <div class="charge-mini-item">
@@ -1992,7 +1938,7 @@ function renderWidgetSlide(tabName){
     `;
   }
 
-  widgetBody.innerHTML = `
+  return `
     <div class="rate-item-slide active">
       <div class="route-badge-row">
         <div class="route-badge-item">
@@ -2008,52 +1954,100 @@ function renderWidgetSlide(tabName){
       ${miniGridHtml}
     </div>
   `;
-
-  document.getElementById('widgetGetQuoteBtn').onclick = () => quoteForRoute(routeOrigin, routeDest, tabName === 'AIR' ? 'Air Freight' : 'Sea Freight', tabName);
 }
 
-document.querySelectorAll('.rate-tab-btn').forEach(btn => {
+/* ============================================================
+   HOMEPAGE FREIGHT RATE WIDGET
+   ============================================================ */
+async function initHomeRateWidget(tabName = 'LCL'){
+  const widgetBody = document.getElementById('homeRateWidgetBody');
+  widgetBody.innerHTML = `<div style="font-size:11.5px;color:var(--muted);text-align:center;">Loading ${tabName} rates...</div>`;
+
+  try {
+    const data = await fetchTabRatesData(tabName);
+    const rows = data.rows;
+
+    if(!rows.length) {
+      widgetBody.innerHTML = `<div style="font-size:11.5px;color:var(--muted);text-align:center;">No ${tabName} rates available.</div>`;
+      return;
+    }
+
+    if(!randomWidgetRates[tabName].length) {
+      const shuffled = [...rows].sort(() => 0.5 - Math.random());
+      randomWidgetRates[tabName] = shuffled.slice(0, 5);
+    }
+
+    renderHomeWidgetSlide(tabName);
+  } catch(e){
+    console.error('Failed to init home widget rates:', e);
+    widgetBody.innerHTML = `<div style="font-size:11.5px;color:var(--muted);text-align:center;">Rates unavailable right now.</div>`;
+  }
+}
+
+function renderHomeWidgetSlide(tabName){
+  const widgetBody = document.getElementById('homeRateWidgetBody');
+  const rates = randomWidgetRates[tabName];
+  const idx = homeWidgetIndex[tabName];
+
+  if(!rates || !rates.length) return;
+
+  const r = rates[idx];
+  const polCountry = cleanVal(r[0]);
+  const polCity = cleanVal(r[1]);
+  const podCountry = cleanVal(r[2]);
+  const podCity = cleanVal(r[3]);
+
+  const routeOrigin = `${polCity}, ${polCountry}`;
+  const routeDest = `${podCity}, ${podCountry}`;
+
+  widgetBody.innerHTML = buildRateCardHtml(r, tabName);
+
+  document.getElementById('homeWidgetGetQuoteBtn').onclick = () => quoteForRoute(routeOrigin, routeDest, tabName === 'AIR' ? 'Air Freight' : 'Sea Freight', tabName);
+}
+
+document.querySelectorAll('.rates-preview-card .rate-tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.rate-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.rates-preview-card .rate-tab-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    currentActiveTab = btn.dataset.tab;
-    initHomeRateWidget(currentActiveTab);
+    currentActiveHomeTab = btn.dataset.tab;
+    initHomeRateWidget(currentActiveHomeTab);
   });
 });
 
-document.getElementById('ratePrevBtn').addEventListener('click', ()=>{
-  const rates = randomWidgetRates[currentActiveTab];
+document.getElementById('homeRatePrevBtn').addEventListener('click', ()=>{
+  const rates = randomWidgetRates[currentActiveHomeTab];
   if(!rates || !rates.length) return;
-  widgetIndex[currentActiveTab] = (widgetIndex[currentActiveTab] - 1 + rates.length) % rates.length;
-  renderWidgetSlide(currentActiveTab);
+  homeWidgetIndex[currentActiveHomeTab] = (homeWidgetIndex[currentActiveHomeTab] - 1 + rates.length) % rates.length;
+  renderHomeWidgetSlide(currentActiveHomeTab);
 });
 
-document.getElementById('rateNextBtn').addEventListener('click', ()=>{
-  const rates = randomWidgetRates[currentActiveTab];
+document.getElementById('homeRateNextBtn').addEventListener('click', ()=>{
+  const rates = randomWidgetRates[currentActiveHomeTab];
   if(!rates || !rates.length) return;
-  widgetIndex[currentActiveTab] = (widgetIndex[currentActiveTab] + 1) % rates.length;
-  renderWidgetSlide(currentActiveTab);
+  homeWidgetIndex[currentActiveHomeTab] = (homeWidgetIndex[currentActiveHomeTab] + 1) % rates.length;
+  renderHomeWidgetSlide(currentActiveHomeTab);
 });
 
 /* ============================================================
-   FREIGHT RATES PAGE TABLE
+   FREIGHT RATES PAGE (COMPACT CARD CAROUSEL & SEARCH)
    ============================================================ */
-async function loadFreightRates(mode = 'LCL'){
+async function loadFreightRatesPage(mode = 'LCL'){
   currentFreightPageMode = mode;
-  const msg = document.getElementById('ratesMsg');
+  document.getElementById('pageRateModeLabel').textContent = `${mode} Freight Rate Cards`;
 
+  const msg = document.getElementById('ratesMsg');
   msg.className = 'track-status-msg show loading';
   msg.textContent = `Loading latest ${mode} freight rates...`;
 
   try {
     const data = await fetchTabRatesData(mode);
     msg.className = 'track-status-msg';
-    
+
     populateCountryFilter(data.rows);
-    renderRatesTable(data, mode);
+    applyPageRatesFilter();
 
   } catch(err) {
-    console.error('Error fetching freight rates:', err);
+    console.error('Error fetching freight rates page:', err);
     msg.className = 'track-status-msg show error';
     msg.textContent = 'Unable to load rate sheet right now. Please try again later.';
   }
@@ -2062,62 +2056,83 @@ async function loadFreightRates(mode = 'LCL'){
 function populateCountryFilter(rows){
   const select = document.getElementById('countryFilter');
   const countries = [...new Set(rows.map(r => cleanVal(r[0])).filter(Boolean))];
-  select.innerHTML = `<option value="">All POL/AOL Countries</option>` + countries.map(c => `<option value="${c}">${c}</option>`).join('');
+  select.innerHTML = `<option value="">All Countries</option>` + countries.map(c => `<option value="${c}">${c}</option>`).join('');
 }
 
-function renderRatesTable(data, mode = 'LCL'){
+function applyPageRatesFilter(){
+  const data = tabRatesParsed[currentFreightPageMode];
+  if(!data) return;
+
   const searchQ = (document.getElementById('ratesSearch').value || '').toLowerCase().trim();
   const countryQ = document.getElementById('countryFilter').value;
-  const thead = document.getElementById('ratesThead');
-  const tbody = document.getElementById('ratesTbody');
 
-  const headers = data.headers;
-  const rows = data.rows;
-
-  thead.innerHTML = `<tr>${headers.map(h => `<th>${h}</th>`).join('')}<th>Action</th></tr>`;
-
-  const filtered = rows.filter(r => {
+  pageFilteredRates = data.rows.filter(r => {
     const polCountry = cleanVal(r[0]);
     const matchesCountry = !countryQ || polCountry === countryQ;
     const matchesSearch = !searchQ || r.some(cell => cleanVal(cell).toLowerCase().includes(searchQ));
     return matchesCountry && matchesSearch;
   });
 
-  if(!filtered.length){
-    tbody.innerHTML = `<tr><td colspan="${headers.length + 1}" style="text-align:center;color:var(--muted);padding:20px;">No matching rates found.</td></tr>`;
+  pageCurrentRateIndex = 0;
+  renderPageRateCard();
+}
+
+function renderPageRateCard(){
+  const cardBody = document.getElementById('pageRateCardBody');
+  const counter = document.getElementById('pageRateCardCounter');
+  const mode = currentFreightPageMode;
+
+  if(!pageFilteredRates.length){
+    cardBody.innerHTML = `<div style="font-size:12px;color:var(--muted);text-align:center;padding:20px 0;">No matching ${mode} freight rates found. Try adjusting your search query.</div>`;
+    counter.textContent = '0 / 0';
     return;
   }
 
-  tbody.innerHTML = filtered.map(r => {
-    const polCountry = cleanVal(r[0]);
-    const polCity = cleanVal(r[1]);
-    const podCountry = cleanVal(r[2]);
-    const podCity = cleanVal(r[3]);
+  const r = pageFilteredRates[pageCurrentRateIndex];
+  const polCountry = cleanVal(r[0]);
+  const polCity = cleanVal(r[1]);
+  const podCountry = cleanVal(r[2]);
+  const podCity = cleanVal(r[3]);
 
-    const routeOrigin = `${polCity}, ${polCountry}`;
-    const routeDest = `${podCity}, ${podCountry}`;
-    const modeType = mode === 'AIR' ? 'Air Freight' : 'Sea Freight';
+  const routeOrigin = `${polCity}, ${polCountry}`;
+  const routeDest = `${podCity}, ${podCountry}`;
 
-    const rowCells = headers.map((_, i) => {
-      const val = cleanVal(r[i]);
-      if ((mode === 'FCL' && (i === 4 || i === 5)) || (mode !== 'FCL' && i === 4)) {
-        return `<td class="rate-val">${val || '—'}</td>`;
-      }
-      return `<td>${val || '—'}</td>`;
-    }).join('');
+  cardBody.innerHTML = buildRateCardHtml(r, mode);
+  counter.textContent = `${pageCurrentRateIndex + 1} of ${pageFilteredRates.length}`;
 
-    return `
-      <tr>
-        ${rowCells}
-        <td>
-          <button class="btn btn-primary btn-xs btn-square" onclick="quoteForRoute('${routeOrigin.replace(/'/g, "\\'")}', '${routeDest.replace(/'/g, "\\\'")}', '${modeType}', '${mode}')">
-            Quote
-          </button>
-        </td>
-      </tr>
-    `;
-  }).join('');
+  document.getElementById('pageWidgetGetQuoteBtn').onclick = () => quoteForRoute(routeOrigin, routeDest, mode === 'AIR' ? 'Air Freight' : 'Sea Freight', mode);
 }
+
+document.getElementById('pageRatePrevBtn').addEventListener('click', ()=>{
+  if(!pageFilteredRates.length) return;
+  pageCurrentRateIndex = (pageCurrentRateIndex - 1 + pageFilteredRates.length) % pageFilteredRates.length;
+  renderPageRateCard();
+});
+
+document.getElementById('pageRateNextBtn').addEventListener('click', ()=>{
+  if(!pageFilteredRates.length) return;
+  pageCurrentRateIndex = (pageCurrentRateIndex + 1) % pageFilteredRates.length;
+  renderPageRateCard();
+});
+
+document.getElementById('pageModeLclBtn').addEventListener('click', function(){
+  document.querySelectorAll('.mode-switch-bar button').forEach(b => b.classList.remove('active'));
+  document.getElementById('pageModeLclBtn').classList.add('active');
+  loadFreightRatesPage('LCL');
+});
+document.getElementById('pageModeFclBtn').addEventListener('click', function(){
+  document.querySelectorAll('.mode-switch-bar button').forEach(b => b.classList.remove('active'));
+  document.getElementById('pageModeFclBtn').classList.add('active');
+  loadFreightRatesPage('FCL');
+});
+document.getElementById('pageModeAirBtn').addEventListener('click', function(){
+  document.querySelectorAll('.mode-switch-bar button').forEach(b => b.classList.remove('active'));
+  document.getElementById('pageModeAirBtn').classList.add('active');
+  loadFreightRatesPage('AIR');
+});
+
+document.getElementById('ratesSearch').addEventListener('input', applyPageRatesFilter);
+document.getElementById('countryFilter').addEventListener('change', applyPageRatesFilter);
 
 function quoteForRoute(origin, dest, type = "Sea Freight", mode = "LCL"){
   goTo('quote');
@@ -2136,34 +2151,7 @@ function quoteForRoute(origin, dest, type = "Sea Freight", mode = "LCL"){
   }
 }
 
-document.getElementById('pageModeLclBtn').addEventListener('click', function(){
-  document.querySelectorAll('.mode-switch-bar button').forEach(b => b.classList.remove('active'));
-  document.getElementById('pageModeLclBtn').classList.add('active');
-  loadFreightRates('LCL');
-});
-document.getElementById('pageModeFclBtn').addEventListener('click', function(){
-  document.querySelectorAll('.mode-switch-bar button').forEach(b => b.classList.remove('active'));
-  document.getElementById('pageModeFclBtn').classList.add('active');
-  loadFreightRates('FCL');
-});
-document.getElementById('pageModeAirBtn').addEventListener('click', function(){
-  document.querySelectorAll('.mode-switch-bar button').forEach(b => b.classList.remove('active'));
-  document.getElementById('pageModeAirBtn').classList.add('active');
-  loadFreightRates('AIR');
-});
-
-document.getElementById('ratesSearch').addEventListener('input', () => {
-  if (tabRatesParsed[currentFreightPageMode]) {
-    renderRatesTable(tabRatesParsed[currentFreightPageMode], currentFreightPageMode);
-  }
-});
-document.getElementById('countryFilter').addEventListener('change', () => {
-  if (tabRatesParsed[currentFreightPageMode]) {
-    renderRatesTable(tabRatesParsed[currentFreightPageMode], currentFreightPageMode);
-  }
-});
-
-// Initialize Rate Widget on Load
+// Initialize Rates on Load
 initHomeRateWidget('LCL');
 </script>
 </body>
