@@ -173,7 +173,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 }
 .carousel-btn:hover{background:var(--orange);border-color:var(--orange);}
 
-.rates-card-body{display:flex;flex-direction:column;gap:5px;margin:6px 0;min-height:140px;justify-content:center;}
+.rates-card-body{display:flex;flex-direction:column;gap:5px;margin:6px 0;min-height:160px;justify-content:center;}
 .rate-item-slide{display:none;}
 .rate-item-slide.active{display:flex;flex-direction:column;gap:5px;animation:fadein .2s ease;}
 
@@ -185,7 +185,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 
 .charges-full-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
 .charge-mini-item{background:var(--paper);padding:3px 6px;border-radius:4px;border:1px solid var(--line);}
-.charge-mini-item .lbl{font-size:8px;color:var(--muted);text-transform:uppercase;display:block;}
+.charge-mini-item .lbl{font-size:8px;color:var(--muted);text-transform:uppercase;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .charge-mini-item .val{font-size:10px;font-weight:700;color:var(--ink);font-family:var(--font-mono);}
 .charge-mini-item.highlight .val{color:var(--orange);}
 
@@ -219,7 +219,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
   transition:transform .15s, box-shadow .15s;
 }
 .svc-tile:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);border-color:var(--orange);}
-.svc-tile lord-icon{width:32px;height:32px;}
+.svc-tile lord-icon{width:36px;height:36px;}
 .svc-tile h3{font-size:11px;font-weight:800;text-transform:uppercase;color:#fff;margin-top:2px;}
 .svc-tile p{font-size:9.5px;color:var(--muted);line-height:1.2;}
 .svc-tile .link-more{margin-top:auto;padding-top:2px;font-weight:700;font-size:9.5px;color:var(--orange);display:inline-flex;align-items:center;gap:2px;}
@@ -233,7 +233,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
   display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden;
 }
 .svc-full-card .num{position:absolute;top:10px;right:10px;font-family:var(--font-mono);font-size:9.5px;color:var(--line-strong);font-weight:700;}
-.svc-full-card lord-icon{width:36px;height:36px;}
+.svc-full-card lord-icon{width:42px;height:42px;}
 .svc-full-card h3{font-size:13.5px;color:#fff;}
 .svc-full-card .pitch{font-family:var(--font-display);font-weight:700;font-size:10.5px;color:var(--orange);}
 .svc-full-card p.desc{color:var(--muted);font-size:11.5px;line-height:1.3;}
@@ -326,7 +326,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 }
 
 .page-rate-card-container{
-  max-width:580px;margin:0 auto;background:var(--paper);border:1px solid var(--line-strong);
+  max-width:620px;margin:0 auto;background:var(--paper);border:1px solid var(--line-strong);
   border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-md);
 }
 
@@ -1339,48 +1339,48 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 
 <script>
 /* ============================================================
-   DATA — SERVICES WITH ANIMATED LORDICONS & CARGO
+   DATA — SERVICES WITH SPECIFIED ANIMATED LORDICONS
    ============================================================ */
 const SERVICES = [
   {
     key:"sea", short:"FCL & LCL shipping solutions with competitive rates and reliable carriers.", title:"Sea Freight", pitch:"FCL & LCL, always tracked",
     desc:"Full and less-than-container shipping with competitive rates and reliable carriers across major trade lanes.",
-    lordicon:'src="https://cdn.lordicon.com/pfzzedfl.json" trigger="loop" colors="primary:#12b5cb,secondary:#f5811f"',
+    lordicon:'src="https://cdn.lordicon.com/pfzzedfl.json" trigger="loop" colors="primary:#12b5cb,secondary:#f5811f"', // Ship Icon
     icon:'<path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 5V3" stroke="currentColor" stroke-width="1.8"/>',
     features:["Weekly sailings on core lanes","FCL 20'/40'/40'HC & LCL consolidation","Live carrier tracking updates"]
   },
   {
     key:"air", short:"Fast and flexible air freight solutions for your time-sensitive shipments.", title:"Air Freight", pitch:"When speed is the priority",
     desc:"Fast, flexible air freight solutions for time-sensitive shipments, from same-day to consolidated cargo.",
-    lordicon:'src="https://cdn.lordicon.com/lsbpikid.json" trigger="loop" colors="primary:#12b5cb,secondary:#f5811f"',
+    lordicon:'src="https://cdn.lordicon.com/lsbpikid.json" trigger="loop" colors="primary:#12b5cb,secondary:#f5811f"', // Airplane Icon
     icon:'<path d="M2 13l9-2 5-9 2 1-3 8 5-1 3 3-6 2-3 6-2-1 2-5-5 2-2-2 4-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>',
     features:["Priority & standard air options","Charter capacity for oversized loads","Real-time AWB status"]
   },
   {
     key:"customs", short:"Import & export customs clearance and documentation handled by experts.", title:"Customs Clearance", pitch:"Zero-surprise paperwork",
     desc:"Import & export customs clearance and documentation handled by licensed, experienced brokers.",
-    lordicon:'src="https://cdn.lordicon.com/fntaenat.json" trigger="loop" colors="primary:#12b5cb,secondary:#f5811f"',
+    lordicon:'src="https://cdn.lordicon.com/vufzv2.json" trigger="loop" colors="primary:#12b5cb,secondary:#f5811f"', // Note with Check Icon
     icon:'<rect x="4" y="7" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.8"/>',
     features:["PIB / PEB filing & duty calculation","HS code classification support","Bonded warehouse coordination"]
   },
   {
     key:"trucking", short:"Port, warehouse and door-to-door trucking services with modern fleet.", title:"Trucking", pitch:"Port to door, on time",
     desc:"Port, warehouse and door-to-door trucking services with a modern, reliable fleet.",
-    lordicon:'src="https://cdn.lordicon.com/mvik9482.json" trigger="loop" colors="primary:#12b5cb,secondary:#f5811f"',
+    lordicon:'src="https://cdn.lordicon.com/mvik9482.json" trigger="loop" colors="primary:#12b5cb,secondary:#f5811f"', // Truck Icon
     icon:'<path d="M3 16V7a1 1 0 0 1 1-1h9v10" stroke="currentColor" stroke-width="1.8"/><path d="M13 10h4l4 4v2h-3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="18" r="2" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="18" r="2" stroke="currentColor" stroke-width="1.8"/>',
     features:["Container & LTL trucking fleet","Cross-Jawa & inter-island routes","Real-time driver dispatch"]
   },
   {
     key:"special", short:"Machinery, project cargo, DG, oversized and special handling.", title:"Special Cargo", pitch:"Oversized? Dangerous? Handled.",
     desc:"Machinery, project cargo, dangerous goods, oversized and other special handling requirements.",
-    lordicon:'src="https://cdn.lordicon.com/fptaoyna.json" trigger="loop" colors="primary:#12b5cb,secondary:#f5811f"',
+    lordicon:'src="https://cdn.lordicon.com/fptaoyna.json" trigger="loop" colors="primary:#12b5cb,secondary:#f5811f"', // Container / Box Icon
     icon:'<rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 9h16M9 4v16" stroke="currentColor" stroke-width="1.8"/>',
     features:["DG-certified handling & documentation","Heavy-lift & project cargo planning","Custom crating and lashing"]
   },
   {
     key:"multimodal", short:"Integrated sea, air and land solutions from origin to destination.", title:"Multimodal Transport", pitch:"One route, every mode",
     desc:"Integrated sea, air and land solutions planned end to end from origin to final destination.",
-    lordicon:'src="https://cdn.lordicon.com/qhgwoikw.json" trigger="loop" colors="primary:#12b5cb,secondary:#f5811f"',
+    lordicon:'src="https://cdn.lordicon.com/qhgwoikw.json" trigger="loop" colors="primary:#12b5cb,secondary:#f5811f"', // Flat Open Truck Icon
     icon:'<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.7 4 6.3 4 9s-1.5 6.3-4 9c-2.5-2.7-4-6.3-4-9s1.5-6.3 4-9Z" stroke="currentColor" stroke-width="1.8"/>',
     features:["Single point of contact, one invoice","Route optimisation for cost or speed","Consolidated tracking across modes"]
   }
@@ -1408,7 +1408,7 @@ const INDUSTRIES = [
 ];
 
 /* ============================================================
-   RENDER STATIC CONTENT WITH LORDICONS
+   RENDER STATIC CONTENT WITH ANIMATED LORDICONS
    ============================================================ */
 function iconSvg(inner){ return `<svg viewBox="0 0 24 24" fill="none">${inner}</svg>`; }
 
@@ -1815,19 +1815,12 @@ document.getElementById('homeTrackInput').addEventListener('keydown', e=>{
 });
 
 /* ============================================================
-   MULTI-TAB FREIGHT RATES DATA FETCHING & FULL HEADER CARD BUILDER
+   MULTI-TAB FREIGHT RATES DYNAMIC SHEET FETCHING & FULL HEADER CARD
    ============================================================ */
 const TAB_SHEET_NAMES = {
   'LCL': 'LCL%20Freight%20Rate',
   'FCL': 'FCL%20Freight%20Rate',
   'AIR': 'Air%20Freight%20Rate'
-};
-
-/* Exact Spreadsheet Header Row Definitions */
-const SHEET_HEADERS = {
-  'LCL': ['POL Country', 'POL City', 'POD Country', 'POD City', 'Freight', 'CFS Charges', 'Mechanical Charges', 'Other', 'Liner', 'Transit Time', 'Cut Off', 'ETD', 'ETA'],
-  'FCL': ['POL Country', 'POL City', 'POD Country', 'POD City', 'Freight 20 ft', 'Freight 40 ft', 'Liner', 'Transit Time', 'Cut Off', 'ETD', 'ETA'],
-  'AIR': ['POL Country', 'POL City', 'POD Country', 'POD City', 'Freight', 'FSC', 'SSC', 'THC', 'AWB', 'Carrier/Flight No.', 'Transit Time', 'Cut Off', 'ETD', 'ETA']
 };
 
 let tabRatesParsed = { LCL: null, FCL: null, AIR: null };
@@ -1846,7 +1839,7 @@ async function fetchTabRatesData(tabName){
   if(tabRatesParsed[tabName]) return tabRatesParsed[tabName];
   const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${TAB_SHEET_NAMES[tabName]}`;
   const res = await fetch(url);
-  if(!res.ok) throw new Error('Failed to load ' + tabName + ' rates.');
+  if(!res.ok) throw new Error('Failed to load ' + tabName + ' rates sheet.');
   const text = await res.text();
   const jsonStart = text.indexOf('{');
   const jsonEnd = text.lastIndexOf('}');
@@ -1854,41 +1847,42 @@ async function fetchTabRatesData(tabName){
   
   const rawRows = json.table.rows.map(r => (r.c || []).map(c => c ? (c.f ?? c.v) : ''));
 
-  let headers = SHEET_HEADERS[tabName];
-  let rows = rawRows;
+  if (!rawRows.length) return { headers: [], rows: [] };
 
-  // Skip header row if returned inside body
-  if (rows.length > 0 && cleanVal(rows[0][0]).toLowerCase().includes('pol')) {
-    rows = rows.slice(1);
-  }
+  // Dynamically extract Header row from first row of Google Sheet
+  const headers = rawRows[0].map(h => cleanVal(h));
+  const rows = rawRows.slice(1).filter(r => r.some(cell => cleanVal(cell) !== ''));
 
-  const cleanedRows = rows.filter(r => r.some(cell => cleanVal(cell) !== ''));
-
-  const parsedData = { headers, rows: cleanedRows };
+  const parsedData = { headers, rows };
   tabRatesParsed[tabName] = parsedData;
   return parsedData;
 }
 
 /* ============================================================
-   CARD BUILDER HELPER (Includes ALL headers and contents)
+   DYNAMIC CARD BUILDER (Renders 100% of header columns and row data)
    ============================================================ */
 function buildFullHeaderRateCardHtml(r, tabName){
-  const headers = SHEET_HEADERS[tabName];
+  const data = tabRatesParsed[tabName];
+  if (!data || !data.headers.length) return '';
+
+  const headers = data.headers;
+
+  // Origin & Destination default fallback extraction
   const polCountry = cleanVal(r[0]);
   const polCity = cleanVal(r[1]);
   const podCountry = cleanVal(r[2]);
   const podCity = cleanVal(r[3]);
 
-  // Build key-value items for every header standard except origin/destination ports
   let chargeItemsHtml = '';
-  for(let i = 4; i < headers.length; i++){
-    const label = headers[i];
+  // Loop over every single header/column dynamically
+  for(let i = 0; i < headers.length; i++){
+    const label = headers[i] || `Col ${i+1}`;
     const value = cleanVal(r[i]) || '—';
     const isFreight = label.toLowerCase().includes('freight');
     
     chargeItemsHtml += `
       <div class="charge-mini-item ${isFreight ? 'highlight' : ''}">
-        <span class="lbl">${label}</span>
+        <span class="lbl" title="${label}">${label}</span>
         <span class="val">${value}</span>
       </div>
     `;
@@ -1898,12 +1892,12 @@ function buildFullHeaderRateCardHtml(r, tabName){
     <div class="rate-item-slide active">
       <div class="route-badge-row">
         <div class="route-badge-item">
-          <span class="lbl">${tabName === 'AIR' ? 'AOL' : 'POL'} (${polCountry || 'Origin'})</span>
+          <span class="lbl">${polCountry || 'Origin'}</span>
           <span class="val">${polCity || '—'}</span>
         </div>
         <span class="route-arrow">➔</span>
         <div class="route-badge-item" style="text-align:right;">
-          <span class="lbl">${tabName === 'AIR' ? 'AOD' : 'POD'} (${podCountry || 'Dest'})</span>
+          <span class="lbl">${podCountry || 'Destination'}</span>
           <span class="val">${podCity || '—'}</span>
         </div>
       </div>
