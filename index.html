@@ -7,9 +7,7 @@
 <meta name="description" content="RBM Logistics (PT Ridho Bangun Mandiri) — reliable sea, air, and land freight forwarding for import, export and domestic cargo in Indonesia.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
-<!-- LordIcon Animated Icons Library Script -->
-<script src="https://cdn.lordicon.com/lordicon.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600;700&amp;display=swap" rel="stylesheet">
 <style>
 /* ============ DARK THEME TOKENS & COMPACT LAYOUT ============ */
 :root{
@@ -109,7 +107,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .btn-wa{width:32px;height:32px;padding:0;border-radius:999px;background:var(--paper-card);border:1.5px solid var(--line-strong);color:var(--teal);display:inline-flex;align-items:center;justify-content:center;}
 .btn-wa:hover{background:var(--teal);color:#fff;border-color:var(--teal);}
 .btn-sm{padding:5px 10px;font-size:11.5px;}
-.btn-xs{padding:3px 7px;font-size:10.5px;}
+.btn-xs{padding:4px 8px;font-size:11px;}
 .btn-square{border-radius:5px;text-transform:uppercase;letter-spacing:.02em;}
 .btn-block{width:100%;}
 .btn-navy{background:var(--navy-700);color:#fff;}
@@ -152,68 +150,73 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 
 /* ============ FREIGHT RATES CARD & WIDGET ============ */
 .rates-preview-card{
-  background:var(--paper-card);color:var(--ink);border-radius:var(--radius);padding:10px 12px;box-shadow:var(--shadow-md);
-  display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);
+  background:var(--paper-card);color:var(--ink);border-radius:var(--radius);padding:12px;box-shadow:var(--shadow-md);
+  display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line-strong);
 }
 .rates-tabs-header{
-  display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:5px;gap:6px;
+  display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:6px;gap:6px;
 }
 .tab-buttons{display:flex;align-items:center;gap:4px;}
 .rate-tab-btn{
   background:var(--navy-800);border:1px solid var(--line-strong);color:var(--muted);
-  padding:3px 8px;font-size:10.5px;font-weight:800;border-radius:4px;cursor:pointer;transition:all .15s;
+  padding:4px 10px;font-size:11px;font-weight:800;border-radius:4px;cursor:pointer;transition:all .15s;
 }
 .rate-tab-btn:hover{color:#fff;}
 .rate-tab-btn.active{background:var(--orange);color:#fff;border-color:var(--orange);}
 
-.carousel-controls{display:flex;align-items:center;gap:3px;}
+.carousel-controls{display:flex;align-items:center;gap:4px;}
 .carousel-btn{
-  width:22px;height:22px;border-radius:4px;background:var(--navy-800);border:1px solid var(--line-strong);
-  color:#fff;display:flex;align-items:center;justify-content:center;padding:0;transition:background .15s;font-size:10px;
+  width:24px;height:24px;border-radius:4px;background:var(--navy-800);border:1px solid var(--line-strong);
+  color:#fff;display:flex;align-items:center;justify-content:center;padding:0;transition:background .15s;font-size:11px;
 }
 .carousel-btn:hover{background:var(--orange);border-color:var(--orange);}
 
-.rates-card-body{display:flex;flex-direction:column;gap:5px;margin:6px 0;min-height:180px;justify-content:center;}
+.rates-card-body{display:flex;flex-direction:column;gap:6px;margin:8px 0;min-height:220px;justify-content:center;}
 .rate-item-slide{display:none;}
 .rate-item-slide.active{display:flex;flex-direction:column;gap:6px;animation:fadein .2s ease;}
 
-.route-badge-row{display:flex;align-items:center;justify-content:space-between;background:var(--paper);padding:6px 8px;border-radius:4px;border:1px solid var(--line);}
+.route-badge-row{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--paper);padding:8px 10px;border-radius:6px;border:1px solid var(--line-strong);
+}
 .route-badge-item{display:flex;flex-direction:column;}
-.route-badge-item .lbl{font-size:8.5px;font-weight:700;text-transform:uppercase;color:var(--orange);}
-.route-badge-item .val{font-size:11.5px;font-weight:800;color:#fff;}
-.route-arrow{color:var(--orange);font-weight:bold;font-size:11px;}
+.route-badge-item .lbl{font-size:9px;font-weight:800;text-transform:uppercase;color:var(--orange);letter-spacing:.04em;}
+.route-badge-item .val{font-size:13px;font-weight:800;color:#fff;}
+.route-arrow{color:var(--orange);font-weight:bold;font-size:12px;}
 
-.charges-full-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;}
-.charge-mini-item{background:var(--paper);padding:5px 7px;border-radius:4px;border:1px solid var(--line);}
+.charges-full-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.charge-mini-item{
+  background:var(--paper);padding:6px 8px;border-radius:6px;border:1px solid var(--line-strong);
+  display:flex;flex-direction:column;justify-content:center;min-height:48px;
+}
 .charge-mini-item .lbl{
-  font-size:8.5px;font-weight:700;color:var(--teal);text-transform:uppercase;
+  font-size:9px;font-weight:800;color:var(--teal);text-transform:uppercase;
   display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  border-bottom:1px solid rgba(18,181,203,0.25);padding-bottom:2px;margin-bottom:2px;
+  border-bottom:1px solid rgba(18,181,203,0.25);padding-bottom:3px;margin-bottom:3px;letter-spacing:.02em;
 }
-.charge-mini-item .val{font-size:10px;font-weight:700;color:var(--ink);font-family:var(--font-mono);}
-.charge-mini-item.highlight{border-color:var(--orange);background:rgba(245,129,31,0.08);}
-.charge-mini-item.highlight .lbl{color:var(--orange);border-color:rgba(245,129,31,0.3);}
-.charge-mini-item.highlight .val{color:#fff;}
+.charge-mini-item .val{
+  font-size:11px;font-weight:700;color:#fff;font-family:var(--font-mono);line-height:1.2;
+}
 
-.rate-card-actions{display:grid;grid-template-columns:1fr 1fr;gap:5px;}
-.rate-card-counter{font-size:9.5px;color:var(--muted);text-align:center;font-family:var(--font-mono);}
+.rate-card-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:4px;}
+.rate-card-counter{font-size:10px;color:var(--muted);text-align:center;font-family:var(--font-mono);}
 
-/* ============ TRACK WIDGET ============ */
+/* ============ COMPACT TRACK WIDGET ============ */
 .hero-track{
-  background:var(--paper-card);color:var(--ink);border-radius:var(--radius);padding:10px 12px;box-shadow:var(--shadow-md);
-  display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);
+  background:var(--paper-card);color:var(--ink);border-radius:var(--radius);padding:12px;box-shadow:var(--shadow-md);
+  display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line-strong);gap:8px;
 }
-.hero-track h3{font-size:12.5px;font-weight:800;text-transform:uppercase;color:#fff;border-bottom:1px solid var(--line);padding-bottom:5px;}
-.hero-track label{font-size:10px;color:var(--muted);margin-top:3px;display:block;}
+.hero-track h3{font-size:12px;font-weight:800;text-transform:uppercase;color:#fff;border-bottom:1px solid var(--line);padding-bottom:6px;letter-spacing:.03em;}
+.hero-track label{font-size:10px;color:var(--muted);margin-top:2px;display:block;}
 .hero-track input{
-  padding:6px 8px;border-radius:4px;border:1px solid var(--line-strong);font-size:11.5px;
+  padding:7px 9px;border-radius:5px;border:1px solid var(--line-strong);font-size:11.5px;
   font-family:var(--font-mono);width:100%;background:var(--paper);color:#fff;
 }
 .hero-track input::placeholder{font-family:var(--font-body);color:var(--muted);}
 .hero-track input:focus{border-color:var(--orange);}
-.hero-track p{font-size:10px;color:var(--muted);margin-top:2px;}
+.hero-track p{font-size:9.5px;color:var(--muted);margin-top:0;}
 
-/* ============ SERVICES (WITH LORDICONS) ============ */
+/* ============ SERVICES (WITH CRISP SVG ICONS) ============ */
 .home-services{padding:16px 0 20px;}
 .home-section-head{text-align:center;}
 .home-section-head .kicker{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--orange);}
@@ -221,25 +224,33 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .svc-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:12px;}
 .svc-tile{
   background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 8px;
-  display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;
   transition:transform .15s, box-shadow .15s;
 }
 .svc-tile:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);border-color:var(--orange);}
-.svc-tile lord-icon{width:52px;height:52px;display:block;}
-.svc-tile h3{font-size:11px;font-weight:800;text-transform:uppercase;color:#fff;margin-top:4px;}
+.svc-tile .svc-icon-box{
+  width:42px;height:42px;border-radius:8px;background:var(--navy-800);border:1px solid var(--line-strong);
+  display:flex;align-items:center;justify-content:center;color:var(--teal);margin-bottom:2px;
+}
+.svc-tile .svc-icon-box svg{width:22px;height:22px;}
+.svc-tile h3{font-size:11px;font-weight:800;text-transform:uppercase;color:#fff;}
 .svc-tile p{font-size:9.5px;color:var(--muted);line-height:1.2;}
 .svc-tile .link-more{margin-top:auto;padding-top:4px;font-weight:700;font-size:9.5px;color:var(--orange);display:inline-flex;align-items:center;gap:2px;}
 .svc-tile .link-more svg{width:9px;height:9px;transition:transform .15s;}
 .svc-tile:hover .link-more svg{transform:translateX(2px);}
 
-/* ============ FULL SERVICES PAGE LORDICONS ============ */
+/* ============ FULL SERVICES PAGE SVG ICONS ============ */
 .svc-grid-full{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
 .svc-full-card{
   background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px 14px;
-  display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;
 }
 .svc-full-card .num{position:absolute;top:12px;right:12px;font-family:var(--font-mono);font-size:10px;color:var(--line-strong);font-weight:700;}
-.svc-full-card lord-icon{width:64px;height:64px;display:block;margin-bottom:2px;}
+.svc-full-card .svc-full-icon{
+  width:50px;height:50px;border-radius:10px;background:var(--navy-800);border:1px solid var(--line-strong);
+  display:flex;align-items:center;justify-content:center;color:var(--orange);margin-bottom:2px;
+}
+.svc-full-card .svc-full-icon svg{width:26px;height:26px;}
 .svc-full-card h3{font-size:14.5px;color:#fff;}
 .svc-full-card .pitch{font-family:var(--font-display);font-weight:700;font-size:11px;color:var(--orange);}
 .svc-full-card p.desc{color:var(--muted);font-size:11.5px;line-height:1.35;}
@@ -342,7 +353,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 }
 .rates-disclaimer-hint svg{width:14px;height:14px;color:var(--orange);flex-shrink:0;margin-top:1px;}
 
-/* ============ TRACKING PAGE COMPACT & PAPER SHEET CONTAINER ============ */
+/* ============ TRACKING PAGE COMPACT ============ */
 .track-panel{
   background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;
   box-shadow:var(--shadow-sm);margin-top:16px;position:relative;z-index:5;
@@ -410,11 +421,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
   flex:1;height:2px;
   background:repeating-linear-gradient(90deg,#f5811f 0 6px,transparent 6px 12px);
   position:relative;top:-6px;
-  animation:routeLinePulse 1.8s infinite ease-in-out;
-}
-@keyframes routeLinePulse{
-  0%,100%{opacity:0.35;}
-  50%{opacity:1;}
 }
 
 .vessel-row{
@@ -438,18 +444,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .stat-tile .v{font-size:10.5px;font-weight:700;color:#111827;margin-top:1px;}
 .dg-yes{color:#dc2626 !important;}
 
-.track-cargo-action{
-  margin-top:4px;
-  display:flex;
-  justify-content:flex-start;
-}
-
-.note-card{background:#ffffff;border:1px solid #e5e7eb;border-radius:5px;padding:5px 7px;display:flex;gap:6px;}
-.note-card + .note-card{margin-top:4px;}
-.note-card svg{width:12px;height:12px;color:#0d9488;flex-shrink:0;margin-top:1px;}
-.note-card.warn svg{color:#f5811f;}
-.note-card .txt{font-size:10.5px;color:#111827;}
-.note-card .txt b{display:block;font-size:8.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#6b7280;margin-bottom:1px;}
+.track-cargo-action{margin-top:4px;display:flex;justify-content:flex-start;}
 
 .paper-footer-stamp{
   margin-top:8px;padding-top:6px;border-top:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:flex-end;
@@ -459,34 +454,13 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .stamp-box b{display:block;font-size:8.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
 .stamp-box span{font-size:7.5px;font-weight:600;}
 
-@page {
-  size: A4 portrait;
-  margin: 5mm;
-}
+@page { size: A4 portrait; margin: 5mm; }
 @media print {
-  html, body {
-    margin: 0 !important;
-    padding: 0 !important;
-    background: #fff !important;
-    color: #000 !important;
-  }
+  html, body { margin: 0 !important; padding: 0 !important; background: #fff !important; color: #000 !important; }
   body * { visibility: hidden; }
   #resultCard, #resultCard * { visibility: visible; }
-  #resultCard {
-    position: absolute !important;
-    left: 0 !important;
-    top: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    box-shadow: none !important;
-    border: none !important;
-    background: #fff !important;
-    color: #000 !important;
-  }
+  #resultCard { position: absolute !important; left: 0 !important; top: 0 !important; width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; box-shadow: none !important; border: none !important; background: #fff !important; color: #000 !important; }
   .no-print { display: none !important; }
-  .route-line { animation: none !important; opacity: 1 !important; }
 }
 
 /* ============ QUOTE PAGE ============ */
@@ -713,14 +687,14 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
               </div>
             </div>
 
-            <!-- Track Shipment Box -->
+            <!-- Compact Track Shipment Box -->
             <div class="hero-track">
               <div>
                 <h3>Track Your Shipment</h3>
-                <label for="homeTrackInput">Enter AWB / HBL / Shipment Reference</label>
+                <label for="homeTrackInput">Enter AWB / HBL / Shipment Ref</label>
               </div>
-              <input id="homeTrackInput" type="text" placeholder="Enter AWB / HBL / Shipment Reference" enterkeyhint="go">
-              <button class="btn btn-primary btn-square" id="homeTrackBtn">Track Now <svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+              <input id="homeTrackInput" type="text" placeholder="e.g. AWB123456" enterkeyhint="go">
+              <button class="btn btn-primary btn-square btn-sm" id="homeTrackBtn">Track Now <svg viewBox="0 0 24 24" fill="none" width="13" height="13"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
               <p>Real-time updates every step of the way.</p>
             </div>
 
@@ -862,7 +836,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
   </div>
 </section>
 
-<!-- ============ SERVICES PAGE (WITH LORDICON ANIMATED ICONS) ============ -->
+<!-- ============ SERVICES PAGE (WITH CLEAN STATIC SVG ICONS) ============ -->
 <section class="page" id="page-services">
   <div class="page-hero">
     <div class="wrap">
@@ -907,7 +881,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
     <div class="wrap">
       <span class="breadcrumb">RBM Logistics / <b>Freight Rates</b></span>
       <h1>Standard Indicative Freight Rates</h1>
-      <p>Browse indicative LCL, FCL, and Air freight rates with exact sheet headers mapped directly from Google Spreadsheets.</p>
+      <p>Browse indicative LCL, FCL, and Air freight rates with exact sheet headers mapped directly from Row 1 of Google Spreadsheets.</p>
     </div>
   </div>
 
@@ -1014,7 +988,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
           </div>
           <div class="paper-doc-meta">
             <div class="paper-doc-title">Cargo Tracking Report</div>
-            <div class="paper-timestamp" id="reportTimestamp">Generated on: Oct 23, 2026 WIB</div>
+            <div class="paper-timestamp" id="reportTimestamp">Generated on: Oct 24, 2026 WIB</div>
           </div>
         </div>
 
@@ -1345,48 +1319,42 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 
 <script>
 /* ============================================================
-   DATA — SERVICES WITH SPECIFIED ANIMATED LORDICONS
+   DATA — SERVICES WITH STATIC CLEAN SVG ICONS
    ============================================================ */
 const SERVICES = [
   {
     key:"sea", short:"FCL & LCL shipping solutions with competitive rates and reliable carriers.", title:"Sea Freight", pitch:"FCL & LCL, always tracked",
     desc:"Full and less-than-container shipping with competitive rates and reliable carriers across major trade lanes.",
-    lordicon:'src="https://cdn.lordicon.com/pfzzedfl.json" trigger="loop" delay="1500" colors="primary:#12b5cb,secondary:#f5811f"',
     icon:'<path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 5V3" stroke="currentColor" stroke-width="1.8"/>',
     features:["Weekly sailings on core lanes","FCL 20'/40'/40'HC & LCL consolidation","Live carrier tracking updates"]
   },
   {
     key:"air", short:"Fast and flexible air freight solutions for your time-sensitive shipments.", title:"Air Freight", pitch:"When speed is the priority",
     desc:"Fast, flexible air freight solutions for time-sensitive shipments, from same-day to consolidated cargo.",
-    lordicon:'src="https://cdn.lordicon.com/lsbpikid.json" trigger="loop" delay="1500" colors="primary:#12b5cb,secondary:#f5811f"',
     icon:'<path d="M2 13l9-2 5-9 2 1-3 8 5-1 3 3-6 2-3 6-2-1 2-5-5 2-2-2 4-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>',
     features:["Priority & standard air options","Charter capacity for oversized loads","Real-time AWB status"]
   },
   {
     key:"customs", short:"Import & export customs clearance and documentation handled by experts.", title:"Customs Clearance", pitch:"Zero-surprise paperwork",
     desc:"Import & export customs clearance and documentation handled by licensed, experienced brokers.",
-    lordicon:'src="https://cdn.lordicon.com/vufzv2.json" trigger="loop" delay="1500" colors="primary:#12b5cb,secondary:#f5811f"',
     icon:'<rect x="4" y="7" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.8"/>',
     features:["PIB / PEB filing & duty calculation","HS code classification support","Bonded warehouse coordination"]
   },
   {
     key:"trucking", short:"Port, warehouse and door-to-door trucking services with modern fleet.", title:"Trucking", pitch:"Port to door, on time",
     desc:"Port, warehouse and door-to-door trucking services with a modern, reliable fleet.",
-    lordicon:'src="https://cdn.lordicon.com/mvik9482.json" trigger="loop" delay="1500" colors="primary:#12b5cb,secondary:#f5811f"',
     icon:'<path d="M3 16V7a1 1 0 0 1 1-1h9v10" stroke="currentColor" stroke-width="1.8"/><path d="M13 10h4l4 4v2h-3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="18" r="2" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="18" r="2" stroke="currentColor" stroke-width="1.8"/>',
     features:["Container & LTL trucking fleet","Cross-Jawa & inter-island routes","Real-time driver dispatch"]
   },
   {
     key:"special", short:"Machinery, project cargo, DG, oversized and special handling.", title:"Special Cargo", pitch:"Oversized? Dangerous? Handled.",
     desc:"Machinery, project cargo, dangerous goods, oversized and other special handling requirements.",
-    lordicon:'src="https://cdn.lordicon.com/fptaoyna.json" trigger="loop" delay="1500" colors="primary:#12b5cb,secondary:#f5811f"',
     icon:'<rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 9h16M9 4v16" stroke="currentColor" stroke-width="1.8"/>',
     features:["DG-certified handling & documentation","Heavy-lift & project cargo planning","Custom crating and lashing"]
   },
   {
     key:"multimodal", short:"Integrated sea, air and land solutions from origin to destination.", title:"Multimodal Transport", pitch:"One route, every mode",
     desc:"Integrated sea, air and land solutions planned end to end from origin to final destination.",
-    lordicon:'src="https://cdn.lordicon.com/qhgwoikw.json" trigger="loop" delay="1500" colors="primary:#12b5cb,secondary:#f5811f"',
     icon:'<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.7 4 6.3 4 9s-1.5 6.3-4 9c-2.5-2.7-4-6.3-4-9s1.5-6.3 4-9Z" stroke="currentColor" stroke-width="1.8"/>',
     features:["Single point of contact, one invoice","Route optimisation for cost or speed","Consolidated tracking across modes"]
   }
@@ -1417,7 +1385,7 @@ function iconSvg(inner){ return `<svg viewBox="0 0 24 24" fill="none">${inner}</
 
 document.getElementById('homeServiceGrid').innerHTML = SERVICES.map(s=>`
   <div class="svc-tile">
-    <lord-icon ${s.lordicon}></lord-icon>
+    <div class="svc-icon-box">${iconSvg(s.icon)}</div>
     <h3>${s.title}</h3>
     <p>${s.short}</p>
     <a class="link-more" href="#" data-nav="services">Learn more ${iconSvg('<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>')}</a>
@@ -1429,7 +1397,7 @@ document.getElementById('homeCargoList').innerHTML = HOME_CARGO.map(c=>`<li>${ic
 document.getElementById('servicesFullGrid').innerHTML = SERVICES.map((s,i)=>`
   <div class="svc-full-card">
     <span class="num">0${i+1}</span>
-    <lord-icon ${s.lordicon}></lord-icon>
+    <div class="svc-full-icon">${iconSvg(s.icon)}</div>
     <div class="pitch">${s.pitch}</div>
     <h3>${s.title}</h3>
     <p class="desc">${s.desc}</p>
@@ -1481,7 +1449,6 @@ document.getElementById('mobileClose').addEventListener('click', closeMobileMenu
 mobileMenu.addEventListener('click', (e)=>{ if(e.target === mobileMenu) closeMobileMenu(); });
 function closeMobileMenu(){ mobileMenu.classList.remove('open'); }
 
-/* Stat counters & autocomplete setup omitted for brevity in block execution */
 const counters = document.querySelectorAll('[data-count]');
 const countObserver = new IntersectionObserver((entries)=>{
   entries.forEach(en=>{
@@ -1707,7 +1674,7 @@ document.getElementById('homeTrackBtn').addEventListener('click', ()=>{
 });
 
 /* ============================================================
-   MULTI-TAB FREIGHT RATES MAPPED DIRECTLY FROM GOOGLE SHEETS
+   MULTI-TAB FREIGHT RATES — DYNAMIC ROW 1 HEADER FETCHING
    ============================================================ */
 const TAB_SHEET_NAMES = {
   'LCL': 'LCL%20Freight%20Rate',
@@ -1735,8 +1702,9 @@ async function fetchTabRatesData(tabName){
   const rawRows = json.table.rows.map(r => (r.c || []).map(c => c ? (c.f ?? c.v) : ''));
   if(!rawRows.length) return { headers: [], rows: [] };
 
-  // EXACT SHEET HEADER ROW (Row 1)
+  /* DYNAMIC ROW 1 FIELD LABELS DIRECTLY FROM THE SPREADSHEET */
   const headers = rawRows[0].map(h => cleanVal(h));
+  /* ROW 2 ONWARDS ARE DATA ROWS */
   const rows = rawRows.slice(1).filter(r => r.some(cell => cleanVal(cell) !== ''));
 
   tabRatesParsed[tabName] = { headers, rows };
@@ -1748,19 +1716,21 @@ function buildFullHeaderRateCardHtml(r, tabName){
   if (!data || !data.headers.length) return '';
 
   const headers = data.headers;
-  const polCountry = cleanVal(r[0]);
-  const polCity = cleanVal(r[1]);
-  const podCountry = cleanVal(r[2]);
-  const podCity = cleanVal(r[3]);
+  
+  /* POL / POD Locations from Row Data */
+  const polCountry = cleanVal(r[0]) || 'ORIGIN';
+  const polCity = cleanVal(r[1]) || '—';
+  const podCountry = cleanVal(r[2]) || 'DESTINATION';
+  const podCity = cleanVal(r[3]) || '—';
 
+  /* Dynamic Grid of Cards derived directly from ROW 1 Headers */
   let chargeItemsHtml = '';
-  for(let i = 0; i < headers.length; i++){
+  for(let i = 4; i < headers.length; i++){
     const headerTitle = headers[i] || `Column ${i+1}`;
     const cellValue = cleanVal(r[i]) || '—';
-    const isMainFreight = headerTitle.toLowerCase().includes('freight');
     
     chargeItemsHtml += `
-      <div class="charge-mini-item ${isMainFreight ? 'highlight' : ''}">
+      <div class="charge-mini-item">
         <span class="lbl" title="${headerTitle}">${headerTitle}</span>
         <span class="val">${cellValue}</span>
       </div>
@@ -1771,12 +1741,12 @@ function buildFullHeaderRateCardHtml(r, tabName){
     <div class="rate-item-slide active">
       <div class="route-badge-row">
         <div class="route-badge-item">
-          <span class="lbl">${headers[0] || 'POL'}: ${polCountry}</span>
+          <span class="lbl">${headers[0] || 'POL COUNTRY'}: ${polCountry}</span>
           <span class="val">${polCity}</span>
         </div>
         <span class="route-arrow">➔</span>
         <div class="route-badge-item" style="text-align:right;">
-          <span class="lbl">${headers[2] || 'POD'}: ${podCountry}</span>
+          <span class="lbl">${headers[2] || 'POD COUNTRY'}: ${podCountry}</span>
           <span class="val">${podCity}</span>
         </div>
       </div>
