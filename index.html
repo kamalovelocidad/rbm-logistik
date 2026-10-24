@@ -134,6 +134,10 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 }
 .hero h1 .accent{color:var(--orange);display:block;}
 .hero p.lead{margin-top:8px;font-size:14px;color:#c9d8e6;max-width:480px;}
+.hero-modes{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px;}
+.hero-modes li{display:flex;align-items:center;gap:6px;}
+.hero-modes span{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;max-width:85px;line-height:1.2;}
+.hero-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
 
 /* ============ HERO WIDGETS DUAL ROW ============ */
 .hero-widgets-row{
@@ -186,59 +190,21 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .rate-card-counter{font-size:9.5px;color:var(--muted);text-align:center;font-family:var(--font-mono);}
 
 /* ============ COMPACT TRACK WIDGET ============ */
-.hero-track {
-  background: var(--paper-card);
-  color: var(--ink);
-  border-radius: var(--radius);
-  padding: 8px 10px;
-  box-shadow: var(--shadow-md);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border: 1px solid var(--line);
-  gap: 6px;
+.hero-track{
+  background:var(--paper-card);color:var(--ink);border-radius:var(--radius);padding:8px 10px;box-shadow:var(--shadow-md);
+  display:flex;flex-direction:column;gap:6px;border:1px solid var(--line);justify-content:center;
 }
-.hero-track h3 {
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: #fff;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 3px;
-  margin: 0;
+.hero-track h3{font-size:11.5px;font-weight:800;text-transform:uppercase;color:#fff;border-bottom:1px solid var(--line);padding-bottom:3px;margin:0;}
+.hero-track .track-input-group{display:flex;gap:4px;margin-top:2px;}
+.hero-track input{
+  padding:5px 7px;border-radius:4px;border:1px solid var(--line-strong);font-size:11px;
+  font-family:var(--font-mono);width:100%;background:var(--paper);color:#fff;
 }
-.hero-track label {
-  font-size: 9px;
-  color: var(--muted);
-  margin-top: 2px;
-  display: block;
-}
-.hero-track input {
-  padding: 4px 6px;
-  border-radius: 4px;
-  border: 1px solid var(--line-strong);
-  font-size: 11px;
-  font-family: var(--font-mono);
-  width: 100%;
-  background: var(--paper);
-  color: #fff;
-}
-.hero-track input::placeholder {
-  font-family: var(--font-body);
-  color: var(--muted);
-  font-size: 10px;
-}
-.hero-track .btn {
-  padding: 4px 8px;
-  font-size: 11px;
-}
-.hero-track p {
-  font-size: 9px;
-  color: var(--muted);
-  margin: 0;
-}
+.hero-track input::placeholder{font-family:var(--font-body);color:var(--muted);font-size:10px;}
+.hero-track input:focus{border-color:var(--orange);}
+.hero-track p{font-size:9.5px;color:var(--muted);margin:0;}
 
-/* ============ SERVICES ============ */
+/* ============ SERVICES (STABLE SVG ICONS) ============ */
 .home-services{padding:16px 0 20px;}
 .home-section-head{text-align:center;}
 .home-section-head .kicker{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--orange);}
@@ -256,8 +222,9 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .svc-tile h3{font-size:11px;font-weight:800;text-transform:uppercase;color:#fff;margin-top:2px;}
 .svc-tile p{font-size:9.5px;color:var(--muted);line-height:1.2;}
 .svc-tile .link-more{margin-top:auto;padding-top:4px;font-weight:700;font-size:9.5px;color:var(--orange);display:inline-flex;align-items:center;gap:2px;}
+.svc-tile .link-more svg{width:9px;height:9px;}
 
-/* ============ FULL SERVICES PAGE ============ */
+/* ============ FULL SERVICES PAGE ICONS ============ */
 .svc-grid-full{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
 .svc-full-card{
   background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px 14px;
@@ -271,6 +238,48 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .svc-full-card p.desc{color:var(--muted);font-size:11.5px;line-height:1.35;}
 .svc-full-card .feat{display:flex;flex-direction:column;gap:4px;margin-top:4px;}
 .svc-full-card .feat li{display:flex;gap:4px;font-size:11px;color:var(--ink);}
+.svc-full-card .feat svg{width:12px;height:12px;color:var(--teal);flex-shrink:0;margin-top:1px;}
+.cargo-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.cargo-tag{padding:4px 8px;border-radius:4px;background:var(--paper-card);border:1px solid var(--line);font-size:10.5px;font-weight:600;color:var(--ink);}
+
+/* ============ INFO BAND ============ */
+.info-band{position:relative;display:grid;grid-template-columns:1fr 1fr 1.2fr;padding:14px 0 16px;}
+.info-band::before{content:"";position:absolute;top:0;bottom:0;left:-50vw;right:-50vw;z-index:-1;background:var(--paper);}
+.info-col{padding:0 12px;border-right:1px solid var(--line);}
+.info-col:first-child{padding-left:0;}
+.info-col:last-child{border-right:none;padding-right:0;}
+.info-col h4{font-size:11.5px;font-weight:800;text-transform:uppercase;color:#fff;margin-bottom:8px;}
+.cargo-list{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;}
+.cargo-list li{display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--ink);}
+.cargo-list svg{width:13px;height:13px;color:var(--teal);flex-shrink:0;}
+.why-list{display:flex;flex-direction:column;gap:4px;}
+.why-list li{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink);}
+.why-list svg{width:12px;height:12px;color:var(--orange);flex-shrink:0;}
+.band-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding-bottom:8px;margin-bottom:8px;border-bottom:1px solid var(--line);}
+.band-stats b{display:block;font-family:var(--font-display);font-size:18px;font-weight:800;color:var(--orange);}
+.band-stats span{font-size:10.5px;color:var(--muted);line-height:1.2;display:block;}
+.industry-icons{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;}
+.industry-icon{display:flex;flex-direction:column;align-items:center;text-align:center;gap:3px;font-size:10px;color:var(--ink);line-height:1.2;}
+.industry-icon svg{width:18px;height:18px;color:var(--teal);}
+
+/* ============ HOME QUOTE PANEL ============ */
+.home-quote{position:relative;z-index:2;margin-top:20px;margin-bottom:16px;}
+.quote-panel{background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:14px 14px;}
+.quote-panel > h3{font-size:14px;font-weight:800;text-transform:uppercase;color:#fff;padding-bottom:6px;margin-bottom:10px;position:relative;}
+.quote-panel > h3::after{content:"";position:absolute;left:0;bottom:0;width:36px;height:2px;background:var(--orange);}
+.compact-form .form-grid{gap:6px;}
+.compact-form .field{gap:2px;}
+.compact-form .field label{font-size:10.5px;color:var(--ink);}
+.compact-form .field input,.compact-form .field select,.compact-form .field textarea{padding:6px 8px;font-size:11.5px;border-radius:4px;border-width:1px;background:var(--paper);color:#fff;border-color:var(--line-strong);}
+.compact-form .field textarea{min-height:42px;}
+.compact-form .field-row3{gap:5px;}
+.compact-form .btn-block{margin-top:10px;justify-content:center;}
+.lock-note{display:flex;align-items:center;gap:4px;margin-top:6px;font-size:10px;color:var(--muted);}
+
+/* ============ SECTION SHELL ============ */
+.section{padding:32px 0;}
+.section-tight{padding:24px 0;}
+.section-alt{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
 
 /* ============ PAGE HEADER ============ */
 .page-hero{
@@ -316,6 +325,23 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
   border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-md);
 }
 
+.rates-disclaimer-hint{
+  margin-top:16px;padding:10px 12px;border-radius:6px;background:var(--paper);border:1px solid var(--line);
+  font-size:11px;color:var(--muted);line-height:1.4;display:flex;align-items:flex-start;gap:6px;
+}
+.rates-disclaimer-hint svg{width:14px;height:14px;color:var(--orange);flex-shrink:0;margin-top:1px;}
+
+/* ============ TRACKING PAGE COMPACT & PAPER SHEET CONTAINER ============ */
+.track-panel{
+  background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;
+  box-shadow:var(--shadow-sm);margin-top:16px;position:relative;z-index:5;
+}
+.track-form{display:flex;gap:8px;flex-wrap:wrap;}
+.track-form input{
+  flex:1;min-width:200px;padding:8px 12px;border-radius:5px;border:1px solid var(--line-strong);
+  font-size:13px;font-family:var(--font-mono);letter-spacing:.02em;background:var(--paper);color:#fff;
+}
+.track-form input:focus{border-color:var(--orange);}
 .track-status-msg{margin-top:10px;padding:8px 10px;border-radius:5px;font-size:12.5px;display:none;}
 .track-status-msg.show{display:block;}
 .track-status-msg.error{background:rgba(225,29,72,0.15);color:#f43f5e;border:1px solid rgba(225,29,72,0.3);}
@@ -329,6 +355,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 @media (max-width:1240px){
   .main-nav button{padding:6px 6px;font-size:11px;}
   .home-grid{grid-template-columns:1fr;}
+  .home-quote{margin-top:20px;max-width:640px;width:100%;justify-self:center;}
   .svc-row{grid-template-columns:repeat(3,1fr);}
 }
 @media (max-width:1100px){
@@ -337,11 +364,18 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 }
 @media (max-width:980px){
   .hero-widgets-row{grid-template-columns:1fr 1fr;}
+  .info-band{grid-template-columns:1fr 1fr;row-gap:16px;}
+  .info-col:nth-child(2){border-right:none;padding-right:0;}
+  .info-col-wide{grid-column:1/-1;padding-left:0;}
   .svc-grid-full{grid-template-columns:repeat(2,1fr);}
 }
 @media (max-width:720px){
   .wrap-wide{padding:0 14px;}
   .svc-row{grid-template-columns:repeat(2,1fr);}
+  .info-band{grid-template-columns:1fr;}
+  .info-col{padding:0;border-right:none;}
+  .band-stats{grid-template-columns:repeat(2,1fr);}
+  .industry-icons{grid-template-columns:repeat(3,1fr);row-gap:8px;}
   .svc-grid-full{grid-template-columns:1fr;}
   .hero-widgets-row{grid-template-columns:1fr;}
 }
@@ -361,11 +395,15 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
     </a>
     <nav class="main-nav" aria-label="Primary">
       <button data-nav="home" class="active">Home</button>
+      <button data-nav="home" data-scroll="about-section">About</button>
       <button data-nav="services">Services</button>
       <button data-nav="rates">Freight Rates</button>
+      <button data-nav="track">Track Shipment</button>
+      <button data-nav="quote">Get a Quote</button>
+      <button data-nav="home" data-scroll="contact">Contact</button>
     </nav>
     <div class="nav-cta">
-      <button class="btn btn-primary btn-square" data-nav="rates">View Rates ➔</button>
+      <button class="btn btn-primary btn-square" data-nav="quote">Request Quote ➔</button>
     </div>
   </div>
 </header>
@@ -406,18 +444,18 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
               </div>
 
               <div class="rate-card-actions">
+                <button class="btn btn-primary btn-xs btn-square" id="homeWidgetGetQuoteBtn">Quote</button>
                 <button class="btn btn-navy btn-xs btn-square" data-nav="rates">Explore All ➔</button>
               </div>
             </div>
 
             <!-- Compact Track Shipment Box -->
             <div class="hero-track">
-              <div>
-                <h3>Track Your Shipment</h3>
-                <label for="homeTrackInput">Enter AWB / HBL / Shipment Reference</label>
+              <h3>Track Your Shipment</h3>
+              <div class="track-input-group">
+                <input id="homeTrackInput" type="text" placeholder="AWB / HBL / Ref No.">
+                <button class="btn btn-primary btn-xs btn-square" id="homeTrackBtn">Track</button>
               </div>
-              <input id="homeTrackInput" type="text" placeholder="Enter AWB / HBL / Shipment Reference">
-              <button class="btn btn-primary btn-square" id="homeTrackBtn">Track Now ➔</button>
               <p>Real-time updates every step of the way.</p>
             </div>
 
@@ -438,7 +476,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
   </div>
 </section>
 
-<!-- ============ SERVICES PAGE ============ -->
+<!-- ============ SERVICES PAGE (WITH STABLE SVG ICONS) ============ -->
 <section class="page" id="page-services">
   <div class="page-hero">
     <div class="wrap">
@@ -501,6 +539,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
         </div>
 
         <div class="rate-card-actions" style="margin-top:10px;">
+          <button class="btn btn-primary btn-sm btn-square" id="pageWidgetGetQuoteBtn">Request Quote for Route</button>
           <div class="rate-card-counter" id="pageRateCardCounter" style="display:flex;align-items:center;justify-content:center;">— / —</div>
         </div>
       </div>
@@ -639,21 +678,9 @@ function buildFullHeaderRateCardHtml(r, tabName){
   const podCity = cleanVal(r[3]);
 
   let chargeItemsHtml = '';
-  // Dynamically filter out POL/POD location columns to prevent repetition
-  for(let i = 0; i < headers.length; i++){
+  // Skip indices 0, 1, 2, 3 so POL/POD location boxes are completely removed
+  for(let i = 4; i < headers.length; i++){
     const headerTitle = headers[i] || `Column ${i+1}`;
-    const cleanTitle = headerTitle.trim().toLowerCase();
-
-    // Skip POL Country, POL City, POD Country, POD City
-    if (
-      cleanTitle.includes('pol country') ||
-      cleanTitle.includes('pol city') ||
-      cleanTitle.includes('pod country') ||
-      cleanTitle.includes('pod city')
-    ) {
-      continue;
-    }
-
     const cellValue = cleanVal(r[i]) || '—';
     
     chargeItemsHtml += `
@@ -668,12 +695,12 @@ function buildFullHeaderRateCardHtml(r, tabName){
     <div class="rate-item-slide active">
       <div class="route-badge-row">
         <div class="route-badge-item">
-          <span class="lbl">${headers[0] || 'POL COUNTRY'}: ${polCountry}</span>
+          <span class="lbl">${headers[0] || 'POL'}: ${polCountry}</span>
           <span class="val">${polCity}</span>
         </div>
         <span class="route-arrow">➔</span>
         <div class="route-badge-item" style="text-align:right;">
-          <span class="lbl">${headers[2] || 'POD COUNTRY'}: ${podCountry}</span>
+          <span class="lbl">${headers[2] || 'POD'}: ${podCountry}</span>
           <span class="val">${podCity}</span>
         </div>
       </div>
