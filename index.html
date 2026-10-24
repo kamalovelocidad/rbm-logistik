@@ -8,8 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
-<!-- LordIcon Animated Icons Library Script -->
-<script src="https://cdn.lordicon.com/lordicon.js"></script>
 <style>
 /* ============ DARK THEME TOKENS & COMPACT LAYOUT ============ */
 :root{
@@ -64,9 +62,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
   letter-spacing:.12em;text-transform:uppercase;color:var(--orange);
 }
 .eyebrow::before{content:"";width:12px;height:2px;background:var(--orange);border-radius:2px;}
-@media (prefers-reduced-motion: reduce){
-  *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;scroll-behavior:auto !important;}
-}
 
 /* ============ HEADER ============ */
 .site-header{
@@ -120,7 +115,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .wrap-wide{max-width:1300px;margin:0 auto;padding:0 20px;}
 .home-shell{position:relative;isolation:isolate;overflow:hidden;background:var(--bg);}
 .home-grid{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:16px;align-items:start;}
-#homeQuote,#about-section,#cargo-section,#contact{scroll-margin-top:70px;}
 
 /* ============ HERO ============ */
 .hero{
@@ -175,7 +169,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 
 .rates-card-body{display:flex;flex-direction:column;gap:5px;margin:6px 0;min-height:180px;justify-content:center;}
 .rate-item-slide{display:none;}
-.rate-item-slide.active{display:flex;flex-direction:column;gap:6px;animation:fadein .2s ease;}
+.rate-item-slide.active{display:flex;flex-direction:column;gap:6px;}
 
 .route-badge-row{display:flex;align-items:center;justify-content:space-between;background:var(--paper);padding:6px 8px;border-radius:4px;border:1px solid var(--line);}
 .route-badge-item{display:flex;flex-direction:column;}
@@ -213,7 +207,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .hero-track input:focus{border-color:var(--orange);}
 .hero-track p{font-size:10px;color:var(--muted);margin-top:2px;}
 
-/* ============ SERVICES (WITH LORDICONS) ============ */
+/* ============ SERVICES (STABLE SVG ICONS) ============ */
 .home-services{padding:16px 0 20px;}
 .home-section-head{text-align:center;}
 .home-section-head .kicker{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--orange);}
@@ -225,21 +219,23 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
   transition:transform .15s, box-shadow .15s;
 }
 .svc-tile:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);border-color:var(--orange);}
-.svc-tile lord-icon{width:52px;height:52px;display:block;}
-.svc-tile h3{font-size:11px;font-weight:800;text-transform:uppercase;color:#fff;margin-top:4px;}
+.svc-icon-wrap{width:44px;height:44px;border-radius:8px;background:rgba(18,181,203,0.1);display:flex;align-items:center;justify-content:center;color:var(--teal);margin-bottom:2px;}
+.svc-tile:hover .svc-icon-wrap{background:rgba(245,129,31,0.15);color:var(--orange);}
+.svc-icon-wrap svg{width:26px;height:26px;}
+.svc-tile h3{font-size:11px;font-weight:800;text-transform:uppercase;color:#fff;margin-top:2px;}
 .svc-tile p{font-size:9.5px;color:var(--muted);line-height:1.2;}
 .svc-tile .link-more{margin-top:auto;padding-top:4px;font-weight:700;font-size:9.5px;color:var(--orange);display:inline-flex;align-items:center;gap:2px;}
-.svc-tile .link-more svg{width:9px;height:9px;transition:transform .15s;}
-.svc-tile:hover .link-more svg{transform:translateX(2px);}
+.svc-tile .link-more svg{width:9px;height:9px;}
 
-/* ============ FULL SERVICES PAGE LORDICONS ============ */
+/* ============ FULL SERVICES PAGE ICONS ============ */
 .svc-grid-full{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
 .svc-full-card{
   background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px 14px;
   display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;
 }
 .svc-full-card .num{position:absolute;top:12px;right:12px;font-family:var(--font-mono);font-size:10px;color:var(--line-strong);font-weight:700;}
-.svc-full-card lord-icon{width:64px;height:64px;display:block;margin-bottom:2px;}
+.svc-full-icon{width:50px;height:50px;border-radius:10px;background:rgba(18,181,203,0.12);color:var(--teal);display:flex;align-items:center;justify-content:center;margin-bottom:4px;}
+.svc-full-icon svg{width:30px;height:30px;}
 .svc-full-card h3{font-size:14.5px;color:#fff;}
 .svc-full-card .pitch{font-family:var(--font-display);font-weight:700;font-size:11px;color:var(--orange);}
 .svc-full-card p.desc{color:var(--muted);font-size:11.5px;line-height:1.35;}
@@ -282,14 +278,10 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .compact-form .field-row3{gap:5px;}
 .compact-form .btn-block{margin-top:10px;justify-content:center;}
 .lock-note{display:flex;align-items:center;gap:4px;margin-top:6px;font-size:10px;color:var(--muted);}
-.lock-note svg{flex-shrink:0;}
 
 /* ============ SECTION SHELL ============ */
 .section{padding:32px 0;}
 .section-tight{padding:24px 0;}
-.section-head{max-width:520px;margin-bottom:20px;}
-.section-head h2{font-size:clamp(18px,2.2vw,24px);font-weight:800;margin-top:6px;color:#fff;}
-.section-head p{margin-top:6px;color:var(--muted);font-size:13.5px;}
 .section-alt{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
 
 /* ============ PAGE HEADER ============ */
@@ -358,214 +350,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .track-status-msg.error{background:rgba(225,29,72,0.15);color:#f43f5e;border:1px solid rgba(225,29,72,0.3);}
 .track-status-msg.loading{background:var(--teal-light);color:var(--teal);border:1px solid rgba(18,181,203,0.3);}
 
-.result-card{
-  margin-top:14px;
-  display:none;
-  background:#ffffff !important;
-  color:#111827 !important;
-  border-radius:var(--radius);
-  padding:16px 20px;
-  box-shadow:var(--shadow-md);
-  border:1px solid #d1d5db;
-  max-width:800px;
-  margin-left:auto;
-  margin-right:auto;
-}
-.result-card.show{display:block;animation:fadein .25s ease;}
-@keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
-
-.paper-pdf-header{
-  display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:10px;margin-bottom:10px;border-bottom:2px solid #111827;
-}
-.paper-brand{display:flex;align-items:center;gap:10px;}
-.paper-brand img{height:38px;width:auto;}
-.paper-company-title h2{font-size:15px;font-weight:900;color:#081726;letter-spacing:-.01em;}
-.paper-company-title p{font-size:9px;color:#4b5563;margin-top:1px;line-height:1.2;}
-.paper-doc-meta{text-align:right;}
-.paper-doc-title{font-size:12px;font-weight:800;color:#f5811f;text-transform:uppercase;letter-spacing:.04em;}
-.paper-timestamp{font-size:9px;font-family:var(--font-mono);color:#6b7280;margin-top:2px;}
-
-.result-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;padding-bottom:6px;border-bottom:1px dashed #e5e7eb;}
-.result-head .ref{font-family:var(--font-mono);font-size:10.5px;color:#6b7280;font-weight:600;}
-.result-head h3{font-size:14.5px;color:#111827;margin-top:1px;font-weight:800;}
-.status-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:999px;font-weight:700;font-size:10px;background:#ccfbf1;color:#0d9488;}
-.status-badge.done{background:#dcfce7;color:#15803d;}
-.status-badge.transit{background:#ffedd5;color:#c2410c;}
-
-.group-card{background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;padding:6px 8px;margin-top:6px;}
-.group-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
-.group-head-left{display:flex;align-items:center;gap:6px;}
-.group-icon{width:18px;height:18px;border-radius:99px;background:#ccfbf1;color:#0d9488;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.group-icon svg{width:10px;height:10px;}
-.group-title{font-family:var(--font-display);font-weight:700;font-size:11px;color:#111827;}
-
-.route-visual{display:flex;align-items:center;gap:8px;margin-bottom:2px;}
-.route-point{flex:0 0 auto;text-align:center;}
-.route-point .dot{width:7px;height:7px;border-radius:50%;background:#f5811f;margin:0 auto 2px;border:2px solid #f9fafb;box-shadow:0 0 0 2px #f5811f;}
-.route-point.dest .dot{background:#0d9488;box-shadow:0 0 0 2px #0d9488;}
-.route-point .lbl{font-size:8px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#6b7280;}
-.route-point .val{font-size:10.5px;font-weight:700;color:#111827;margin-top:1px;max-width:120px;}
-
-.route-line{
-  flex:1;height:2px;
-  background:repeating-linear-gradient(90deg,#f5811f 0 6px,transparent 6px 12px);
-  position:relative;top:-6px;
-  animation:routeLinePulse 1.8s infinite ease-in-out;
-}
-@keyframes routeLinePulse{
-  0%,100%{opacity:0.35;}
-  50%{opacity:1;}
-}
-
-.vessel-row{
-  display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;
-  background:#ffffff;border:1px solid #e5e7eb;border-radius:5px;padding:5px 7px;margin-bottom:4px;
-}
-.vessel-info{display:flex;align-items:center;gap:6px;}
-.vessel-info .icon{width:20px;height:20px;border-radius:99px;background:#1f2937;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.vessel-info .icon svg{width:10px;height:10px;}
-.vessel-info .k{font-size:8px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#6b7280;}
-.vessel-info .v{font-size:11px;font-weight:700;color:#111827;}
-
-.eta-row{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
-.eta-tile{background:#ffffff;border:1px solid #e5e7eb;border-radius:5px;padding:5px 7px;}
-.eta-tile .k{font-size:8px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#6b7280;}
-.eta-tile .v{font-size:11px;font-weight:700;color:#111827;margin-top:1px;font-family:var(--font-mono);}
-
-.stat-tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;}
-.stat-tile{background:#ffffff;border:1px solid #e5e7eb;border-radius:5px;padding:5px 7px;}
-.stat-tile .k{font-size:8px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#6b7280;}
-.stat-tile .v{font-size:10.5px;font-weight:700;color:#111827;margin-top:1px;}
-.dg-yes{color:#dc2626 !important;}
-
-.track-cargo-action{
-  margin-top:4px;
-  display:flex;
-  justify-content:flex-start;
-}
-
-.note-card{background:#ffffff;border:1px solid #e5e7eb;border-radius:5px;padding:5px 7px;display:flex;gap:6px;}
-.note-card + .note-card{margin-top:4px;}
-.note-card svg{width:12px;height:12px;color:#0d9488;flex-shrink:0;margin-top:1px;}
-.note-card.warn svg{color:#f5811f;}
-.note-card .txt{font-size:10.5px;color:#111827;}
-.note-card .txt b{display:block;font-size:8.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#6b7280;margin-bottom:1px;}
-
-.paper-footer-stamp{
-  margin-top:8px;padding-top:6px;border-top:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:flex-end;
-}
-.stamp-info{font-size:8px;color:#6b7280;line-height:1.2;}
-.stamp-box{border:1.5px dashed #0d9488;border-radius:4px;padding:3px 6px;text-align:center;color:#0d9488;}
-.stamp-box b{display:block;font-size:8.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
-.stamp-box span{font-size:7.5px;font-weight:600;}
-
-@page {
-  size: A4 portrait;
-  margin: 5mm;
-}
-@media print {
-  html, body {
-    margin: 0 !important;
-    padding: 0 !important;
-    background: #fff !important;
-    color: #000 !important;
-  }
-  body * { visibility: hidden; }
-  #resultCard, #resultCard * { visibility: visible; }
-  #resultCard {
-    position: absolute !important;
-    left: 0 !important;
-    top: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    box-shadow: none !important;
-    border: none !important;
-    background: #fff !important;
-    color: #000 !important;
-  }
-  .no-print { display: none !important; }
-  .route-line { animation: none !important; opacity: 1 !important; }
-}
-
-/* ============ QUOTE PAGE ============ */
-.quote-layout{display:grid;grid-template-columns:1.3fr .8fr;gap:20px;align-items:start;}
-.quote-card{background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow-sm);}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.field{display:flex;flex-direction:column;gap:4px;position:relative;}
-.field.full{grid-column:1/-1;}
-.field label{font-size:11.5px;font-weight:700;color:var(--ink);}
-.field label .req{color:var(--orange);}
-.field input,.field select,.field textarea{
-  padding:8px 10px;border-radius:999px;border:1px solid var(--line-strong);font-size:13px;
-  background:var(--paper);color:#fff;width:100%;
-}
-.field textarea{border-radius:8px;}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--orange);}
-.field textarea{resize:vertical;min-height:56px;}
-.field-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;grid-column:1/-1;}
-.autocomplete-list{
-  position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--paper-card);border:1px solid var(--line-strong);
-  border-radius:6px;box-shadow:var(--shadow-md);max-height:180px;overflow-y:auto;z-index:40;display:none;
-}
-.autocomplete-list.show{display:block;}
-.autocomplete-list button{
-  display:flex;width:100%;text-align:left;padding:7px 10px;background:none;border:none;font-size:12.5px;color:var(--ink);
-  justify-content:space-between;gap:6px;
-}
-.autocomplete-list button:hover,.autocomplete-list button.hi{background:var(--navy-800);}
-.autocomplete-list button .code{font-family:var(--font-mono);font-size:10.5px;color:var(--muted);}
-.autocomplete-list .empty{padding:8px 10px;font-size:11.5px;color:var(--muted);}
-.form-foot{margin-top:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.form-foot .lock{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:4px;}
-.form-foot .lock svg{width:12px;height:12px;}
-.quote-success{display:none;text-align:center;padding:24px 14px;}
-.quote-success.show{display:block;}
-.quote-success .tick{width:46px;height:46px;border-radius:50%;background:rgba(34,197,94,0.15);color:var(--success);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;}
-.quote-success .tick svg{width:22px;height:22px;}
-.quote-success h3{font-size:17px;color:#fff;}
-.quote-success p{margin-top:6px;color:var(--muted);font-size:13px;max-width:340px;margin-left:auto;margin-right:auto;}
-.side-card{background:var(--paper-card);border:1px solid var(--line);color:#fff;border-radius:var(--radius);padding:16px;margin-bottom:12px;}
-.side-card h4{font-size:13.5px;font-weight:700;}
-.side-card ul{margin-top:10px;display:flex;flex-direction:column;gap:8px;}
-.side-card li{display:flex;gap:8px;font-size:12px;color:var(--muted);}
-.side-card li b{color:#fff;display:block;font-size:12.5px;}
-.side-card .badge-num{width:22px;height:22px;border-radius:5px;background:var(--navy-700);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-weight:700;font-size:11px;flex-shrink:0;color:var(--orange);}
-
-/* ============ CONTACT COMPACT SECTION ============ */
-.side-card-contact{background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;}
-.side-card-contact h4{font-size:13.5px;color:#fff;padding-bottom:5px;border-bottom:1px solid var(--line);margin-bottom:8px;}
-.contact-list-compact{display:flex;flex-direction:column;gap:6px;}
-.contact-row{display:flex;gap:6px;align-items:flex-start;}
-.contact-row svg{width:14px;height:14px;color:var(--orange);flex-shrink:0;margin-top:2px;}
-.contact-row .l{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);}
-.contact-row .v{font-size:12px;font-weight:600;color:var(--ink);margin-top:1px;line-height:1.3;}
-.email-stack{display:flex;flex-direction:column;gap:1px;}
-.email-stack a:hover{color:var(--orange);text-decoration:underline;}
-
-/* ============ FOOTER ============ */
-.site-footer{background:var(--navy-950);color:var(--muted);padding:24px 0 0;border-top:1px solid var(--line);}
-.footer-grid{display:grid;grid-template-columns:1.2fr .8fr 1fr 1.3fr 1.1fr;gap:20px;padding-bottom:24px;border-bottom:1px solid var(--line);}
-.footer-brand{display:flex;align-items:center;gap:6px;margin-bottom:8px;}
-.footer-brand img{height:28px;}
-.footer-brand > span{font-family:var(--font-display);font-weight:800;font-size:16px;color:#fff;line-height:1.1;}
-.footer-brand em{font-style:normal;color:var(--orange);}
-.footer-brand small{display:block;font-family:var(--font-body);font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:1px;}
-.footer-col h5{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;margin-bottom:10px;}
-.footer-col ul{display:flex;flex-direction:column;gap:6px;}
-.footer-col a{font-size:12.5px;color:var(--muted);}
-.footer-col a:hover{color:var(--orange);}
-.footer-desc{font-size:12px;color:var(--muted);max-width:250px;margin-bottom:10px;}
-.footer-social{display:flex;gap:6px;}
-.footer-social a{width:30px;height:30px;border-radius:50%;background:var(--paper-card);display:flex;align-items:center;justify-content:center;border:1px solid var(--line);}
-.footer-social a:hover{background:var(--orange);color:#fff;}
-.footer-social svg{width:13px;height:13px;}
-.footer-contact-item{display:flex;gap:6px;font-size:12px;color:var(--muted);margin-bottom:6px;}
-.footer-contact-item a:hover{color:var(--orange);}
-.footer-contact-item svg{width:14px;height:14px;flex-shrink:0;margin-top:2px;color:var(--orange);}
-.footer-bottom{padding:12px 0;text-align:center;font-size:11px;color:var(--muted);}
-
 /* ============ PAGES SHOW/HIDE ============ */
 .page{display:none;}
 .page.active{display:block;}
@@ -576,7 +360,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
   .home-grid{grid-template-columns:1fr;}
   .home-quote{margin-top:20px;max-width:640px;width:100%;justify-self:center;}
   .svc-row{grid-template-columns:repeat(3,1fr);}
-  .footer-grid{grid-template-columns:repeat(3,1fr);}
 }
 @media (max-width:1100px){
   .main-nav{display:none;}
@@ -588,38 +371,17 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
   .info-col:nth-child(2){border-right:none;padding-right:0;}
   .info-col-wide{grid-column:1/-1;padding-left:0;}
   .svc-grid-full{grid-template-columns:repeat(2,1fr);}
-  .quote-layout{grid-template-columns:1fr;}
-  .form-grid{grid-template-columns:1fr;}
-  .field-row3{grid-template-columns:1fr;}
-  .footer-grid{grid-template-columns:1fr 1fr;}
 }
 @media (max-width:720px){
   .wrap-wide{padding:0 14px;}
-  .nav-cta .btn-primary{display:none;}
   .svc-row{grid-template-columns:repeat(2,1fr);}
   .info-band{grid-template-columns:1fr;}
   .info-col{padding:0;border-right:none;}
   .band-stats{grid-template-columns:repeat(2,1fr);}
   .industry-icons{grid-template-columns:repeat(3,1fr);row-gap:8px;}
   .svc-grid-full{grid-template-columns:1fr;}
-  .footer-grid{grid-template-columns:1fr;}
-  .hero{padding-top:20px;}
-  .track-panel,.rates-panel{margin-top:12px;padding:12px;}
   .hero-widgets-row{grid-template-columns:1fr;}
 }
-.mobile-menu{
-  display:none;position:fixed;inset:0;z-index:300;background:rgba(4,12,22,.8);
-}
-.mobile-menu.open{display:block;}
-.mobile-panel{
-  position:absolute;top:0;right:0;bottom:0;width:78%;max-width:280px;background:var(--paper-card);padding:16px 14px;
-  display:flex;flex-direction:column;gap:4px;box-shadow:-10px 0 30px rgba(0,0,0,.5);border-left:1px solid var(--line);
-}
-.mobile-panel button.nav-item{
-  text-align:left;padding:8px 10px;font-size:13.5px;font-weight:700;color:var(--ink);border:none;background:none;border-radius:6px;
-}
-.mobile-panel button.nav-item.active{background:var(--navy-800);color:var(--orange);}
-.mobile-close{align-self:flex-end;width:30px;height:30px;border-radius:50%;background:var(--paper);border:none;display:flex;align-items:center;justify-content:center;margin-bottom:6px;color:#fff;}
 </style>
 </head>
 <body>
@@ -644,29 +406,10 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
       <button data-nav="home" data-scroll="contact">Contact</button>
     </nav>
     <div class="nav-cta">
-      <button class="btn btn-primary btn-square" data-nav="quote">Request a Quote <svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
-      <a class="btn btn-wa" href="https://wa.me/6287889627228" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-        <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z" stroke="currentColor" stroke-width="1.6"></path><path d="M8.5 8.4c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .6.4.2.5.7 1.6.7 1.8.1.1.1.3 0 .4-.1.2-.1.3-.3.4-.1.2-.3.3-.4.5-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.2.4-.2.6-.1.2.1 1.5.7 1.8.9.3.1.5.2.5.3.1.5.1 1-.1 1.6-.3.6-1.4 1.2-2 1.2-.6.1-1.2.2-3.9-.8-3.3-1.3-5.4-4.6-5.5-4.8-.2-.2-1.3-1.7-1.3-3.2 0-1.6.8-2.3 1.1-2.6Z" fill="currentColor"></path></svg>
-      </a>
+      <button class="btn btn-primary btn-square" data-nav="quote">Request Quote ➔</button>
     </div>
-    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="#ffffff" stroke-width="2" stroke-linecap="round"></path></svg>
-    </button>
   </div>
 </header>
-
-<div class="mobile-menu" id="mobileMenu">
-  <div class="mobile-panel">
-    <button class="mobile-close" id="mobileClose">✕</button>
-    <button class="nav-item active" data-nav="home">Home</button>
-    <button class="nav-item" data-nav="home" data-scroll="about-section">About</button>
-    <button class="nav-item" data-nav="services">Services</button>
-    <button class="nav-item" data-nav="rates">Freight Rates</button>
-    <button class="nav-item" data-nav="track">Track Shipment</button>
-    <button class="nav-item" data-nav="quote">Get a Quote</button>
-    <button class="nav-item" data-nav="home" data-scroll="contact">Contact</button>
-  </div>
-</div>
 
 <!-- ============ HOME PAGE ============ -->
 <main>
@@ -680,10 +423,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
           <div class="hero-copy">
             <h1>Your cargo.<span class="accent">Our responsibility.</span></h1>
             <p class="lead">Reliable freight forwarding and logistics solutions for import, export and domestic cargo.</p>
-            <ul class="hero-modes" id="heroModes"><li><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M12 5V3" stroke="currentColor" stroke-width="1.8"></path></svg><span>Sea Freight</span></li><li><svg viewBox="0 0 24 24" fill="none"><path d="M2 13l9-2 5-9 2 1-3 8 5-1 3 3-6 2-3 6-2-1 2-5-5 2-2-2 4-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span>Air Freight</span></li><li><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="7" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.8"></rect><path d="M9 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.8"></path></svg><span>Customs Clearance</span></li><li><svg viewBox="0 0 24 24" fill="none"><path d="M3 16V7a1 1 0 0 1 1-1h9v10" stroke="currentColor" stroke-width="1.8"></path><path d="M13 10h4l4 4v2h-3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><circle cx="7" cy="18" r="2" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17" cy="18" r="2" stroke="currentColor" stroke-width="1.8"></circle></svg><span>Trucking</span></li><li><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M9 4v16" stroke="currentColor" stroke-width="1.8"></path></svg><span>Special Cargo</span></li></ul>
-            <div class="hero-actions">
-              <button class="btn btn-primary btn-square" data-nav="quote">Request a Quote <svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
-            </div>
           </div>
 
           <!-- Hero Side-By-Side Widgets Row -->
@@ -719,8 +458,8 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
                 <h3>Track Your Shipment</h3>
                 <label for="homeTrackInput">Enter AWB / HBL / Shipment Reference</label>
               </div>
-              <input id="homeTrackInput" type="text" placeholder="Enter AWB / HBL / Shipment Reference" enterkeyhint="go">
-              <button class="btn btn-primary btn-square" id="homeTrackBtn">Track Now <svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+              <input id="homeTrackInput" type="text" placeholder="Enter AWB / HBL / Shipment Reference">
+              <button class="btn btn-primary btn-square" id="homeTrackBtn">Track Now ➔</button>
               <p>Real-time updates every step of the way.</p>
             </div>
 
@@ -728,141 +467,20 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
         </div>
 
         <!-- Services overview -->
-        <section class="home-services" id="services-preview">
+        <section class="home-services">
           <div class="home-section-head">
             <span class="kicker">Our Services</span>
             <h2>End-to-End Logistics Solutions</h2>
           </div>
           <div class="svc-row" id="homeServiceGrid"></div>
         </section>
-
-        <!-- Cargo / Why / Stats + Industries -->
-        <section class="info-band" id="about-section">
-          <div class="info-col" id="cargo-section">
-            <h4>Cargo We Handle</h4>
-            <ul class="cargo-list" id="homeCargoList"></ul>
-          </div>
-          <div class="info-col">
-            <h4>Why Choose RBM Logistics?</h4>
-            <ul class="why-list">
-              <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="currentColor"></circle><path d="m7.5 12.5 3 3 6-6.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Open freight rates</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="currentColor"></circle><path d="m7.5 12.5 3 3 6-6.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Quotes within 1 business day</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="currentColor"></circle><path d="m7.5 12.5 3 3 6-6.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Track your shipment anytime</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="currentColor"></circle><path d="m7.5 12.5 3 3 6-6.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Sea, air, customs, and trucking in one place</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="currentColor"></circle><path d="m7.5 12.5 3 3 6-6.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Clear updates, no surprises</li>
-            </ul>
-          </div>
-          <div class="info-col info-col-wide">
-            <div class="band-stats">
-              <div><b data-count="2">2+</b><span>Years in Business</span></div>
-              <div><b data-count="90">90+</b><span>Shipments Handled</span></div>
-              <div><b style="font-size:12px;line-height:1.2;margin-top:2px;color:var(--orange);">China, Spain, Turkey, India, Australia, Singapore, USA</b><span>Countries Served</span></div>
-              <div><b style="font-size:13px;line-height:1.2;margin-top:2px;color:var(--orange);">1 business day</b><span>quote response</span></div>
-            </div>
-            <h4>Industries We Serve</h4>
-            <div class="industry-icons" id="industryRow"></div>
-          </div>
-        </section>
       </div>
-
-      <!-- Quote form -->
-      <aside class="home-quote" id="homeQuote">
-        <div class="quote-panel">
-          <h3>Request a Freight Quote</h3>
-          <form class="quote-form-js compact-form" action="https://formspree.io/f/xnpnendy" method="POST" novalidate="">
-            <div class="form-grid">
-              <div class="field full">
-                <label>Origin <span class="req">*</span></label>
-                <input type="text" name="origin" placeholder="City or Port" autocomplete="off" required="">
-                <div class="autocomplete-list"></div>
-              </div>
-              <div class="field full">
-                <label>Destination <span class="req">*</span></label>
-                <input type="text" name="destination" placeholder="City or Port" autocomplete="off" required="">
-                <div class="autocomplete-list"></div>
-              </div>
-              <div class="field">
-                <label>Shipment Type <span class="req">*</span></label>
-                <select name="shipmentType" required="">
-                  <option value="">Select Type</option>
-                  <option>Sea Freight</option>
-                  <option>Air Freight</option>
-                  <option>Trucking</option>
-                  <option>Customs Clearance</option>
-                  <option>Special Cargo</option>
-                  <option>Multimodal Transportation</option>
-                </select>
-              </div>
-              <div class="field">
-                <label>LCL / FCL / AIR <span class="req">*</span></label>
-                <select name="fclLcl" required="">
-                  <option value="">Select</option>
-                  <option>LCL</option>
-                  <option>FCL 20'</option>
-                  <option>FCL 40'</option>
-                  <option>FCL 40' HC</option>
-                  <option>Air Freight</option>
-                </select>
-              </div>
-              <div class="field full">
-                <label>Commodity and HS Code <span class="req">*</span></label>
-                <input type="text" name="commodity" placeholder="e.g. Textiles (HS 6109.10)" required="">
-              </div>
-              <div class="field-row3">
-                <div class="field"><label>Packages</label><input type="number" min="0" name="packages" placeholder="e.g. 10"></div>
-                <div class="field"><label>Weight (kg)</label><input type="number" min="0" name="grossWeight" placeholder="e.g. 1000"></div>
-                <div class="field"><label>Vol (CBM)</label><input type="number" min="0" name="volume" placeholder="e.g. 5"></div>
-              </div>
-              <div class="field">
-                <label>Incoterm</label>
-                <select name="incoterm">
-                  <option value="">Select</option>
-                  <option>EXW</option><option>FOB</option><option>FCA</option>
-                  <option>CFR</option><option>CIF</option><option>DAP</option><option>DDP</option>
-                </select>
-              </div>
-              <div class="field">
-                <label>Ready Date</label>
-                <input type="date" name="readyDate">
-              </div>
-              <div class="field full">
-                <label>Special Requirements</label>
-                <textarea name="specialReq" placeholder="Tell us more about your shipment"></textarea>
-              </div>
-              <div class="field">
-                <label>Your Name <span class="req">*</span></label>
-                <input type="text" name="fullName" placeholder="Full Name" required="">
-              </div>
-              <div class="field">
-                <label>Company</label>
-                <input type="text" name="company" placeholder="Company Name">
-              </div>
-              <div class="field">
-                <label>Email <span class="req">*</span></label>
-                <input type="email" name="email" placeholder="you@company.com" required="">
-              </div>
-              <div class="field">
-                <label>WhatsApp / Phone <span class="req">*</span></label>
-                <input type="tel" name="phone" placeholder="+62 812 3456 7890" required="">
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary btn-square btn-block">Submit Request <svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
-            <p class="lock-note"><svg viewBox="0 0 24 24" fill="none" width="11" height="11"><rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.8"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.8"></path></svg>Your info is safe with us.</p>
-          </form>
-          <div class="quote-success">
-            <div class="tick"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
-            <h3>Request received</h3>
-            <p>Thanks — our team will review your route and get back to you within one business day.</p>
-            <button type="button" class="btn btn-ghost btn-sm new-quote-btn" style="margin-top:10px;">Submit another request</button>
-          </div>
-        </div>
-      </aside>
 
     </div>
   </div>
 </section>
 
-<!-- ============ SERVICES PAGE (WITH LORDICON ANIMATED ICONS) ============ -->
+<!-- ============ SERVICES PAGE (WITH STABLE SVG ICONS) ============ -->
 <section class="page" id="page-services">
   <div class="page-hero">
     <div class="wrap">
@@ -877,28 +495,6 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
       <div class="svc-grid-full" id="servicesFullGrid"></div>
     </div>
   </section>
-
-  <section class="section-tight section-alt">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Cargo We Handle</span>
-        <h2 style="font-size:18px;">Whatever the load, we've moved it before</h2>
-      </div>
-      <div class="cargo-tags" id="cargoTags"></div>
-    </div>
-  </section>
-
-  <section class="section-tight">
-    <div class="wrap">
-      <div class="cta-banner">
-        <div>
-          <h3>Not sure which service fits?</h3>
-          <p>Tell us your cargo and route — we'll recommend the right mode and Incoterm.</p>
-        </div>
-        <button class="btn btn-primary" data-nav="quote">Get a Quote →</button>
-      </div>
-    </div>
-  </section>
 </section>
 
 <!-- ============ FREIGHT RATES PAGE ============ -->
@@ -907,7 +503,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
     <div class="wrap">
       <span class="breadcrumb">RBM Logistics / <b>Freight Rates</b></span>
       <h1>Standard Indicative Freight Rates</h1>
-      <p>Browse indicative LCL, FCL, and Air freight rates with exact sheet headers mapped directly from Google Spreadsheets.</p>
+      <p>Browse indicative LCL, FCL, and Air freight rates with exact sheet headers mapped directly from Google Spreadsheets Row 1.</p>
     </div>
   </div>
 
@@ -915,18 +511,9 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
     <div class="rates-panel">
       <!-- Mode Switcher -->
       <div class="mode-switch-bar">
-        <button class="mode-switch-btn active" id="pageModeLclBtn" data-mode="LCL">
-          <svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>
-          LCL Freight Rates
-        </button>
-        <button class="mode-switch-btn" id="pageModeFclBtn" data-mode="FCL">
-          <svg viewBox="0 0 24 24" fill="none" width="14" height="14"><rect x="3" y="7" width="18" height="12" rx="1.5" stroke="currentColor" stroke-width="1.8"/><path d="M7 7v12M17 7v12" stroke="currentColor" stroke-width="1.8"/></svg>
-          FCL Freight Rates
-        </button>
-        <button class="mode-switch-btn" id="pageModeAirBtn" data-mode="AIR">
-          <svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M2 13l9-2 5-9 2 1-3 8 5-1 3 3-6 2-3 6-2-1 2-5-5 2-2-2 4-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
-          AIR Freight Rates
-        </button>
+        <button class="mode-switch-btn active" id="pageModeLclBtn" data-mode="LCL">LCL Freight Rates</button>
+        <button class="mode-switch-btn" id="pageModeFclBtn" data-mode="FCL">FCL Freight Rates</button>
+        <button class="mode-switch-btn" id="pageModeAirBtn" data-mode="AIR">AIR Freight Rates</button>
       </div>
 
       <!-- Filter Controls -->
@@ -960,869 +547,91 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
           <div class="rate-card-counter" id="pageRateCardCounter" style="display:flex;align-items:center;justify-content:center;">— / —</div>
         </div>
       </div>
-
-      <div class="rates-disclaimer-hint">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.8"/></svg>
-        <div>
-          <b>Freight Rates Note &amp; Disclaimer:</b> Cost listed is for freight charges only and does not include additional liner/carrier local charges if applicable. Rates apply for general cargo, stackable cargo, normal weight, volume &amp; measurement only. Please contact us for further details or custom quotes.
-        </div>
-      </div>
     </div>
   </div>
-
-  <section class="section-tight">
-    <div class="wrap">
-      <div class="cta-banner">
-        <div>
-          <h3>Need a custom rate?</h3>
-          <p>Rates vary based on volume, weight, and seasonality. Request a tailored quote for exact pricing.</p>
-        </div>
-        <button class="btn btn-primary" data-nav="quote">Request Custom Quote →</button>
-      </div>
-    </div>
-  </section>
-</section>
-
-<!-- ============ TRACKING PAGE ============ -->
-<section class="page" id="page-track">
-  <div class="page-hero">
-    <div class="wrap">
-      <span class="breadcrumb">RBM Logistics / <b>Track Shipment</b></span>
-      <h1>Track your shipment</h1>
-      <p>Enter your Project Number or AWB/HBL below to see the latest status of your cargo.</p>
-    </div>
-  </div>
-
-  <div class="wrap">
-    <div class="track-panel" id="trackPanel">
-      <div class="track-form">
-        <input type="text" id="trackInput" placeholder="Enter AWB / HBL / Shipment Reference">
-        <button class="btn btn-primary" id="trackBtn">Track Shipment →</button>
-      </div>
-
-      <div class="track-status-msg" id="trackMsg"></div>
-
-      <div class="result-card" id="resultCard">
-        <div class="paper-pdf-header">
-          <div class="paper-brand">
-            <img src="https://raw.githubusercontent.com/kamalovelocidad/rbm-logistik/refs/heads/main/Logo%20RBM%20150x150p.png" alt="RBM Logistics">
-            <div class="paper-company-title">
-              <h2>PT RIDHO BANGUN MANDIRI</h2>
-              <p>RBM Logistics — International Freight Forwarding &amp; Customs Brokerage<br>
-              Jl. Tarumanegara, Gg. Jengkol A1 No.1, Bekasi, Jawa Barat | +62 21 2210 6554</p>
-            </div>
-          </div>
-          <div class="paper-doc-meta">
-            <div class="paper-doc-title">Cargo Tracking Report</div>
-            <div class="paper-timestamp" id="reportTimestamp">Generated on: Oct 23, 2026 WIB</div>
-          </div>
-        </div>
-
-        <div class="result-head">
-          <div>
-            <div class="ref" id="resultRef">REF —</div>
-            <h3 id="resultTitle">—</h3>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;">
-            <span class="status-badge" id="resultBadge">—</span>
-            <button type="button" class="btn btn-primary btn-xs btn-square no-print" onclick="window.print()">📥 Export as PDF</button>
-          </div>
-        </div>
-
-        <div class="group-card">
-          <div class="group-head">
-            <div class="group-head-left">
-              <span class="group-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"></circle></svg></span>
-              <span class="group-title">Shipment Info</span>
-            </div>
-          </div>
-          <div class="stat-tiles" id="grpInfo"></div>
-        </div>
-
-        <div class="group-card">
-          <div class="group-head">
-            <div class="group-head-left">
-              <span class="group-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-6-7-11a7 7 0 1 1 14 0c0 5-7 11-7 11Z" stroke="currentColor" stroke-width="1.8"></path><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"></circle></svg></span>
-              <span class="group-title">Route</span>
-            </div>
-          </div>
-          <div class="route-visual" id="grpRoute"></div>
-        </div>
-
-        <div class="group-card">
-          <div class="group-head">
-            <div class="group-head-left">
-              <span class="group-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M9 4v16" stroke="currentColor" stroke-width="1.8"></path></svg></span>
-              <span class="group-title">Cargo Details</span>
-            </div>
-          </div>
-          <div class="stat-tiles" id="grpCargo"></div>
-        </div>
-
-        <div class="group-card">
-          <div class="group-head">
-            <div class="group-head-left">
-              <span class="group-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"></rect><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg></span>
-              <span class="group-title">Schedule</span>
-            </div>
-          </div>
-          <div class="eta-row" id="grpSchedule"></div>
-        </div>
-
-        <div class="group-card">
-          <div class="group-head">
-            <div class="group-head-left">
-              <span class="group-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg></span>
-              <span class="group-title">Carrier &amp; Vessel Information</span>
-            </div>
-          </div>
-          <div id="grpCarrier"></div>
-        </div>
-
-        <div class="group-card" id="grpNotesCard" style="display:none;">
-          <div class="group-head">
-            <div class="group-head-left">
-              <span class="group-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10Z" stroke="currentColor" stroke-width="1.8"></path></svg></span>
-              <span class="group-title">Notes</span>
-            </div>
-          </div>
-          <div id="grpNotes"></div>
-        </div>
-
-        <div class="paper-footer-stamp">
-          <div class="stamp-info">
-            This document is an electronically generated cargo status report issued by PT Ridho Bangun Mandiri.<br>
-            For official verification, contact <b>info@rbm-logistics.com</b> or call <b>+62 21 2210 6554</b>.
-          </div>
-          <div class="stamp-box">
-            <b>RBM LOGISTICS</b>
-            <span>VERIFIED REPORT</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <section class="section-tight">
-    <div class="wrap">
-      <div class="cta-banner">
-        <div>
-          <h3>Can't find your shipment?</h3>
-          <p>Reach our operations team on WhatsApp and we'll look it up for you.</p>
-        </div>
-        <a class="btn btn-primary" href="https://wa.me/6287889627228" target="_blank" rel="noopener">Chat on WhatsApp →</a>
-      </div>
-    </div>
-  </section>
-</section>
-
-<!-- ============ QUOTE PAGE ============ -->
-<section class="page" id="page-quote">
-  <div class="page-hero">
-    <div class="wrap">
-      <span class="breadcrumb">RBM Logistics / <b>Get a Quote</b></span>
-      <h1>Request a freight quote</h1>
-      <p>Tell us where your cargo is coming from and going to — we'll get back to you within one business day.</p>
-    </div>
-  </div>
-
-  <section class="section" style="padding-top:24px;">
-    <div class="wrap quote-layout">
-
-      <div class="quote-card">
-        <form id="quoteForm" class="quote-form-js" action="https://formspree.io/f/xnpnendy" method="POST" novalidate="">
-          <div class="form-grid">
-            <div class="field" id="originField">
-              <label>Origin <span class="req">*</span></label>
-              <input type="text" id="originInput" name="origin" placeholder="City or Port" autocomplete="off" required="">
-              <div class="autocomplete-list" id="originList"></div>
-            </div>
-            <div class="field" id="destField">
-              <label>Destination <span class="req">*</span></label>
-              <input type="text" id="destInput" name="destination" placeholder="City or Port" autocomplete="off" required="">
-              <div class="autocomplete-list" id="destList"></div>
-            </div>
-
-            <div class="field">
-              <label>Shipment Type <span class="req">*</span></label>
-              <select id="shipmentType" name="shipmentType" required="">
-                <option value="">Select Type</option>
-                <option>Sea Freight</option>
-                <option>Air Freight</option>
-                <option>Trucking</option>
-                <option>Customs Clearance</option>
-                <option>Special Cargo</option>
-                <option>Multimodal Transportation</option>
-              </select>
-            </div>
-            <div class="field">
-              <label>LCL / FCL / AIR <span class="req">*</span></label>
-              <select id="fclLcl" name="fclLcl" required="">
-                <option value="">Select</option>
-                <option>LCL</option>
-                <option>FCL 20'</option>
-                <option>FCL 40'</option>
-                <option>FCL 40' HC</option>
-                <option>Air Freight</option>
-              </select>
-            </div>
-
-            <div class="field full">
-              <label>Commodity and HS Code <span class="req">*</span></label>
-              <input type="text" id="commodity" name="commodity" placeholder="e.g. Textiles (HS 6109.10)" required="">
-            </div>
-
-            <div class="field-row3">
-              <div class="field">
-                <label>Packages</label>
-                <input type="number" min="0" id="packages" name="packages" placeholder="e.g. 10">
-              </div>
-              <div class="field">
-                <label>Weight (kg)</label>
-                <input type="number" min="0" id="grossWeight" name="grossWeight" placeholder="e.g. 1000">
-              </div>
-              <div class="field">
-                <label>Volume (CBM)</label>
-                <input type="number" min="0" id="volume" name="volume" placeholder="e.g. 5">
-              </div>
-            </div>
-
-            <div class="field">
-              <label>Incoterm</label>
-              <select id="incoterm" name="incoterm">
-                <option value="">Select</option>
-                <option>EXW</option><option>FOB</option><option>FCA</option>
-                <option>CFR</option><option>CIF</option><option>DAP</option><option>DDP</option>
-              </select>
-            </div>
-            <div class="field">
-              <label>Ready Date</label>
-              <input type="date" id="readyDate" name="readyDate">
-            </div>
-
-            <div class="field full">
-              <label>Special Requirements</label>
-              <textarea id="specialReq" name="specialReq" placeholder="Tell us more about your shipment"></textarea>
-            </div>
-
-            <div class="field">
-              <label>Your Name <span class="req">*</span></label>
-              <input type="text" id="fullName" name="fullName" placeholder="Full Name" required="">
-            </div>
-            <div class="field">
-              <label>Company</label>
-              <input type="text" id="company" name="company" placeholder="Company Name">
-            </div>
-            <div class="field">
-              <label>Email <span class="req">*</span></label>
-              <input type="email" id="email" name="email" placeholder="you@company.com" required="">
-            </div>
-            <div class="field">
-              <label>WhatsApp / Phone</label>
-              <input type="tel" id="phone" name="phone" placeholder="+62 812 3456 7890">
-            </div>
-          </div>
-
-          <div class="form-foot">
-            <span class="lock"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4Z" stroke="currentColor" stroke-width="1.6"></path></svg>Your information is safe with us.</span>
-            <button type="submit" class="btn btn-primary">Submit Request →</button>
-          </div>
-        </form>
-
-        <div class="quote-success">
-          <div class="tick"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
-          <h3>Request received</h3>
-          <p>Thanks — our team will review your route and get back to you within one business day.</p>
-          <button type="button" class="btn btn-ghost btn-sm new-quote-btn" style="margin-top:10px;">Submit another request</button>
-        </div>
-      </div>
-
-      <div>
-        <div class="side-card">
-          <h4>How a quote comes together</h4>
-          <ul>
-            <li><span class="badge-num">1</span><div><b>You tell us the route</b>Origin, destination, cargo and dates.</div></li>
-            <li><span class="badge-num">2</span><div><b>We check carrier rates</b>Sea, air and trucking options compared.</div></li>
-            <li><span class="badge-num">3</span><div><b>You get a clear quote</b>All-in pricing, transit time, and next steps.</div></li>
-          </ul>
-        </div>
-        <div class="side-card-contact">
-          <h4>Prefer to talk first?</h4>
-          <div class="contact-list-compact">
-            <div class="contact-row">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-6-7-11a7 7 0 1 1 14 0c0 5-7 11-7 11Z" stroke="currentColor" stroke-width="1.6"></path><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.6"></circle></svg>
-              <div><div class="l">Address</div><div class="v">Jl. Tarumanegara, Gg. Jengkol A1 No.1, Bekasi, Jawa Barat, Indonesia</div></div>
-            </div>
-            <div class="contact-row">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z" stroke="currentColor" stroke-width="1.6"></path></svg>
-              <div><div class="l">Phone</div><div class="v">+62 21 2210 6554</div></div>
-            </div>
-            <div class="contact-row">
-              <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="m3 7 9 6 9-6" stroke="currentColor" stroke-width="1.6"></path></svg>
-              <div>
-                <div class="l">Email</div>
-                <div class="v email-stack">
-                  <a href="mailto:info@rbm-logistics.com">info@rbm-logistics.com</a>
-                  <a href="mailto:sales@rbm-logistics.com">sales@rbm-logistics.com</a>
-                </div>
-              </div>
-            </div>
-            <div class="contact-row">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z" stroke="currentColor" stroke-width="1.6"></path></svg>
-              <div><div class="l">WhatsApp</div><div class="v">+62 878 8962 7228</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
 </section>
 
 </main>
 
-<!-- ============ FOOTER ============ -->
-<footer class="site-footer">
-  <div class="wrap-wide footer-grid">
-    <div>
-      <div class="footer-brand">
-        <img src="https://raw.githubusercontent.com/kamalovelocidad/rbm-logistik/refs/heads/main/Logo%20RBM%20150x150p.png" alt="RBM Logistics logo">
-        <span>RBM <em>LOGISTICS</em><small>PT Ridho Bangun Mandiri</small></span>
-      </div>
-      <p class="footer-desc">Reliable freight forwarding and logistics solutions for your business.</p>
-      <div class="footer-social">
-        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none"><path d="M6.5 9.5v9M6.5 6.5v.01M11 18.5v-5.2c0-1.8 1.2-3.3 3-3.3 1.7 0 2.5 1.2 2.5 3.3v5.2M11 9.5v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg></a>
-        <a href="https://wa.me/6287889627228" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z" stroke="currentColor" stroke-width="1.6"></path></svg></a>
-        <a href="mailto:info@rbm-logistics.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="m3 7 9 6 9-6" stroke="currentColor" stroke-width="1.6"></path></svg></a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h5>Quick Links</h5>
-      <ul>
-        <li><a data-nav="home" href="#">Home</a></li>
-        <li><a data-nav="home" data-scroll="about-section" href="#">About Us</a></li>
-        <li><a data-nav="services" href="#">Services</a></li>
-        <li><a data-nav="rates" href="#">Freight Rates</a></li>
-        <li><a data-nav="track" href="#">Track Shipment</a></li>
-        <li><a data-nav="quote" href="#">Get a Quote</a></li>
-        <li><a data-nav="home" data-scroll="contact" href="#">Contact Us</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5>Services</h5>
-      <ul id="footerServices"></ul>
-    </div>
-    <div class="footer-col" id="contact">
-      <h5>Contact Us</h5>
-      <div class="footer-contact-item">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-6-7-11a7 7 0 1 1 14 0c0 5-7 11-7 11Z" stroke="currentColor" stroke-width="1.6"></path></svg>
-        <span>Jl. Tarumanegara, Gg. Jengkol A1 No. 1<br>Bekasi, Jawa Barat, Indonesia</span>
-      </div>
-      <div class="footer-contact-item">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z" stroke="currentColor" stroke-width="1.6"></path></svg>
-        <span>+62 21 2210 6554</span>
-      </div>
-      <div class="footer-contact-item">
-        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="m3 7 9 6 9-6" stroke="currentColor" stroke-width="1.6"></path></svg>
-        <div class="email-stack">
-          <a href="mailto:info@rbm-logistics.com">info@rbm-logistics.com</a>
-          <a href="mailto:sales@rbm-logistics.com">sales@rbm-logistics.com</a>
-        </div>
-      </div>
-      <div class="footer-contact-item">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z" stroke="currentColor" stroke-width="1.6"></path></svg>
-        <a href="https://wa.me/6287889627228" target="_blank" rel="noopener">WhatsApp: +62 878 8962 7228</a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h5>Company</h5>
-      <p class="footer-desc">RBM Logistics is the trading brand of PT RIDHO BANGUN MANDIRI, an Indonesian logistics company committed to delivering reliable and efficient logistics solutions.</p>
-    </div>
-  </div>
-  <div class="footer-bottom">© <span id="year">2026</span> RBM Logistics — PT Ridho Bangun Mandiri. All Rights Reserved.</div>
-</footer>
-
 <script>
 /* ============================================================
-   DATA — SERVICES WITH SPECIFIED ANIMATED LORDICONS
+   SERVICES DATA WITH HIGH-QUALITY STABLE SVG ICONS
    ============================================================ */
 const SERVICES = [
   {
     key:"sea", short:"FCL & LCL shipping solutions with competitive rates and reliable carriers.", title:"Sea Freight", pitch:"FCL & LCL, always tracked",
     desc:"Full and less-than-container shipping with competitive rates and reliable carriers across major trade lanes.",
-    lordicon:'src="https://cdn.lordicon.com/pfzzedfl.json" trigger="loop" delay="1500" colors="primary:#12b5cb,secondary:#f5811f"', // Animated Ship Icon
-    icon:'<path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 5V3" stroke="currentColor" stroke-width="1.8"/>',
+    icon:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke-linejoin="round"/><path d="M12 5V3"/></svg>`,
     features:["Weekly sailings on core lanes","FCL 20'/40'/40'HC & LCL consolidation","Live carrier tracking updates"]
   },
   {
     key:"air", short:"Fast and flexible air freight solutions for your time-sensitive shipments.", title:"Air Freight", pitch:"When speed is the priority",
     desc:"Fast, flexible air freight solutions for time-sensitive shipments, from same-day to consolidated cargo.",
-    lordicon:'src="https://cdn.lordicon.com/lsbpikid.json" trigger="loop" delay="1500" colors="primary:#12b5cb,secondary:#f5811f"', // Animated Airplane Icon
-    icon:'<path d="M2 13l9-2 5-9 2 1-3 8 5-1 3 3-6 2-3 6-2-1 2-5-5 2-2-2 4-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>',
+    icon:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 13l9-2 5-9 2 1-3 8 5-1 3 3-6 2-3 6-2-1 2-5-5 2-2-2 4-2Z" stroke-linejoin="round"/></svg>`,
     features:["Priority & standard air options","Charter capacity for oversized loads","Real-time AWB status"]
   },
   {
     key:"customs", short:"Import & export customs clearance and documentation handled by experts.", title:"Customs Clearance", pitch:"Zero-surprise paperwork",
     desc:"Import & export customs clearance and documentation handled by licensed, experienced brokers.",
-    lordicon:'src="https://cdn.lordicon.com/vufzv2.json" trigger="loop" delay="1500" colors="primary:#12b5cb,secondary:#f5811f"', // Animated Note with Check Icon
-    icon:'<rect x="4" y="7" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.8"/>',
+    icon:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>`,
     features:["PIB / PEB filing & duty calculation","HS code classification support","Bonded warehouse coordination"]
   },
   {
     key:"trucking", short:"Port, warehouse and door-to-door trucking services with modern fleet.", title:"Trucking", pitch:"Port to door, on time",
     desc:"Port, warehouse and door-to-door trucking services with a modern, reliable fleet.",
-    lordicon:'src="https://cdn.lordicon.com/mvik9482.json" trigger="loop" delay="1500" colors="primary:#12b5cb,secondary:#f5811f"', // Animated Truck Icon
-    icon:'<path d="M3 16V7a1 1 0 0 1 1-1h9v10" stroke="currentColor" stroke-width="1.8"/><path d="M13 10h4l4 4v2h-3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="18" r="2" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="18" r="2" stroke="currentColor" stroke-width="1.8"/>',
+    icon:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 16V7a1 1 0 0 1 1-1h9v10"/><path d="M13 10h4l4 4v2h-3" stroke-linejoin="round"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>`,
     features:["Container & LTL trucking fleet","Cross-Jawa & inter-island routes","Real-time driver dispatch"]
   },
   {
     key:"special", short:"Machinery, project cargo, DG, oversized and special handling.", title:"Special Cargo", pitch:"Oversized? Dangerous? Handled.",
     desc:"Machinery, project cargo, dangerous goods, oversized and other special handling requirements.",
-    lordicon:'src="https://cdn.lordicon.com/fptaoyna.json" trigger="loop" delay="1500" colors="primary:#12b5cb,secondary:#f5811f"', // Animated Container Icon
-    icon:'<rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 9h16M9 4v16" stroke="currentColor" stroke-width="1.8"/>',
+    icon:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16M9 4v16"/></svg>`,
     features:["DG-certified handling & documentation","Heavy-lift & project cargo planning","Custom crating and lashing"]
   },
   {
     key:"multimodal", short:"Integrated sea, air and land solutions from origin to destination.", title:"Multimodal Transport", pitch:"One route, every mode",
     desc:"Integrated sea, air and land solutions planned end to end from origin to final destination.",
-    lordicon:'src="https://cdn.lordicon.com/qhgwoikw.json" trigger="loop" delay="1500" colors="primary:#12b5cb,secondary:#f5811f"', // Animated Flat Truck Icon
-    icon:'<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.7 4 6.3 4 9s-1.5 6.3-4 9c-2.5-2.7-4-6.3-4-9s1.5-6.3 4-9Z" stroke="currentColor" stroke-width="1.8"/>',
+    icon:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 4 6.3 4 9s-1.5 6.3-4 9c-2.5-2.7-4-6.3-4-9s1.5-6.3 4-9Z"/></svg>`,
     features:["Single point of contact, one invoice","Route optimisation for cost or speed","Consolidated tracking across modes"]
   }
 ];
 
-const CARGO_TAGS = ["General Cargo","Dangerous Goods (DG)","Machinery","Project Cargo","Non-DG Chemical","Perishable Cargo","Oversized Cargo","E-commerce Parcels","Textile & Garments","Automotive Parts"];
-
-const HOME_CARGO = [
-  {n:"General Cargo", i:'<path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9" stroke="currentColor" stroke-width="1.6"/>'},
-  {n:"Non-DG Chemical", i:'<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3" stroke="currentColor" stroke-width="1.6"/>'},
-  {n:"Dangerous Goods (DG)", i:'<path d="M12 2 22 12 12 22 2 12 12 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 8v5M12 16v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>'},
-  {n:"Perishable Cargo", i:'<path d="M12 2v20M4 6l16 12M20 6 4 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'},
-  {n:"Machinery", i:'<circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'},
-  {n:"Oversized Cargo", i:'<rect x="3" y="7" width="18" height="12" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M7 7v12M11 7v12M15 7v12M3 4h18" stroke="currentColor" stroke-width="1.6"/>'},
-  {n:"Project Cargo", i:'<path d="M3 21h18M5 21V10l7-6 7 6v11" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 21v-5h6v5" stroke="currentColor" stroke-width="1.6"/>'}
-];
-
-const INDUSTRIES = [
-  {n:"Manufacturing", i:'<rect x="4" y="10" width="16" height="9" stroke="currentColor" stroke-width="1.6"/><path d="M4 10 8 6l4 4 4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>'},
-  {n:"Trading & Distribution", i:'<path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" stroke-width="1.6"/>'},
-  {n:"Automotive", i:'<path d="M3 16V7a1 1 0 0 1 1-1h9v10" stroke="currentColor" stroke-width="1.6"/><circle cx="7" cy="18" r="2" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="18" r="2" stroke="currentColor" stroke-width="1.6"/>'},
-  {n:"Electronics", i:'<rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/>'},
-  {n:"Chemical", i:'<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3" stroke="currentColor" stroke-width="1.6"/>'},
-  {n:"Construction & Project", i:'<path d="M3 21h18M6 21V9l6-4 6 4v12M10 21v-6h4v6" stroke="currentColor" stroke-width="1.6"/>'}
-];
-
-/* ============================================================
-   RENDER ANIMATED LORDICONS & CONTENT
-   ============================================================ */
-function iconSvg(inner){ return `<svg viewBox="0 0 24 24" fill="none">${inner}</svg>`; }
-
 document.getElementById('homeServiceGrid').innerHTML = SERVICES.map(s=>`
   <div class="svc-tile">
-    <lord-icon ${s.lordicon}></lord-icon>
+    <div class="svc-icon-wrap">${s.icon}</div>
     <h3>${s.title}</h3>
     <p>${s.short}</p>
-    <a class="link-more" href="#" data-nav="services">Learn more ${iconSvg('<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>')}</a>
+    <a class="link-more" href="#" data-nav="services">Learn more ➔</a>
   </div>`).join('');
-
-document.getElementById('heroModes').innerHTML = SERVICES.filter(s=>s.key!=='multimodal').map(s=>`<li>${iconSvg(s.icon)}<span>${s.title}</span></li>`).join('');
-document.getElementById('homeCargoList').innerHTML = HOME_CARGO.map(c=>`<li>${iconSvg(c.i)}${c.n}</li>`).join('');
 
 document.getElementById('servicesFullGrid').innerHTML = SERVICES.map((s,i)=>`
   <div class="svc-full-card">
     <span class="num">0${i+1}</span>
-    <lord-icon ${s.lordicon}></lord-icon>
+    <div class="svc-full-icon">${s.icon}</div>
     <div class="pitch">${s.pitch}</div>
     <h3>${s.title}</h3>
     <p class="desc">${s.desc}</p>
-    <ul class="feat">${s.features.map(f=>`<li>${iconSvg('<path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>')}${f}</li>`).join('')}</ul>
+    <ul class="feat">${s.features.map(f=>`<li>✓ ${f}</li>`).join('')}</ul>
   </div>`).join('');
-
-document.getElementById('cargoTags').innerHTML = CARGO_TAGS.map(t=>`<span class="cargo-tag">${t}</span>`).join('');
-document.getElementById('industryRow').innerHTML = INDUSTRIES.map(x=>`<span class="industry-icon">${iconSvg(x.i)}<span>${x.n}</span></span>`).join('');
-document.getElementById('footerServices').innerHTML = SERVICES.map(s=>`<li><a href="#" data-nav="services">${s.title}</a></li>`).join('');
-document.getElementById('year').textContent = new Date().getFullYear();
 
 /* ============================================================
    NAVIGATION
    ============================================================ */
-function goTo(pageId, scrollTarget, clickedBtn){
+function goTo(pageId){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+pageId).classList.add('active');
-
-  document.querySelectorAll('.main-nav button, .mobile-panel button').forEach(b => b.classList.remove('active'));
-  if (clickedBtn && clickedBtn.closest('.main-nav, .mobile-panel')) {
-    clickedBtn.classList.add('active');
-  } else {
-    const matchingBtn = document.querySelector(`.main-nav button[data-nav="${pageId}"]:not([data-scroll]), .main-nav button[data-scroll="${scrollTarget}"]`);
-    if (matchingBtn) matchingBtn.classList.add('active');
-  }
-
-  closeMobileMenu();
-  if(scrollTarget){
-    requestAnimationFrame(()=> document.getElementById(scrollTarget)?.scrollIntoView({behavior:'smooth'}));
-  } else {
-    window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
-  }
-
-  if(pageId === 'rates'){
-    loadFreightRatesPage(currentFreightPageMode);
-  }
+  window.scrollTo({top:0, behavior:'smooth'});
+  if(pageId === 'rates'){ loadFreightRatesPage(currentFreightPageMode); }
 }
 
 document.querySelectorAll('[data-nav]').forEach(el=>{
-  el.addEventListener('click', (e)=>{
-    e.preventDefault();
-    goTo(el.dataset.nav, el.dataset.scroll, el);
-  });
-});
-
-const mobileMenu = document.getElementById('mobileMenu');
-document.getElementById('menuToggle').addEventListener('click', ()=> mobileMenu.classList.add('open'));
-document.getElementById('mobileClose').addEventListener('click', closeMobileMenu);
-mobileMenu.addEventListener('click', (e)=>{ if(e.target === mobileMenu) closeMobileMenu(); });
-function closeMobileMenu(){ mobileMenu.classList.remove('open'); }
-
-/* ============================================================
-   STAT COUNTERS
-   ============================================================ */
-const counters = document.querySelectorAll('[data-count]');
-const countObserver = new IntersectionObserver((entries)=>{
-  entries.forEach(en=>{
-    if(en.isIntersecting){
-      const el = en.target, target = +el.dataset.count;
-      let cur = 0; const step = Math.max(1, Math.round(target/40));
-      const t = setInterval(()=>{
-        cur += step;
-        if(cur >= target){ cur = target; clearInterval(t); }
-        el.textContent = cur + '+';
-      }, 25);
-      countObserver.unobserve(el);
-    }
-  });
-},{threshold:.4});
-counters.forEach(c=>countObserver.observe(c));
-
-/* ============================================================
-   GLOBAL CITIES & PORTS AUTOCOMPLETE DATASET
-   ============================================================ */
-const CITIES = [
-  ["Jakarta, Indonesia","IDJKT"],["Surabaya, Indonesia","IDSUB"],["Bekasi, Indonesia","IDBKS"],
-  ["Semarang, Indonesia","IDSRG"],["Medan (Belawan), Indonesia","IDBLW"],["Makassar, Indonesia","IDMAK"],
-  ["Singapore","SGSIN"],["Kuala Lumpur, Malaysia","MYKUL"],["Port Klang, Malaysia","MYPKG"],
-  ["Bangkok, Thailand","THBKK"],["Laem Chabang, Thailand","THLCH"],["Ho Chi Minh City, Vietnam","VNSGN"],
-  ["Shanghai, China","CNSHA"],["Shenzhen, China","CNSZX"],["Guangzhou, China","CNCAN"],
-  ["Ningbo-Zhoushan, China","CNNGB"],["Qingdao, China","CNTAO"],["Hong Kong","HKHKG"],
-  ["Tokyo, Japan","JPTYO"],["Osaka, Japan","OSA"],["Busan, South Korea","KRPUS"],
-  ["Mumbai (Nhava Sheva), India","INNSA"],["Dubai, UAE","AEDXB"],["Rotterdam, Netherlands","NLRTM"],
-  ["Hamburg, Germany","DEHAM"],["Felixstowe, United Kingdom","GBFXT"],["Los Angeles, USA","USLAX"],
-  ["New York, USA","USNYC"],["Melbourne, Australia","AUMEL"],["Sydney, Australia","AUSYD"]
-];
-
-function setupAutocomplete(inputEl, listEl){
-  let hi = -1, matches = [];
-  function render(){
-    listEl.innerHTML = matches.length
-      ? matches.map((m,idx)=>`<button type="button" data-idx="${idx}" class="${idx===hi?'hi':''}">${m[0]}<span class="code">${m[1]}</span></button>`).join('')
-      : `<div class="empty">No matching city — you can still type it freely.</div>`;
-    listEl.classList.add('show');
-  }
-  inputEl.addEventListener('input', ()=>{
-    const q = inputEl.value.trim().toLowerCase();
-    hi = -1;
-    matches = q.length ? CITIES.filter(c=>c[0].toLowerCase().includes(q)).slice(0,8) : [];
-    if(q.length===0){ listEl.classList.remove('show'); return; }
-    render();
-  });
-  inputEl.addEventListener('keydown', (e)=>{
-    if(!listEl.classList.contains('show') || !matches.length) return;
-    if(e.key==='ArrowDown'){ e.preventDefault(); hi = Math.min(hi+1, matches.length-1); render(); }
-    if(e.key==='ArrowUp'){ e.preventDefault(); hi = Math.max(hi-1, 0); render(); }
-    if(e.key==='Enter' && hi>=0){ e.preventDefault(); inputEl.value = matches[hi][0]; listEl.classList.remove('show'); }
-    if(e.key==='Escape'){ listEl.classList.remove('show'); }
-  });
-  listEl.addEventListener('click', (e)=>{
-    const btn = e.target.closest('button[data-idx]');
-    if(!btn) return;
-    inputEl.value = matches[+btn.dataset.idx][0];
-    listEl.classList.remove('show');
-  });
-  document.addEventListener('click', (e)=>{
-    if(!inputEl.contains(e.target) && !listEl.contains(e.target)) listEl.classList.remove('show');
-  });
-}
-document.querySelectorAll('.quote-form-js input[name="origin"], .quote-form-js input[name="destination"]').forEach(inp=>{
-  setupAutocomplete(inp, inp.parentElement.querySelector('.autocomplete-list'));
+  el.addEventListener('click', (e)=>{ e.preventDefault(); goTo(el.dataset.nav); });
 });
 
 /* ============================================================
-   FORMSPREE QUOTE FORM HANDLING
+   MULTI-TAB FREIGHT RATES MAPPED DIRECTLY FROM ROW 1 HEADER
    ============================================================ */
-function setupQuoteForm(form){
-  const success = form.parentElement.querySelector('.quote-success');
-  const submitBtn = form.querySelector('button[type="submit"]');
-
-  form.addEventListener('submit', async function(e){
-    e.preventDefault();
-    let ok = true;
-    form.querySelectorAll('[required]').forEach(el=>{
-      if(!el.value.trim()){ ok=false; el.style.borderColor = '#f43f5e'; } else { el.style.borderColor=''; }
-    });
-    if(!ok){ return; }
-
-    const originalBtnText = submitBtn.innerHTML;
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending...';
-
-    try {
-      const formData = new FormData(form);
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (response.ok) {
-        form.style.display = 'none';
-        success.classList.add('show');
-      } else {
-        alert('Oops! There was a problem submitting your form. Please try again or email us directly.');
-      }
-    } catch (error) {
-      alert('Oops! There was a network problem submitting your form. Please check your internet connection.');
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = originalBtnText;
-    }
-  });
-
-  success.querySelector('.new-quote-btn').addEventListener('click', ()=>{
-    form.reset();
-    form.style.display = 'block';
-    success.classList.remove('show');
-  });
-}
-document.querySelectorAll('.quote-form-js').forEach(setupQuoteForm);
-
-/* ============================================================
-   LIVE SHIPMENT TRACKING & CARGO LINK
-   ============================================================ */
-const SHEET_ID  = "1TypMtS_OqVQ4xhwRgcNGpSqC-Zisec5Z897ByW5eDK8";
-const SHEET_GID = "0";
-const GVIZ_URL  = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}`;
-
-const COL = {
-  project:1, status:2, freight:3, role:4, term:5, pol:6, pod:7,
-  shipper:8, consignee:9, comment:12, delay:13, commodity:14, dg:15, packaging:16, cw:17, vol:18,
-  etd:23, eta:24, vessel:25, awbhbl:26, trackurl:36
-};
-
-let sheetRowsCache = null;
-async function loadSheet(){
-  if(sheetRowsCache) return sheetRowsCache;
-  let res;
-  try{
-    res = await fetch(GVIZ_URL);
-  }catch(networkErr){
-    throw new Error('Network request to Google Sheets failed: ' + networkErr.message);
-  }
-  if(!res.ok){
-    throw new Error('Google Sheets responded with status ' + res.status);
-  }
-  const text = await res.text();
-  const jsonStart = text.indexOf('{');
-  const jsonEnd = text.lastIndexOf('}');
-  let json = JSON.parse(text.substring(jsonStart, jsonEnd + 1));
-  sheetRowsCache = json.table.rows.map(r => (r.c || []).map(c => c ? (c.f ?? c.v) : null));
-  return sheetRowsCache;
-}
-
-function cleanVal(v){
-  if(v === null || v === undefined) return '';
-  const s = v.toString().trim();
-  return (s === '​' || s === '-' || s.toLowerCase() === 'null') ? '' : s;
-}
-
-const STATUS_STYLE = {
-  'SCHEDULE': {label:'Booking Confirmed', cls:''},
-  'DEPARTURE': {label:'Departed Origin', cls:'transit'},
-  'G O A L': {label:'Delivered', cls:'done'}
-};
-function statusInfo(raw){
-  const key = (raw||'').toString().trim().toUpperCase();
-  return STATUS_STYLE[key] || {label: raw || 'In Progress', cls:'transit'};
-}
-
-function showTrackMsg(kind, text){
-  const el = document.getElementById('trackMsg');
-  el.className = 'track-status-msg show ' + kind;
-  el.textContent = text;
-}
-function hideTrackMsg(){
-  document.getElementById('trackMsg').className = 'track-status-msg';
-}
-
-async function runTrack(query){
-  const q = (query || '').trim();
-  document.getElementById('resultCard').classList.remove('show');
-  if(!q){ showTrackMsg('error','Please enter a tracking reference.'); return; }
-
-  showTrackMsg('loading','Searching our shipment records…');
-  try{
-    const rows = await loadSheet();
-    const needle = q.toLowerCase();
-    
-    const exact = r => [r[COL.project], r[COL.awbhbl]].some(v => v && v.toString().toLowerCase().trim() === needle);
-    const partial = r => [r[COL.project], r[COL.awbhbl]].some(v => v && v.toString().toLowerCase().includes(needle));
-    
-    const row = rows.find(exact) || rows.find(partial);
-
-    if(!row){
-      showTrackMsg('error', `No shipment found for "${q}". Double-check your Project Number or AWB/HBL or contact us on WhatsApp.`);
-      return;
-    }
-    hideTrackMsg();
-    renderResult(row, q);
-  }catch(err){
-    console.error('Tracking fetch failed:', err);
-    showTrackMsg('error', (err && err.message) ? err.message : 'We could not reach the tracking system right now.');
-  }
-}
-
-function tile(k, v){
-  return `<div class="stat-tile"><div class="k">${k}</div><div class="v">${v || '—'}</div></div>`;
-}
-
-function renderResult(row, query){
-  const get = i => cleanVal(row[i]);
-  const st = statusInfo(get(COL.status));
-
-  const now = new Date();
-  const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-  const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
-  document.getElementById('reportTimestamp').textContent = `Generated on: ${dateStr} at ${timeStr} WIB`;
-
-  document.getElementById('resultRef').textContent = 'REF ' + (get(COL.project) || get(COL.awbhbl) || query);
-  document.getElementById('resultTitle').textContent = (get(COL.commodity) || 'Shipment') + ' — ' + (get(COL.pol) || '—') + ' → ' + (get(COL.pod) || '—');
-  const badge = document.getElementById('resultBadge');
-  badge.textContent = st.label;
-  badge.className = 'status-badge ' + st.cls;
-
-  document.getElementById('grpInfo').innerHTML = [
-    tile('Shipper', get(COL.shipper)),
-    tile('Consignee', get(COL.consignee)),
-    tile('Incoterm', get(COL.term)),
-    tile('Freight', get(COL.freight)),
-    tile('Direction', get(COL.role))
-  ].join('');
-
-  document.getElementById('grpRoute').innerHTML = `
-    <div class="route-point"><div class="dot"></div><div class="lbl">Origin</div><div class="val">${get(COL.pol) || '—'}</div></div>
-    <div class="route-line"></div>
-    <div class="route-point dest"><div class="dot"></div><div class="lbl">Destination</div><div class="val">${get(COL.pod) || '—'}</div></div>
-  `;
-
-  const dgVal = get(COL.dg);
-  document.getElementById('grpCargo').innerHTML = [
-    tile('Commodity and HS Code', get(COL.commodity)),
-    tile('Total Packages', get(COL.packaging)),
-    tile('Chargeable Weight', get(COL.cw) ? get(COL.cw) + ' kg' : '—'),
-    tile('Volume', get(COL.vol) ? get(COL.vol) + ' CBM' : '—'),
-    `<div class="stat-tile"><div class="k">Dangerous Goods</div><div class="v ${dgVal.toLowerCase()==='yes' ? 'dg-yes':''}">${dgVal || '—'}</div></div>`
-  ].join('');
-
-  document.getElementById('grpSchedule').innerHTML = `
-    <div class="eta-tile"><div class="k">ETD</div><div class="v">${get(COL.etd) || '—'}</div></div>
-    <div class="eta-tile"><div class="k">ETA</div><div class="v">${get(COL.eta) || '—'}</div></div>
-  `;
-
-  const rawVessel = get(COL.vessel);
-  const awb = get(COL.awbhbl);
-  let embedUrl = get(COL.trackurl);
-
-  let cleanVesselName = rawVessel;
-  let voyageCode = '';
-
-  if (rawVessel.includes('/')) {
-    const parts = rawVessel.split('/');
-    cleanVesselName = parts[0].trim();
-    voyageCode = parts.slice(1).join('/').trim();
-  } else if (rawVessel.includes('-')) {
-    const parts = rawVessel.split('-');
-    cleanVesselName = parts[0].trim();
-    voyageCode = parts.slice(1).join('-').trim();
-  }
-
-  let trackButtonHtml = '';
-  if (embedUrl) {
-    if (!embedUrl.startsWith('http://') && !embedUrl.startsWith('https://')) {
-      embedUrl = 'https://' + embedUrl;
-    }
-    trackButtonHtml = `
-      <div class="track-cargo-action">
-        <a href="${embedUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-square">
-          Track Cargo ↗
-        </a>
-      </div>
-    `;
-  }
-
-  document.getElementById('grpCarrier').innerHTML = `
-    <div class="vessel-row">
-      <div class="vessel-info">
-        <span class="icon"><svg viewBox="0 0 24 24" fill="none" width="10" height="10"><path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
-        <div>
-          <div class="k">Vessel / Carrier Name</div>
-          <div class="v">${cleanVesselName || '—'}</div>
-        </div>
-      </div>
-    </div>
-    <div class="stat-tiles" style="grid-template-columns:repeat(2,1fr);">
-      ${tile('Voyage / Flight Number', voyageCode || '—')}
-      ${tile('AWB / HBL Number', awb || '—')}
-    </div>
-    ${trackButtonHtml}
-  `;
-
-  const comment = get(COL.comment);
-  const delay = get(COL.delay);
-  const notesCard = document.getElementById('grpNotesCard');
-  if(comment || delay){
-    let html = '';
-    if(comment) html += `<div class="note-card"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10Z" stroke="currentColor" stroke-width="1.8"/></svg><div class="txt"><b>Operational Note</b>${comment}</div></div>`;
-    if(delay) html += `<div class="note-card warn"><svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.8"/></svg><div class="txt"><b>Delay Flag</b>${delay}</div></div>`;
-    document.getElementById('grpNotes').innerHTML = html;
-    notesCard.style.display = 'block';
-  } else {
-    notesCard.style.display = 'none';
-  }
-
-  document.getElementById('resultCard').classList.add('show');
-  document.getElementById('resultCard').scrollIntoView({behavior:'smooth', block:'nearest'});
-}
-
-document.getElementById('trackBtn').addEventListener('click', ()=> runTrack(document.getElementById('trackInput').value));
-document.getElementById('trackInput').addEventListener('keydown', e=>{ if(e.key==='Enter') runTrack(e.target.value); });
-
-document.getElementById('homeTrackBtn').addEventListener('click', ()=>{
-  const val = document.getElementById('homeTrackInput').value;
-  goTo('track');
-  document.getElementById('trackInput').value = val;
-  setTimeout(()=> runTrack(val), 150);
-});
-document.getElementById('homeTrackInput').addEventListener('keydown', e=>{
-  if(e.key==='Enter'){
-    const val = e.target.value;
-    goTo('track');
-    document.getElementById('trackInput').value = val;
-    setTimeout(()=> runTrack(val), 150);
-  }
-});
-
-/* ============================================================
-   MULTI-TAB FREIGHT RATES: EXACT SHEET HEADERS PER SHEET
-   ============================================================ */
+const SHEET_ID = "1TypMtS_OqVQ4xhwRgcNGpSqC-Zisec5Z897ByW5eDK8";
 const TAB_SHEET_NAMES = {
   'LCL': 'LCL%20Freight%20Rate',
   'FCL': 'FCL%20Freight%20Rate',
@@ -1830,56 +639,49 @@ const TAB_SHEET_NAMES = {
 };
 
 let tabRatesParsed = { LCL: null, FCL: null, AIR: null };
-
-/* State management for Homepage Widget Carousel */
 let randomWidgetRates = { LCL: [], FCL: [], AIR: [] };
 let homeWidgetIndex = { LCL: 0, FCL: 0, AIR: 0 };
 let currentActiveHomeTab = 'LCL';
 
-/* State management for Freight Rate Page Carousel & Filters */
 let currentFreightPageMode = 'LCL';
 let pageFilteredRates = [];
 let pageCurrentRateIndex = 0;
+
+function cleanVal(v){
+  if(v === null || v === undefined) return '';
+  const s = v.toString().trim();
+  return (s === '​' || s === '-' || s.toLowerCase() === 'null') ? '' : s;
+}
 
 async function fetchTabRatesData(tabName){
   if(tabRatesParsed[tabName]) return tabRatesParsed[tabName];
   const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${TAB_SHEET_NAMES[tabName]}`;
   const res = await fetch(url);
-  if(!res.ok) throw new Error('Failed to load ' + tabName + ' rates sheet.');
+  if(!res.ok) throw new Error('Failed to load ' + tabName + ' sheet.');
   const text = await res.text();
-  const jsonStart = text.indexOf('{');
-  const jsonEnd = text.lastIndexOf('}');
-  const json = JSON.parse(text.substring(jsonStart, jsonEnd + 1));
+  const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1));
   
-  const rawRows = json.table.rows.map(r => (r.c || []).map(c => c ? (c.f ?? c.v) : ''));
+  // FIX: Extract ROW 1 directly from json.table.cols!
+  const headers = json.table.cols.map(col => cleanVal(col.label || col.id));
 
-  if (!rawRows.length) return { headers: [], rows: [] };
+  // Data rows start directly at index 0 of json.table.rows
+  const rows = json.table.rows.map(r => (r.c || []).map(c => c ? (c.f ?? c.v) : '')).filter(r => r.some(cell => cleanVal(cell) !== ''));
 
-  // Row 1 contains the unique green header row for each sheet
-  const headers = rawRows[0].map(h => cleanVal(h));
-  const rows = rawRows.slice(1).filter(r => r.some(cell => cleanVal(cell) !== ''));
-
-  const parsedData = { headers, rows };
-  tabRatesParsed[tabName] = parsedData;
-  return parsedData;
+  tabRatesParsed[tabName] = { headers, rows };
+  return tabRatesParsed[tabName];
 }
 
-/* ============================================================
-   DYNAMIC CARD BUILDER (Unique per sheet headers)
-   ============================================================ */
 function buildFullHeaderRateCardHtml(r, tabName){
   const data = tabRatesParsed[tabName];
   if (!data || !data.headers.length) return '';
 
   const headers = data.headers;
-
   const polCountry = cleanVal(r[0]);
   const polCity = cleanVal(r[1]);
   const podCountry = cleanVal(r[2]);
   const podCity = cleanVal(r[3]);
 
   let chargeItemsHtml = '';
-  // Map every single column header from Row 1 with its corresponding data cell
   for(let i = 0; i < headers.length; i++){
     const headerTitle = headers[i] || `Column ${i+1}`;
     const cellValue = cleanVal(r[i]) || '—';
@@ -1897,12 +699,12 @@ function buildFullHeaderRateCardHtml(r, tabName){
     <div class="rate-item-slide active">
       <div class="route-badge-row">
         <div class="route-badge-item">
-          <span class="lbl">${headers[0] || 'POL Country'}: ${polCountry}</span>
+          <span class="lbl">${headers[0] || 'POL'}: ${polCountry}</span>
           <span class="val">${polCity}</span>
         </div>
         <span class="route-arrow">➔</span>
         <div class="route-badge-item" style="text-align:right;">
-          <span class="lbl">${headers[2] || 'POD Country'}: ${podCountry}</span>
+          <span class="lbl">${headers[2] || 'POD'}: ${podCountry}</span>
           <span class="val">${podCity}</span>
         </div>
       </div>
@@ -1913,31 +715,18 @@ function buildFullHeaderRateCardHtml(r, tabName){
   `;
 }
 
-/* ============================================================
-   HOMEPAGE FREIGHT RATE WIDGET
-   ============================================================ */
 async function initHomeRateWidget(tabName = 'LCL'){
   const widgetBody = document.getElementById('homeRateWidgetBody');
   widgetBody.innerHTML = `<div style="font-size:11.5px;color:var(--muted);text-align:center;">Loading ${tabName} rates...</div>`;
-
   try {
     const data = await fetchTabRatesData(tabName);
-    const rows = data.rows;
-
-    if(!rows.length) {
-      widgetBody.innerHTML = `<div style="font-size:11.5px;color:var(--muted);text-align:center;">No ${tabName} rates available.</div>`;
-      return;
+    if(!data.rows.length){ widgetBody.innerHTML = `<div style="font-size:11.5px;color:var(--muted);text-align:center;">No rates found.</div>`; return; }
+    if(!randomWidgetRates[tabName].length){
+      randomWidgetRates[tabName] = [...data.rows].sort(() => 0.5 - Math.random()).slice(0, 5);
     }
-
-    if(!randomWidgetRates[tabName].length) {
-      const shuffled = [...rows].sort(() => 0.5 - Math.random());
-      randomWidgetRates[tabName] = shuffled.slice(0, 5);
-    }
-
     renderHomeWidgetSlide(tabName);
   } catch(e){
-    console.error('Failed to init home widget rates:', e);
-    widgetBody.innerHTML = `<div style="font-size:11.5px;color:var(--muted);text-align:center;">Rates unavailable right now.</div>`;
+    widgetBody.innerHTML = `<div style="font-size:11.5px;color:var(--muted);text-align:center;">Rates unavailable.</div>`;
   }
 }
 
@@ -1945,21 +734,9 @@ function renderHomeWidgetSlide(tabName){
   const widgetBody = document.getElementById('homeRateWidgetBody');
   const rates = randomWidgetRates[tabName];
   const idx = homeWidgetIndex[tabName];
-
   if(!rates || !rates.length) return;
-
   const r = rates[idx];
-  const polCountry = cleanVal(r[0]);
-  const polCity = cleanVal(r[1]);
-  const podCountry = cleanVal(r[2]);
-  const podCity = cleanVal(r[3]);
-
-  const routeOrigin = `${polCity}, ${polCountry}`;
-  const routeDest = `${podCity}, ${podCountry}`;
-
   widgetBody.innerHTML = buildFullHeaderRateCardHtml(r, tabName);
-
-  document.getElementById('homeWidgetGetQuoteBtn').onclick = () => quoteForRoute(routeOrigin, routeDest, tabName === 'AIR' ? 'Air Freight' : 'Sea Freight', tabName);
 }
 
 document.querySelectorAll('.rates-preview-card .rate-tab-btn').forEach(btn => {
@@ -1973,63 +750,41 @@ document.querySelectorAll('.rates-preview-card .rate-tab-btn').forEach(btn => {
 
 document.getElementById('homeRatePrevBtn').addEventListener('click', ()=>{
   const rates = randomWidgetRates[currentActiveHomeTab];
-  if(!rates || !rates.length) return;
-  homeWidgetIndex[currentActiveHomeTab] = (homeWidgetIndex[currentActiveHomeTab] - 1 + rates.length) % rates.length;
-  renderHomeWidgetSlide(currentActiveHomeTab);
+  if(rates && rates.length){ homeWidgetIndex[currentActiveHomeTab] = (homeWidgetIndex[currentActiveHomeTab] - 1 + rates.length) % rates.length; renderHomeWidgetSlide(currentActiveHomeTab); }
 });
-
 document.getElementById('homeRateNextBtn').addEventListener('click', ()=>{
   const rates = randomWidgetRates[currentActiveHomeTab];
-  if(!rates || !rates.length) return;
-  homeWidgetIndex[currentActiveHomeTab] = (homeWidgetIndex[currentActiveHomeTab] + 1) % rates.length;
-  renderHomeWidgetSlide(currentActiveHomeTab);
+  if(rates && rates.length){ homeWidgetIndex[currentActiveHomeTab] = (homeWidgetIndex[currentActiveHomeTab] + 1) % rates.length; renderHomeWidgetSlide(currentActiveHomeTab); }
 });
 
-/* ============================================================
-   FREIGHT RATES PAGE (CAROUSEL & SEARCH)
-   ============================================================ */
 async function loadFreightRatesPage(mode = 'LCL'){
   currentFreightPageMode = mode;
-  document.getElementById('pageRateModeLabel').textContent = `${mode} Freight Rate Cards`;
-
+  document.getElementById('pageRateModeLabel').textContent = `${mode} Rate Sheet`;
   const msg = document.getElementById('ratesMsg');
   msg.className = 'track-status-msg show loading';
-  msg.textContent = `Loading latest ${mode} freight rates...`;
+  msg.textContent = `Loading ${mode} rates...`;
 
   try {
     const data = await fetchTabRatesData(mode);
     msg.className = 'track-status-msg';
-
-    populateCountryFilter(data.rows);
+    const countries = [...new Set(data.rows.map(r => cleanVal(r[0])).filter(Boolean))];
+    document.getElementById('countryFilter').innerHTML = `<option value="">All Countries</option>` + countries.map(c => `<option value="${c}">${c}</option>`).join('');
     applyPageRatesFilter();
-
-  } catch(err) {
-    console.error('Error fetching freight rates page:', err);
+  } catch(err){
     msg.className = 'track-status-msg show error';
-    msg.textContent = 'Unable to load rate sheet right now. Please try again later.';
+    msg.textContent = 'Unable to load rates.';
   }
-}
-
-function populateCountryFilter(rows){
-  const select = document.getElementById('countryFilter');
-  const countries = [...new Set(rows.map(r => cleanVal(r[0])).filter(Boolean))];
-  select.innerHTML = `<option value="">All Countries</option>` + countries.map(c => `<option value="${c}">${c}</option>`).join('');
 }
 
 function applyPageRatesFilter(){
   const data = tabRatesParsed[currentFreightPageMode];
   if(!data) return;
-
   const searchQ = (document.getElementById('ratesSearch').value || '').toLowerCase().trim();
   const countryQ = document.getElementById('countryFilter').value;
 
   pageFilteredRates = data.rows.filter(r => {
-    const polCountry = cleanVal(r[0]);
-    const matchesCountry = !countryQ || polCountry === countryQ;
-    const matchesSearch = !searchQ || r.some(cell => cleanVal(cell).toLowerCase().includes(searchQ));
-    return matchesCountry && matchesSearch;
+    return (!countryQ || cleanVal(r[0]) === countryQ) && (!searchQ || r.some(cell => cleanVal(cell).toLowerCase().includes(searchQ)));
   });
-
   pageCurrentRateIndex = 0;
   renderPageRateCard();
 }
@@ -2037,78 +792,30 @@ function applyPageRatesFilter(){
 function renderPageRateCard(){
   const cardBody = document.getElementById('pageRateCardBody');
   const counter = document.getElementById('pageRateCardCounter');
-  const mode = currentFreightPageMode;
-
   if(!pageFilteredRates.length){
-    cardBody.innerHTML = `<div style="font-size:12px;color:var(--muted);text-align:center;padding:20px 0;">No matching ${mode} freight rates found. Try adjusting your search query.</div>`;
+    cardBody.innerHTML = `<div style="font-size:12px;color:var(--muted);text-align:center;padding:20px 0;">No matching rates found.</div>`;
     counter.textContent = '0 / 0';
     return;
   }
-
   const r = pageFilteredRates[pageCurrentRateIndex];
-  const polCountry = cleanVal(r[0]);
-  const polCity = cleanVal(r[1]);
-  const podCountry = cleanVal(r[2]);
-  const podCity = cleanVal(r[3]);
-
-  const routeOrigin = `${polCity}, ${polCountry}`;
-  const routeDest = `${podCity}, ${podCountry}`;
-
-  cardBody.innerHTML = buildFullHeaderRateCardHtml(r, mode);
+  cardBody.innerHTML = buildFullHeaderRateCardHtml(r, currentFreightPageMode);
   counter.textContent = `${pageCurrentRateIndex + 1} of ${pageFilteredRates.length}`;
-
-  document.getElementById('pageWidgetGetQuoteBtn').onclick = () => quoteForRoute(routeOrigin, routeDest, mode === 'AIR' ? 'Air Freight' : 'Sea Freight', mode);
 }
 
 document.getElementById('pageRatePrevBtn').addEventListener('click', ()=>{
-  if(!pageFilteredRates.length) return;
-  pageCurrentRateIndex = (pageCurrentRateIndex - 1 + pageFilteredRates.length) % pageFilteredRates.length;
-  renderPageRateCard();
+  if(pageFilteredRates.length){ pageCurrentRateIndex = (pageCurrentRateIndex - 1 + pageFilteredRates.length) % pageFilteredRates.length; renderPageRateCard(); }
 });
-
 document.getElementById('pageRateNextBtn').addEventListener('click', ()=>{
-  if(!pageFilteredRates.length) return;
-  pageCurrentRateIndex = (pageCurrentRateIndex + 1) % pageFilteredRates.length;
-  renderPageRateCard();
+  if(pageFilteredRates.length){ pageCurrentRateIndex = (pageCurrentRateIndex + 1) % pageFilteredRates.length; renderPageRateCard(); }
 });
 
-document.getElementById('pageModeLclBtn').addEventListener('click', function(){
-  document.querySelectorAll('.mode-switch-bar button').forEach(b => b.classList.remove('active'));
-  document.getElementById('pageModeLclBtn').classList.add('active');
-  loadFreightRatesPage('LCL');
-});
-document.getElementById('pageModeFclBtn').addEventListener('click', function(){
-  document.querySelectorAll('.mode-switch-bar button').forEach(b => b.classList.remove('active'));
-  document.getElementById('pageModeFclBtn').classList.add('active');
-  loadFreightRatesPage('FCL');
-});
-document.getElementById('pageModeAirBtn').addEventListener('click', function(){
-  document.querySelectorAll('.mode-switch-bar button').forEach(b => b.classList.remove('active'));
-  document.getElementById('pageModeAirBtn').classList.add('active');
-  loadFreightRatesPage('AIR');
-});
+document.getElementById('pageModeLclBtn').addEventListener('click', ()=>{ document.querySelectorAll('.mode-switch-bar button').forEach(b=>b.classList.remove('active')); document.getElementById('pageModeLclBtn').classList.add('active'); loadFreightRatesPage('LCL'); });
+document.getElementById('pageModeFclBtn').addEventListener('click', ()=>{ document.querySelectorAll('.mode-switch-bar button').forEach(b=>b.classList.remove('active')); document.getElementById('pageModeFclBtn').classList.add('active'); loadFreightRatesPage('FCL'); });
+document.getElementById('pageModeAirBtn').addEventListener('click', ()=>{ document.querySelectorAll('.mode-switch-bar button').forEach(b=>b.classList.remove('active')); document.getElementById('pageModeAirBtn').classList.add('active'); loadFreightRatesPage('AIR'); });
 
 document.getElementById('ratesSearch').addEventListener('input', applyPageRatesFilter);
 document.getElementById('countryFilter').addEventListener('change', applyPageRatesFilter);
 
-function quoteForRoute(origin, dest, type = "Sea Freight", mode = "LCL"){
-  goTo('quote');
-  const originInp = document.querySelector('#page-quote input[name="origin"]');
-  const destInp = document.querySelector('#page-quote input[name="destination"]');
-  const typeSelect = document.querySelector('#page-quote select[name="shipmentType"]');
-  const fclLclSelect = document.querySelector('#page-quote select[name="fclLcl"]');
-  
-  if(originInp) originInp.value = origin;
-  if(destInp) destInp.value = dest;
-  if(typeSelect) typeSelect.value = type;
-  if(fclLclSelect) {
-    if(mode === 'AIR') fclLclSelect.value = 'Air Freight';
-    else if(mode === 'FCL') fclLclSelect.value = 'FCL 20\'';
-    else fclLclSelect.value = 'LCL';
-  }
-}
-
-// Initialize Rates on Load
 initHomeRateWidget('LCL');
 </script>
 </body>
