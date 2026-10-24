@@ -195,7 +195,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
   border-bottom:1px solid rgba(18,181,203,0.25);padding-bottom:3px;margin-bottom:3px;letter-spacing:.02em;
 }
 .charge-mini-item .val{
-  font-size:11px;font-weight:700;color:#fff;font-family:var(--font-mono);line-height:1.3;
+  font-size:11px;font-weight:700;color:#fff;font-family:var(--font-mono);line-height:1.3;white-space:pre-line;
 }
 
 .rate-card-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:4px;}
@@ -1674,7 +1674,7 @@ document.getElementById('homeTrackBtn').addEventListener('click', ()=>{
 });
 
 /* ============================================================
-   MULTI-TAB FREIGHT RATES — DYNAMIC ROW 1 HEADER FETCHING
+   MULTI-TAB FREIGHT RATES — DYNAMIC json.table.cols EXTRACTION
    ============================================================ */
 const TAB_SHEET_NAMES = {
   'LCL': 'LCL%20Freight%20Rate',
@@ -1698,14 +1698,14 @@ async function fetchTabRatesData(tabName){
   if(!res.ok) throw new Error('Failed to load ' + tabName + ' sheet.');
   const text = await res.text();
   const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1));
-  
-  const rawRows = json.table.rows.map(r => (r.c || []).map(c => c ? (c.f ?? c.v) : ''));
-  if(!rawRows.length) return { headers: [], rows: [] };
 
-  /* EXACT ROW 1 DYNAMIC FIELD LABELS FROM SHEET */
-  const headers = rawRows[0].map(h => cleanVal(h));
-  /* ROW 2 ONWARDS ARE DATA ROWS */
-  const rows = rawRows.slice(1).filter(r => r.some(cell => cleanVal(cell) !== ''));
+  /* 1. EXTRACT HEADERS DIRECTLY FROM json.table.cols */
+  const headers = (json.table.cols || []).map(col => cleanVal(col.label || col.id));
+
+  /* 2. PROCESS DATA ROWS FROM json.table.rows STARTING FROM INDEX 0 */
+  const rows = (json.table.rows || []).map(r => 
+    (r.c || []).map(cell => cell ? cleanVal(cell.f ?? cell.v) : '')
+  ).filter(r => r.some(c => cleanVal(c) !== ''));
 
   tabRatesParsed[tabName] = { headers, rows };
   return tabRatesParsed[tabName];
@@ -1723,7 +1723,7 @@ function buildFullHeaderRateCardHtml(r, tabName){
   const podCountry = cleanVal(r[2]) || 'INDONESIA';
   const podCity = cleanVal(r[3]) || '—';
 
-  /* Dynamic Grid of Cards derived directly from ROW 1 Headers */
+  /* Dynamic Grid of Cards derived directly from json.table.cols Headers */
   let chargeItemsHtml = '';
   for(let i = 4; i < headers.length; i++){
     const headerTitle = headers[i] || `Column ${i+1}`;
