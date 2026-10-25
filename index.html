@@ -140,6 +140,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .hero p.lead{margin-top:8px;font-size:14px;color:#c9d8e6;max-width:480px;}
 .hero-modes{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px;}
 .hero-modes li{display:flex;align-items:center;gap:6px;}
+.hero-modes img.svc-svg-icon{width:20px;height:20px;object-fit:contain;}
 .hero-modes span{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;max-width:85px;line-height:1.2;}
 .hero-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
 
@@ -216,7 +217,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .hero-track input:focus{border-color:var(--orange);}
 .hero-track p{font-size:9.5px;color:var(--muted);margin-top:0;}
 
-/* ============ SERVICES (WITH CRISP SVG ICONS) ============ */
+/* ============ SERVICES (WITH EXTERNAL SVG LINKS) ============ */
 .home-services{padding:16px 0 20px;}
 .home-section-head{text-align:center;}
 .home-section-head .kicker{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--orange);}
@@ -230,9 +231,9 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .svc-tile:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);border-color:var(--orange);}
 .svc-tile .svc-icon-box{
   width:42px;height:42px;border-radius:8px;background:var(--navy-800);border:1px solid var(--line-strong);
-  display:flex;align-items:center;justify-content:center;color:var(--teal);margin-bottom:2px;
+  display:flex;align-items:center;justify-content:center;color:var(--teal);margin-bottom:2px;padding:6px;
 }
-.svc-tile .svc-icon-box svg{width:22px;height:22px;}
+.svc-tile .svc-icon-box img.svc-svg-icon{width:100%;height:100%;object-fit:contain;}
 .svc-tile h3{font-size:11px;font-weight:800;text-transform:uppercase;color:#fff;}
 .svc-tile p{font-size:9.5px;color:var(--muted);line-height:1.2;}
 .svc-tile .link-more{margin-top:auto;padding-top:4px;font-weight:700;font-size:9.5px;color:var(--orange);display:inline-flex;align-items:center;gap:2px;}
@@ -248,9 +249,9 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .svc-full-card .num{position:absolute;top:12px;right:12px;font-family:var(--font-mono);font-size:10px;color:var(--line-strong);font-weight:700;}
 .svc-full-card .svc-full-icon{
   width:50px;height:50px;border-radius:10px;background:var(--navy-800);border:1px solid var(--line-strong);
-  display:flex;align-items:center;justify-content:center;color:var(--orange);margin-bottom:2px;
+  display:flex;align-items:center;justify-content:center;color:var(--orange);margin-bottom:2px;padding:8px;
 }
-.svc-full-card .svc-full-icon svg{width:26px;height:26px;}
+.svc-full-card .svc-full-icon img.svc-svg-icon{width:100%;height:100%;object-fit:contain;}
 .svc-full-card h3{font-size:14.5px;color:#fff;}
 .svc-full-card .pitch{font-family:var(--font-display);font-weight:700;font-size:11px;color:var(--orange);}
 .svc-full-card p.desc{color:var(--muted);font-size:11.5px;line-height:1.35;}
@@ -654,7 +655,7 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
           <div class="hero-copy">
             <h1>Your cargo.<span class="accent">Our responsibility.</span></h1>
             <p class="lead">Reliable freight forwarding and logistics solutions for import, export and domestic cargo.</p>
-            <ul class="hero-modes" id="heroModes"><li><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M12 5V3" stroke="currentColor" stroke-width="1.8"></path></svg><span>Sea Freight</span></li><li><svg viewBox="0 0 24 24" fill="none"><path d="M2 13l9-2 5-9 2 1-3 8 5-1 3 3-6 2-3 6-2-1 2-5-5 2-2-2 4-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg><span>Air Freight</span></li><li><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="7" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.8"></rect><path d="M9 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.8"></path></svg><span>Customs Clearance</span></li><li><svg viewBox="0 0 24 24" fill="none"><path d="M3 16V7a1 1 0 0 1 1-1h9v10" stroke="currentColor" stroke-width="1.8"></path><path d="M13 10h4l4 4v2h-3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><circle cx="7" cy="18" r="2" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17" cy="18" r="2" stroke="currentColor" stroke-width="1.8"></circle></svg><span>Trucking</span></li><li><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M9 4v16" stroke="currentColor" stroke-width="1.8"></path></svg><span>Special Cargo</span></li></ul>
+            <ul class="hero-modes" id="heroModes"></ul>
             <div class="hero-actions">
               <button class="btn btn-primary btn-square" data-nav="quote">Request a Quote <svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
             </div>
@@ -1319,43 +1320,43 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 
 <script>
 /* ============================================================
-   DATA — SERVICES WITH STATIC CLEAN SVG ICONS
+   DATA — SERVICES WITH EXTERNAL SVG LINKS
    ============================================================ */
 const SERVICES = [
   {
     key:"sea", short:"FCL & LCL shipping solutions with competitive rates and reliable carriers.", title:"Sea Freight", pitch:"FCL & LCL, always tracked",
     desc:"Full and less-than-container shipping with competitive rates and reliable carriers across major trade lanes.",
-    icon:'<path d="M3 21h18M4 18l1.5-8h13L20 18M6 10l1-5h10l1 5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 5V3" stroke="currentColor" stroke-width="1.8"/>',
+    iconUrl:"https://raw.githubusercontent.com/kamalovelocidad/rbm-logistik/55b1948c4c29b751727d93e80f05aedd75ea64a6/container-svgrepo-com.svg",
     features:["Weekly sailings on core lanes","FCL 20'/40'/40'HC & LCL consolidation","Live carrier tracking updates"]
   },
   {
     key:"air", short:"Fast and flexible air freight solutions for your time-sensitive shipments.", title:"Air Freight", pitch:"When speed is the priority",
     desc:"Fast, flexible air freight solutions for time-sensitive shipments, from same-day to consolidated cargo.",
-    icon:'<path d="M2 13l9-2 5-9 2 1-3 8 5-1 3 3-6 2-3 6-2-1 2-5-5 2-2-2 4-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>',
+    iconUrl:"https://raw.githubusercontent.com/kamalovelocidad/rbm-logistik/55b1948c4c29b751727d93e80f05aedd75ea64a6/airplane-christmas-holiday-svgrepo-com.svg",
     features:["Priority & standard air options","Charter capacity for oversized loads","Real-time AWB status"]
   },
   {
     key:"customs", short:"Import & export customs clearance and documentation handled by experts.", title:"Customs Clearance", pitch:"Zero-surprise paperwork",
     desc:"Import & export customs clearance and documentation handled by licensed, experienced brokers.",
-    icon:'<rect x="4" y="7" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.8"/>',
+    iconUrl:"https://raw.githubusercontent.com/kamalovelocidad/rbm-logistik/27134bc32623bd0e4ad241d1e5e2feaea5199d38/newspaper-svgrepo-com.svg",
     features:["PIB / PEB filing & duty calculation","HS code classification support","Bonded warehouse coordination"]
   },
   {
     key:"trucking", short:"Port, warehouse and door-to-door trucking services with modern fleet.", title:"Trucking", pitch:"Port to door, on time",
     desc:"Port, warehouse and door-to-door trucking services with a modern, reliable fleet.",
-    icon:'<path d="M3 16V7a1 1 0 0 1 1-1h9v10" stroke="currentColor" stroke-width="1.8"/><path d="M13 10h4l4 4v2h-3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="18" r="2" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="18" r="2" stroke="currentColor" stroke-width="1.8"/>',
+    iconUrl:"https://raw.githubusercontent.com/kamalovelocidad/rbm-logistik/27134bc32623bd0e4ad241d1e5e2feaea5199d38/trucking-transport-svgrepo-com.svg",
     features:["Container & LTL trucking fleet","Cross-Jawa & inter-island routes","Real-time driver dispatch"]
   },
   {
     key:"special", short:"Machinery, project cargo, DG, oversized and special handling.", title:"Special Cargo", pitch:"Oversized? Dangerous? Handled.",
     desc:"Machinery, project cargo, dangerous goods, oversized and other special handling requirements.",
-    icon:'<rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 9h16M9 4v16" stroke="currentColor" stroke-width="1.8"/>',
+    iconUrl:"https://raw.githubusercontent.com/kamalovelocidad/rbm-logistik/55b1948c4c29b751727d93e80f05aedd75ea64a6/packages-box-svgrepo-com.svg",
     features:["DG-certified handling & documentation","Heavy-lift & project cargo planning","Custom crating and lashing"]
   },
   {
     key:"multimodal", short:"Integrated sea, air and land solutions from origin to destination.", title:"Multimodal Transport", pitch:"One route, every mode",
     desc:"Integrated sea, air and land solutions planned end to end from origin to final destination.",
-    icon:'<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.7 4 6.3 4 9s-1.5 6.3-4 9c-2.5-2.7-4-6.3-4-9s1.5-6.3 4-9Z" stroke="currentColor" stroke-width="1.8"/>',
+    iconUrl:"https://raw.githubusercontent.com/kamalovelocidad/rbm-logistik/55b1948c4c29b751727d93e80f05aedd75ea64a6/folder-svgrepo-com.svg",
     features:["Single point of contact, one invoice","Route optimisation for cost or speed","Consolidated tracking across modes"]
   }
 ];
@@ -1385,19 +1386,19 @@ function iconSvg(inner){ return `<svg viewBox="0 0 24 24" fill="none">${inner}</
 
 document.getElementById('homeServiceGrid').innerHTML = SERVICES.map(s=>`
   <div class="svc-tile">
-    <div class="svc-icon-box">${iconSvg(s.icon)}</div>
+    <div class="svc-icon-box"><img src="${s.iconUrl}" alt="${s.title}" class="svc-svg-icon"></div>
     <h3>${s.title}</h3>
     <p>${s.short}</p>
     <a class="link-more" href="#" data-nav="services">Learn more ${iconSvg('<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>')}</a>
   </div>`).join('');
 
-document.getElementById('heroModes').innerHTML = SERVICES.filter(s=>s.key!=='multimodal').map(s=>`<li>${iconSvg(s.icon)}<span>${s.title}</span></li>`).join('');
+document.getElementById('heroModes').innerHTML = SERVICES.filter(s=>s.key!=='multimodal').map(s=>`<li><img src="${s.iconUrl}" alt="${s.title}" class="svc-svg-icon"><span>${s.title}</span></li>`).join('');
 document.getElementById('homeCargoList').innerHTML = HOME_CARGO.map(c=>`<li>${iconSvg(c.i)}${c.n}</li>`).join('');
 
 document.getElementById('servicesFullGrid').innerHTML = SERVICES.map((s,i)=>`
   <div class="svc-full-card">
     <span class="num">0${i+1}</span>
-    <div class="svc-full-icon">${iconSvg(s.icon)}</div>
+    <div class="svc-full-icon"><img src="${s.iconUrl}" alt="${s.title}" class="svc-svg-icon"></div>
     <div class="pitch">${s.pitch}</div>
     <h3>${s.title}</h3>
     <p class="desc">${s.desc}</p>
