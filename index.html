@@ -165,6 +165,11 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .rate-tab-btn:hover{color:#fff;}
 .rate-tab-btn.active{background:var(--orange);color:#fff;border-color:var(--orange);}
 
+.widget-center-title{
+  font-family:var(--font-display);font-size:11px;font-weight:800;
+  text-transform:uppercase;color:#fff;letter-spacing:.03em;white-space:nowrap;
+}
+
 .carousel-controls{display:flex;align-items:center;gap:4px;}
 .carousel-btn{
   width:24px;height:24px;border-radius:4px;background:var(--navy-800);border:1px solid var(--line-strong);
@@ -181,9 +186,15 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
   background:var(--paper);padding:8px 10px;border-radius:6px;border:1px solid var(--line-strong);
 }
 .route-badge-item{display:flex;flex-direction:column;}
-.route-badge-item .lbl{font-size:9px;font-weight:800;text-transform:uppercase;color:var(--orange);letter-spacing:.04em;}
+.route-badge-item .lbl{font-size:10px;font-weight:800;text-transform:uppercase;color:var(--orange);letter-spacing:.04em;}
 .route-badge-item .val{font-size:13px;font-weight:800;color:#fff;}
-.route-arrow{color:var(--orange);font-weight:bold;font-size:12px;}
+
+/* BIGGER AND LONGER ROUTE ARROW */
+.route-arrow{
+  color:var(--orange);font-weight:900;font-size:18px;line-height:1;
+  padding:0 8px;letter-spacing:-0.05em;display:inline-block;
+  transform:scaleX(1.4);
+}
 
 .charges-full-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
 .charge-mini-item{
@@ -451,12 +462,38 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
 .stamp-box b{display:block;font-size:8.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
 .stamp-box span{font-size:7.5px;font-weight:600;}
 
-@page { size: A4 portrait; margin: 5mm; }
+/* ============ STRICT 1-PAGE PDF PRINT FORMATTING ============ */
+@page { size: A4 portrait; margin: 0; }
 @media print {
-  html, body { margin: 0 !important; padding: 0 !important; background: #fff !important; color: #000 !important; }
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    height: 100% !important;
+    overflow: hidden !important;
+  }
   body * { visibility: hidden; }
+  
   #resultCard, #resultCard * { visibility: visible; }
-  #resultCard { position: absolute !important; left: 0 !important; top: 0 !important; width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; box-shadow: none !important; border: none !important; background: #fff !important; color: #000 !important; }
+  
+  #resultCard {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 10mm 12mm !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-sizing: border-box !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+  
   .no-print { display: none !important; }
 }
 
@@ -668,6 +705,10 @@ input,select,textarea{font-family:inherit;font-size:13.5px;color:var(--ink);back
                   <button class="rate-tab-btn" data-tab="FCL">FCL</button>
                   <button class="rate-tab-btn" data-tab="AIR">AIR</button>
                 </div>
+                
+                <!-- "Freight Rate" Label Inserted Between AIR and Nav Buttons -->
+                <span class="widget-center-title">Freight Rate</span>
+
                 <div class="carousel-controls">
                   <button class="carousel-btn" id="homeRatePrevBtn" aria-label="Previous Rate">❮</button>
                   <button class="carousel-btn" id="homeRateNextBtn" aria-label="Next Rate">❯</button>
@@ -1550,12 +1591,13 @@ function setupQuoteForm(form){
 document.querySelectorAll('.quote-form-js').forEach(setupQuoteForm);
 
 /* ============================================================
-   LIVE SHIPMENT TRACKING
+   LIVE SHIPMENT TRACKING — SWAPPED SHIPPER & CONSIGNEE
    ============================================================ */
 const SHEET_ID  = "1TypMtS_OqVQ4xhwRgcNGpSqC-Zisec5Z897ByW5eDK8";
 const SHEET_GID = "0";
 const GVIZ_URL  = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}`;
 
+/* Swapped Column Indices: shipper is col 9, consignee is col 8 */
 const COL = {
   project:1, status:2, freight:3, role:4, term:5, pol:6, pod:7,
   shipper:9, consignee:8, comment:12, delay:13, commodity:14, dg:15, packaging:16, cw:17, vol:18,
@@ -1635,7 +1677,15 @@ function renderResult(row, query){
   badge.textContent = st.label;
   badge.className = 'status-badge ' + st.cls;
 
-  document.getElementById('grpInfo').innerHTML = [tile('Shipper', get(COL.shipper)), tile('Consignee', get(COL.consignee)), tile('Incoterm', get(COL.term)), tile('Freight', get(COL.freight)), tile('Direction', get(COL.role))].join('');
+  /* SWAPPED TILE POSITION: Shipper comes first, then Consignee */
+  document.getElementById('grpInfo').innerHTML = [
+    tile('Shipper', get(COL.shipper)),
+    tile('Consignee', get(COL.consignee)),
+    tile('Incoterm', get(COL.term)),
+    tile('Freight', get(COL.freight)),
+    tile('Direction', get(COL.role))
+  ].join('');
+
   document.getElementById('grpRoute').innerHTML = `<div class="route-point"><div class="dot"></div><div class="lbl">Origin</div><div class="val">${get(COL.pol) || '—'}</div></div><div class="route-line"></div><div class="route-point dest"><div class="dot"></div><div class="lbl">Destination</div><div class="val">${get(COL.pod) || '—'}</div></div>`;
 
   const dgVal = get(COL.dg);
@@ -1662,7 +1712,7 @@ document.getElementById('homeTrackBtn').addEventListener('click', ()=>{
 });
 
 /* ============================================================
-   MULTI-TAB FREIGHT RATES — DYNAMIC json.table.cols EXTRACTION
+   MULTI-TAB FREIGHT RATES — CLEANED POL/POD TEXT & BIGGER ARROW
    ============================================================ */
 const TAB_SHEET_NAMES = {
   'LCL': 'LCL%20Freight%20Rate',
@@ -1725,16 +1775,17 @@ function buildFullHeaderRateCardHtml(r, tabName){
     `;
   }
 
+  /* Cleaned: Removed "POL COUNTRY:" and "POD COUNTRY:" labels */
   return `
     <div class="rate-item-slide active">
       <div class="route-badge-row">
         <div class="route-badge-item">
-          <span class="lbl">${headers[0] || 'POL COUNTRY'}: ${polCountry}</span>
+          <span class="lbl">${polCountry}</span>
           <span class="val">${polCity}</span>
         </div>
-        <span class="route-arrow">➔</span>
+        <span class="route-arrow">⟶</span>
         <div class="route-badge-item" style="text-align:right;">
-          <span class="lbl">${headers[2] || 'POD COUNTRY'}: ${podCountry}</span>
+          <span class="lbl">${podCountry}</span>
           <span class="val">${podCity}</span>
         </div>
       </div>
